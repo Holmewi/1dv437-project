@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="084e2099-1807-4f66-9fda-70d6dc84c9a0" name="Hypothermia" linkedPackageId="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="2d663c08-53b0-4a15-8a2a-1f403139e609">
+      <profileInstance Id="ceca6c98-b0a1-4e8f-93b2-3b50dfc2cda9" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="1f54cb60-797e-4a28-bedb-bfc8218d7129">
+      <profileInstance Id="2ce87b8b-9dc5-474b-a7c5-1a345b2c07c3" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="ea3c5fce-e08e-409a-a496-9b4275288fa5" name="Controller">
+        <elementDefinition Id="6710bc36-0573-4967-b1b2-757fe706f471" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="4e2202a4-794c-4c03-bf49-6adf68c9b4ec" name="PlayerController" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="f2857cb3-f6ab-4b0f-a7f7-e75127bb7101" />
+              <ownedOperationsInternal>
+                <operation Id="c79fb14d-3d4c-4293-b9f8-8528d1cf04a7" name="Movement" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="6a3c95a9-2716-4231-967b-7845be29231c" />
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="3699c197-0e00-4a6d-813b-bbda56d8ee2e" name="MaterController" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="18430d57-53b0-4b3e-a3fa-0a4ab6ce45fd" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="a9387fd9-aac7-41ec-a6d1-8b3f36f9c573" name="GameController" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="b88f8413-d74a-4ede-89fd-34d369809fbf" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="2f40f976-b701-4719-a663-8ad4e9dc9b8f" name="ViewController" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="b1090263-ef95-4209-b2cb-ff9ab9bdadc8" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="98e32b0e-ef49-4dd9-872e-3429eaa4a0d1" name="Model">
+        <elementDefinition Id="44dc2dfb-aa76-4298-b6e3-1586cef983fc" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="23a71413-15be-4e43-879b-90b2a2c09c99" name="GameObject" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="03b0ad90-3f6e-4088-a07a-e16f18d5866d" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="4223a47c-8504-4315-87e9-120ebe482564" name="RigidBody&lt;Component&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="54b9fbe7-831e-4bf7-afd0-271578f50c4e" />
+              <ownedOperationsInternal>
+                <operation Id="5df3aad2-0806-4f82-beb5-b753d1ca7282" name="Fall" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+                  <elementDefinition Id="5eba4e16-9615-4b05-8288-aece0e5cda08" />
+                </operation>
+              </ownedOperationsInternal>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="514ff539-cf68-4234-aebb-fc9d1b9bc54f" name="Player" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="79a24f82-f4ab-4b0e-a375-64f0e336a90d" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="c1e801c8-93de-455e-8d23-807a675e4ce6" name="BoxCollider&lt;Component&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="2d81205d-1dd2-4243-ab40-ec6907e15e24" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="5cc62f3a-b250-4d45-8dfd-70ed0ec8918d" name="Level" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="d65bf85a-95e9-46e8-8fad-f06a90383843" name="Enemy" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="68f9a7e8-d324-4e89-86c3-994e75a50bf8" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="c23ef4d2-92d5-4438-ad02-a408450204ee" name="View">
+        <elementDefinition Id="f4f965a1-f9a6-4270-9aac-f183b8ac3abb" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="1e6678f0-f352-4142-8ec8-eca26b34c5c0" name="Camera" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="fa80384e-787f-4aa4-93bb-1ef3cf2dac89" name="PlayerView" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="eec66e69-38d7-4779-9abf-3447b8a9399f" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="56bd4f87-30a7-43f2-bbd4-2872c6e1b0ed" name="GameView" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="4823c746-4565-4687-b3ee-5c24fcc85e28" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="e4828d8e-660a-40e8-9e2f-c19d96df5c28" name="MenuView" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="4849a3df-cc72-47e1-a540-159571dce6c2" />
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+  </packagedElements>
+  <package Id="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" name="GameClassDiagram">
+    <elementDefinition Id="3dfc7fe9-4923-4302-a75d-00dc51560ea5" />
+  </package>
+</logicalClassDesignerModel>
