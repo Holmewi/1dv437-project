@@ -37,7 +37,77 @@
         name="Player"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="fb6c4143-1d5c-4407-a054-8c12ba3161e1">
+            <classMoniker
+              Id="f2857cb3-f6ab-4b0f-a7f7-e75127bb7101"
+              LastKnownName="PlayerController"
+              LastKnownLocation="Package_1622.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="be806041-f0f2-497f-834c-55b95d6716ac"
+            isSubstitutable="false">
+            <classMoniker
+              Id="03b0ad90-3f6e-4088-a07a-e16f18d5866d"
+              LastKnownName="GameObject"
+              LastKnownLocation="Package1_1622.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="3d1a25cf-2bb5-41e4-a9f3-14d53b246493"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="54b9fbe7-831e-4bf7-afd0-271578f50c4e"
+              LastKnownName="RigidBody&lt;Component&gt;"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="09973118-a883-4453-b991-112bd2c772b4"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="a12e78cf-3119-4450-b1fa-9cb23eddadfc"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="983dcd61-dade-450f-a2b7-e3d28fc177a1"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0a81f4c1-143d-4efc-97c8-f248f00432ed"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -59,6 +129,78 @@
       <class
         Id="68f9a7e8-d324-4e89-86c3-994e75a50bf8"
         name="Enemy"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <generalsInternal>
+          <generalization
+            Id="ac4dafce-63ac-414a-8fc2-820bb7bced0f"
+            isSubstitutable="false">
+            <classMoniker
+              Id="03b0ad90-3f6e-4088-a07a-e16f18d5866d"
+              LastKnownName="GameObject"
+              LastKnownLocation="Package1_1622.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="bcb7927f-8562-4a2c-9067-0ee046edd5de"
+            isDerived="false"
+            sourceEndRoleName="Enemy"
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="54b9fbe7-831e-4bf7-afd0-271578f50c4e"
+              LastKnownName="RigidBody&lt;Component&gt;"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f79eced1-9972-4adf-b327-13f93afccd15"
+                  name="Enemy"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="86c662ab-76f5-4e81-9cf4-b0ba00dfc244"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="bf6e47ae-52fb-4206-9d3a-4d45bcb14bc1"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dac24fb2-bba0-48d1-a224-223aa2cd84d1"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
+        name="BoxCollider"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />

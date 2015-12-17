@@ -8,7 +8,8 @@ namespace Hypothermia.Controller
 {
     public class PlayerController
     {
-        
+        private bool onGround = false;
+
         private float movementSpeed = 5.0f;
         private float jumpingSpeed = 5.0f;
 
@@ -19,14 +20,14 @@ namespace Hypothermia.Controller
             this.gameObject = gameObject;
         }
 
-        public void Movement(bool onGround)
+        public void Movement()
         {
-            if (onGround)
+            if (this.onGround)
             {
                 if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 {
                     this.Jump();
-                }   
+                }
                 if (Keyboard.GetState().IsKeyDown(Keys.A))
                 {
                     this.MovingLeft();
@@ -67,6 +68,9 @@ namespace Hypothermia.Controller
             this.gameObject.VelocityY = this.gameObject.Velocity.Y - jumpingSpeed;
         }
 
-
+        public bool OnGround { 
+            get { return this.onGround; } 
+            set { this.onGround = value; } 
+        }
     }
 }

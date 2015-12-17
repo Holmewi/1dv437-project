@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/ball.png</SourceFile>
-  <SourceTime>2015-12-14T00:13:46.7509202+01:00</SourceTime>
-  <DestFile>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/bin/Windows/ball.xnb</DestFile>
-  <DestTime>2015-12-14T00:52:13.0179066+01:00</DestTime>
+  <SourceFile>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/tempTiles.png</SourceFile>
+  <SourceTime>2015-12-16T19:00:41.0436155+01:00</SourceTime>
+  <DestFile>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/bin/Windows/tempTiles.xnb</DestFile>
+  <DestTime>2015-12-16T21:00:17.5775076+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

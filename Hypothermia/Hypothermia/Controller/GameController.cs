@@ -7,20 +7,23 @@ namespace Hypothermia.Controller
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class MasterController : Game
+    public class GameController : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D texture;
+        private Texture2D texture;
 
 
         // temp
+        private View.PlayerView playerView;
+        private View.GameView view;
         private Model.Player player;
 
         Texture2D floorTexture;
         Model.GameObject floor;
+       
 
-        public MasterController()
+        public GameController()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -51,9 +54,14 @@ namespace Hypothermia.Controller
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            this.texture = Content.Load<Texture2D>("ball");
+
+            this.playerView = new View.PlayerView(Content);
+            this.texture = Content.Load<Texture2D>("player");
             this.floorTexture = new Texture2D(graphics.GraphicsDevice, 600, 30);
             this.floor = new Model.GameObject(this.floorTexture, new Rectangle(0, 450, this.floorTexture.Width, this.floorTexture.Height));
+            this.view = new View.GameView(GraphicsDevice, Content);
+
+            
         }
 
         /// <summary>
@@ -81,9 +89,21 @@ namespace Hypothermia.Controller
             if(this.player == null)
                 this.player = new Model.Player(this.texture);
 
-            this.player.Update(elapsedTime);
+            
+            foreach(Model.Box box in this.view.Boxes) {
+                if(this.player.Position.X > box.Rect.Left && this.player.Position.X < box.Rect.Right)
+                    if (this.player.DetectCollision(box.Collider))
+                    {
+                        this.player.OnGround = true;
+                    }
+                    else
+                    {
+                        this.player.OnGround = false;
+                    }
+            }
 
-            if(this.player.Rect.Intersects(this.floor.Rect)) 
+            /*
+            if (this.player.Rect.Intersects(this.floor.Rect)) 
             {
                 this.player.OnGround = true;
                 this.player.VelocityY = 0;
@@ -92,6 +112,10 @@ namespace Hypothermia.Controller
             {
                 this.player.OnGround = false;
             }
+             */
+             
+             
+            this.player.Update(elapsedTime);
 
             base.Update(gameTime);
         }
@@ -102,14 +126,17 @@ namespace Hypothermia.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
             spriteBatch.Begin();
 
-            spriteBatch.Draw(this.floor.Texture, this.floor.Rect, Color.Black);
+            Vector2 textureCenterBottomDisplacement = new Vector2 ((float)this.player.Texture.Bounds.Width / 2, (float)this.player.Texture.Bounds.Height);
 
-            spriteBatch.Draw(this.player.Texture, this.player.Position, null);
+            spriteBatch.Draw(this.floor.Texture, this.floor.Rect, null, Color.Black);
+
+            spriteBatch.Draw(this.player.Texture, this.player.Position, null, Color.White, 0f, textureCenterBottomDisplacement, 1f, SpriteEffects.None, 0f);
+            this.view.Draw(spriteBatch);
             spriteBatch.End();
 
             base.Draw(gameTime);

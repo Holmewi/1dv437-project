@@ -11,8 +11,6 @@ namespace Hypothermia.Model
 {
     public class Player : GameObject
     {
-        private bool onGround = false;
-
         private RigidBody rigidBody;
         private Controller.PlayerController controller;
 
@@ -27,32 +25,25 @@ namespace Hypothermia.Model
             this.controller = new Controller.PlayerController(this);
         }
 
-        public bool OnGround { set { this.onGround = value; } }
+        public bool DetectCollision(BoxCollider boxCollider)
+        {
+            return this.rigidBody.CollisionDetection(boxCollider);
+        }
 
         public void Update(float elapsedTime)
         {
-            base.Rect = new Rectangle((int)base.Position.X, (int)base.Position.Y, base.Texture.Width, base.Texture.Height);
-
-            if (!this.onGround)
+            if (!this.controller.OnGround)
             {
                 this.rigidBody.Fall(elapsedTime);
             }
             
-            this.controller.Movement(this.onGround);
-            /*
-            if (base.Position.Y < 200)
-            {
-                base.Velocity = base.Velocity + base.Gravity * elapsedTime;
-                this.inAir = true;
-            }
-            else
-            {
-                base.VelocityY = 0.0f;
-                this.inAir = false;
-            }
-             */
+            this.controller.Movement();
+            
 
+            base.Rect = new Rectangle((int)base.Position.X, (int)base.Position.Y, base.Texture.Width, base.Texture.Height);
             base.Position = base.Position + base.Velocity;
         }
+
+        public bool OnGround { set { this.controller.OnGround = value; } }
     }
 }
