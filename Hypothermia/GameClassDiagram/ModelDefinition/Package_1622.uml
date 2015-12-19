@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="6710bc36-0573-4967-b1b2-757fe706f471"
   name="Controller" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -138,7 +138,7 @@
             isAbstract="false">
             <classMoniker
               Id="b1090263-ef95-4209-b2cb-ff9ab9bdadc8"
-              LastKnownName="ViewController"
+              LastKnownName="MenuController"
               LastKnownLocation="Package_1622.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -177,32 +177,21 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
-        </targetEnds>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="b1090263-ef95-4209-b2cb-ff9ab9bdadc8"
-        name="ViewController"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
           <association
-            Id="9325aa73-bcac-45c7-b91b-8a351b7fcaeb"
+            Id="904a0034-1d27-4412-98d6-4fbaf99d079e"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="PlayerView"
+            targetEndRoleName="Camera"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="eec66e69-38d7-4779-9abf-3447b8a9399f"
-              LastKnownName="PlayerView"
+              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
+              LastKnownName="Camera"
               LastKnownLocation="Package_1623.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="6219cccd-5cde-43fe-9db3-5192a575aaae"
+                  Id="8f8ee1f8-16f5-4268-88eb-4de437a89f8f"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -213,20 +202,20 @@
                   isNavigableOwned="false">
                   <lowerValueInternal>
                     <literalString
-                      Id="afa6f6c0-70f3-4c43-94e7-b4cbb50bf08b"
+                      Id="5ac713f3-7d71-44bd-880b-f603a9cf5553"
                       name="Lower" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
-                      Id="2acdee5d-5a99-4750-8255-748dca2f0c26"
+                      Id="ffc157e4-d6c8-4a53-8a04-98a2481a032b"
                       name="Upper" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="c5735458-4223-4050-ab20-aa1ffa03b460"
-                  name="PlayerView"
+                  Id="ae31f0dc-7d81-4d92-8265-eb1b8e45918d"
+                  name="Camera"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -286,6 +275,17 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b1090263-ef95-4209-b2cb-ff9ab9bdadc8"
+        name="MenuController"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
           <association
             Id="9ab5bf44-95b0-40ed-8075-4140bbc462cd"
             isDerived="false"
@@ -325,55 +325,6 @@
                 <memberEnd
                   Id="a169580a-014f-4e7e-a537-495fd38fd673"
                   name="MenuView"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="60e80c76-3726-44ea-aca7-9e7c755dd426"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="Camera"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
-              LastKnownName="Camera"
-              LastKnownLocation="Package_1623.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c0df7d8b-c217-4a6b-82fe-d89abddf181a"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="61523cf9-4068-4e2d-93dd-26870eba530d"
-                      name="Lower" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="3f14b2ee-9a86-494d-b28e-d9cebc741d36"
-                      name="Upper" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c61b1e89-cf37-4eab-8a5f-9a740f3241da"
-                  name="Camera"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"

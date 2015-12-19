@@ -24,7 +24,7 @@ namespace Hypothermia.Model
             // If the objects right is to the left of the colliders left
             // and if the objects bottom is bigger the colliders top
             // and if the objects top is lesser the colliders bottom
-            if (gameObject.Rect.Right <= boxCollider.Rect.Left &&
+            if (gameObject.Rect.Right <= boxCollider.Rect.Left + 1 &&
                 gameObject.Rect.Bottom > boxCollider.Rect.Top &&
                 gameObject.Rect.Top < boxCollider.Rect.Bottom)
             {
@@ -47,7 +47,7 @@ namespace Hypothermia.Model
             // If the objects left is to the right of the colliders right
             // and if the objects bottom is bigger the colliders top
             // and if the objects top is lesser the colliders bottom
-            if (gameObject.Rect.Left >= boxCollider.Rect.Right &&
+            if (gameObject.Rect.Left >= boxCollider.Rect.Right - 1 &&
                 gameObject.Rect.Bottom > boxCollider.Rect.Top &&
                 gameObject.Rect.Top < boxCollider.Rect.Bottom)
             {
@@ -68,9 +68,11 @@ namespace Hypothermia.Model
         public bool DetectCollisionBottom(BoxCollider boxCollider, GameObject gameObject)
         {
             // If the objects bottom is above the colliders top
+            // and if the object moves through the collider
             // and if the objects right is bigger the colliders left
             // and if the objects left is lesser the colliders right
-            if (gameObject.Rect.Bottom <= boxCollider.Rect.Top &&
+            if (gameObject.Rect.Bottom + (gameObject.Texture.Height / 5) >= boxCollider.Rect.Top &&
+                gameObject.Rect.Bottom - 1 <= boxCollider.Rect.Top &&
                 gameObject.Rect.Right > boxCollider.Rect.Left &&
                 gameObject.Rect.Left < boxCollider.Rect.Right)
             {
@@ -91,11 +93,13 @@ namespace Hypothermia.Model
         public bool DetectCollisionTop(BoxCollider boxCollider, GameObject gameObject)
         {
             // If the objects Top is beneath the colliders bottom
+            // and if the object moves through the collider
             // and if the objects right is bigger the colliders left
             // and if the objects left is lesser the colliders right
-        if (gameObject.Rect.Top >= boxCollider.Rect.Bottom &&
-            gameObject.Rect.Right > boxCollider.Rect.Left &&
-            gameObject.Rect.Left < boxCollider.Rect.Right)
+            if (gameObject.Rect.Top - 1 <= boxCollider.Rect.Bottom && 
+                gameObject.Rect.Top + (gameObject.Texture.Height/2) >= boxCollider.Rect.Bottom &&
+                gameObject.Rect.Right > boxCollider.Rect.Left &&
+                gameObject.Rect.Left < boxCollider.Rect.Right)
             {
                 if (CollidingTop(gameObject.Position.X, gameObject.Position.Y - gameObject.Texture.Height + gameObject.Velocity.Y, boxCollider))
                 {

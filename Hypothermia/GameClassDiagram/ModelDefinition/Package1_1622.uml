@@ -24,7 +24,7 @@
             Id="8ceaede6-57d3-468b-8dc5-05bb0132f4fb">
             <classMoniker
               Id="f301a78f-50a8-4389-94fa-c1de82b53d4f"
-              LastKnownName="CollisionHandler"
+              LastKnownName="CollisionHandler&lt;Component&gt;"
               LastKnownLocation="Package1_1622.uml" />
           </dependency>
         </suppliersInternal>
@@ -115,13 +115,52 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="b8d4b819-abd0-4e65-afc6-6277e02d4f14"
+            isDerived="false"
+            sourceEndRoleName="Player"
+            targetEndRoleName="Camera"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
+              LastKnownName="Camera"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="dad27917-b7ac-46b4-95f9-81c4c6334e7b"
+                  name="Player"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="42faf39b-2d7c-4b0a-881a-1e0937955a02"
+                  name="Camera"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2"
-        name="Level"
+        name="LevelSystem"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
@@ -209,10 +248,20 @@
     <packageHasNamedElement>
       <class
         Id="f301a78f-50a8-4389-94fa-c1de82b53d4f"
-        name="CollisionHandler"
+        name="CollisionHandler&lt;Component&gt;"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="c4daf6cf-11c6-43c0-b4f7-268592bcd769">
+            <classMoniker
+              Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
+              LastKnownName="BoxCollider"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

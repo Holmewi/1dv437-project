@@ -9,19 +9,27 @@ namespace Hypothermia.View
 {
     public class Camera
     {
-        // TODO: Decide if these values should be in a model or in another view
-        //private int tileSize = 64;
-        //private int worldTileHight = 20;
-        //private int worldTileWidth = 100;
+        private GraphicsDevice device;
+        private Matrix transform;
+        private Vector2 center;
 
         public Camera(GraphicsDevice device)
         {
-
+            this.device = device;
         }
 
         public Vector2 GetVisualCoordinates(int logicX, int logicY)
         {
             return new Vector2(0, 0);
         }
+
+        public void Update(float elapsedTime, Model.Player player)
+        {
+            this.center.X = player.Position.X - this.device.Viewport.Width / 2;
+            this.center.Y = player.Position.Y - this.device.Viewport.Height / 2;
+            this.transform = Matrix.CreateScale(new Vector3(1,1,0)) * Matrix.CreateTranslation(new Vector3(-center.X, -center.Y, 0));
+        }
+
+        public Matrix Transform { get { return this.transform; } }
     }
 }

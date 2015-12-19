@@ -26,7 +26,15 @@ namespace Hypothermia.Model
             this.controller = new Controller.PlayerController(this, this.rigidBody);
         }
 
-        public void Update(float elapsedTime, Box[] boxes)
+        public void MapCollision(int mapWidth)
+        {
+            if (base.Position.X < 0) 
+                base.PositionX = 0;
+            if (base.Position.X > mapWidth)
+                base.PositionX = mapWidth;
+        }
+
+        public void Update(float elapsedTime, View.Box[] boxes)
         {
             this.controller.Movement();
             

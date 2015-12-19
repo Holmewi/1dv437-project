@@ -47,7 +47,7 @@ namespace Hypothermia.Model
             }
         }
 
-        public void DetectCollision(Box[] boxes)
+        public void DetectCollision(View.Box[] boxes)
         {
             /**
              *  1st - Check which direction the GameObject is moving (X directions needs to be checked first)

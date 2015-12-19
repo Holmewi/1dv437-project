@@ -26,7 +26,97 @@
         name="GameView"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="9325aa73-bcac-45c7-b91b-8a351b7fcaeb"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="PlayerView"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="eec66e69-38d7-4779-9abf-3447b8a9399f"
+              LastKnownName="PlayerView"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6219cccd-5cde-43fe-9db3-5192a575aaae"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="afa6f6c0-70f3-4c43-94e7-b4cbb50bf08b"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="2acdee5d-5a99-4750-8255-748dca2f0c26"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c5735458-4223-4050-ab20-aa1ffa03b460"
+                  name="PlayerView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="d7bc6f3b-ab2a-46c7-bef9-56a8ddec0961"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="LevelView"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="02c51978-7199-4f74-952d-ba210e9b4175"
+              LastKnownName="LevelView"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1127b63d-ca36-477c-a7fa-cc1577ea103e"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d4084a5a-860b-45da-b0e9-514a0062b9bc"
+                  name="LevelView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -85,6 +175,76 @@
           </association>
         </targetEnds>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="07747be7-0a30-4149-925c-66b6aa58dbbe"
+        name="Map"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="57cd9cf9-6a25-4044-a22b-fb248198936e"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Box"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="0c150aab-d905-44da-b852-982309149242"
+              LastKnownName="Box"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="7d7fb3df-6a79-4263-9ef8-034fda5033ba"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b1c7f66c-db6c-4862-87bc-f906c618f83c"
+                  name="Box"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="ed89c452-291f-4853-92d6-3e71d9a3220b"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="b966b542-4544-4a10-8bdb-9566f9b95c49"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="02c51978-7199-4f74-952d-ba210e9b4175"
+        name="LevelView"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

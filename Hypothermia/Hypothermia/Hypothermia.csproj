@@ -51,6 +51,8 @@
     <Compile Include="View\Camera.cs" />
     <Compile Include="View\GameView.cs" />
     <Compile Include="View\LevelGenerator.cs" />
+    <Compile Include="View\Map.cs" />
+    <Compile Include="View\MenuController.cs" />
     <Compile Include="View\PlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
