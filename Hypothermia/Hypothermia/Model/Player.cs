@@ -17,33 +17,27 @@ namespace Hypothermia.Model
         public Player(Texture2D texture)
         {
             base.Texture = texture;
-            base.Position = new Vector2(100, 100);
+            base.Position = new Vector2(96, 100);
             base.Velocity = new Vector2(0, 0);
             base.Acceleration = new Vector2(0.5f, 0.0f);
-
+            base.Rect = new Rectangle((int)Math.Round(base.Position.X) - base.Texture.Width / 2, (int)Math.Round(base.Position.Y) - base.Texture.Height, base.Texture.Width, base.Texture.Height);
+            
             this.rigidBody = new RigidBody(this);
-            this.controller = new Controller.PlayerController(this);
+            this.controller = new Controller.PlayerController(this, this.rigidBody);
         }
 
-        public bool DetectCollision(BoxCollider boxCollider)
+        public void Update(float elapsedTime, Box[] boxes)
         {
-            return this.rigidBody.CollisionDetection(boxCollider);
-        }
+            this.controller.Movement();
+            
+            base.Position = base.Position + base.Velocity;
 
-        public void Update(float elapsedTime)
-        {
-            if (!this.controller.OnGround)
+            if (!this.rigidBody.OnGround)
             {
                 this.rigidBody.Fall(elapsedTime);
             }
-            
-            this.controller.Movement();
-            
 
-            base.Rect = new Rectangle((int)base.Position.X, (int)base.Position.Y, base.Texture.Width, base.Texture.Height);
-            base.Position = base.Position + base.Velocity;
+            this.rigidBody.DetectCollision(boxes);
         }
-
-        public bool OnGround { set { this.controller.OnGround = value; } }
     }
 }

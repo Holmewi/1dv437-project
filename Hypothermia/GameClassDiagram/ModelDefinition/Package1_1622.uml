@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="44dc2dfb-aa76-4298-b6e3-1586cef983fc"
   name="Model" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -19,6 +19,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="8ceaede6-57d3-468b-8dc5-05bb0132f4fb">
+            <classMoniker
+              Id="f301a78f-50a8-4389-94fa-c1de82b53d4f"
+              LastKnownName="CollisionHandler"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+        </suppliersInternal>
         <ownedOperationsInternal>
           <operation
             Id="5eba4e16-9615-4b05-8288-aece0e5cda08"
@@ -111,14 +120,6 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
-        Id="2d81205d-1dd2-4243-ab40-ec6907e15e24"
-        name="BoxCollider&lt;Component&gt;"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
         Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2"
         name="Level"
         isAbstract="false"
@@ -134,7 +135,7 @@
         isActiveClass="false">
         <generalsInternal>
           <generalization
-            Id="ac4dafce-63ac-414a-8fc2-820bb7bced0f"
+            Id="781e0be1-b9e8-4a07-8985-1c393cc0f68a"
             isSubstitutable="false">
             <classMoniker
               Id="03b0ad90-3f6e-4088-a07a-e16f18d5866d"
@@ -201,6 +202,14 @@
       <class
         Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
         name="BoxCollider"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f301a78f-50a8-4389-94fa-c1de82b53d4f"
+        name="CollisionHandler"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />

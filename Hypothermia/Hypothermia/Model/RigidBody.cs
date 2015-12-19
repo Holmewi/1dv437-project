@@ -9,6 +9,10 @@ namespace Hypothermia.Model
 {
     public class RigidBody
     {
+        private bool onGround = false;
+        private bool collideRight = false;
+        private bool collideLeft = false;
+
         private float gravityAcceleration = 9.8f; // (unit g) 9.8f is the gravity acceleration on earth
         private Vector2 gravity; // (unit Q) objects mass (m) * g
 
@@ -19,19 +23,19 @@ namespace Hypothermia.Model
         // Todo: Decide if this value should stay here or be moved to the GameObject
         private float frontArea = 5.5f; // (Unit A) The objects area that hits the drag
 
+        private CollisionHandler collisionHandler;
         private GameObject gameObject;
 
         public RigidBody(GameObject gameObject)
         {
             this.gameObject = gameObject;
+            this.collisionHandler = new CollisionHandler(this);
         }
 
         public void Fall(float elapsedTime)
         {
-
             //  Calculates the force of the air drag: F = cA * (d (v*v)/2)
-            this.drag = this.dragCoefficient * this.frontArea * (this.airDensity * (this.gameObject.Velocity.Y * this.gameObject.Velocity.Y) / 2); // c * A * (dv2/2)
-  
+            this.drag = this.dragCoefficient * this.frontArea * (this.airDensity * (this.gameObject.Velocity.Y * this.gameObject.Velocity.Y) / 2);
 
             //  Calculates the gravitation towards the ground floor (earth): Q = mg
             this.gravity.Y = this.gameObject.Mass * this.gravityAcceleration;
@@ -43,64 +47,95 @@ namespace Hypothermia.Model
             }
         }
 
-        public bool CollisionDetection(BoxCollider boxCollider)
+        public void DetectCollision(Box[] boxes)
         {
-            // Vertical Collision
-            if (Colliding(this.gameObject.Position.X, this.gameObject.Position.Y + this.gameObject.Velocity.Y, boxCollider))
+            /**
+             *  1st - Check which direction the GameObject is moving (X directions needs to be checked first)
+             *  2nd - (CollisionHandler) Check if the BoxCollider is in that direction and if it's within it's range
+             *  3rd - (CollisionHandler) Check if the GameObject is about to collide with the BoxCollider
+             *  4th - (CollisionHandler) If true - Calculate the collision position smoothly
+             *  5th - (CollisionHandler) When GameObject has collided with bottom, left or right - set it's position to the BoxCollider this.gameObject.
+            */
+
+            for (var i = 0; i < boxes.Length; i++)
             {
-                while (!Colliding(this.gameObject.Position.X, this.gameObject.Position.Y + Math.Sign(this.gameObject.Velocity.Y), boxCollider))
+                if (this.gameObject.Velocity.X >= 0)
                 {
-                    this.gameObject.PositionY = this.gameObject.Position.Y + Math.Sign(this.gameObject.Velocity.Y);
+                    this.collideLeft = false;
+                    if (this.collisionHandler.DetectCollisionRight(boxes[i].Collider, this.gameObject))
+                    {
+                        this.collideRight = true;
+                        break;
+                    }
+                    else
+                        this.collideRight = false;
                 }
-                //this.gameObject.OnGround = true;
-                this.gameObject.VelocityY = 0;
-                return true;
             }
-            return false;
-            /*
-             i en tile
-             y = player.x/tileWidth * tileXend - tileXstart;
-             */
 
-            // Horizontal Collision
-            /*
-             * Are we about to collide?
-             if(functionCollision(x+velocity.X, y, objectCollider)) {
-                while(!functionCollision(x+sign(velocity.X), y, objectCollider) { (sign returns 1 or -1 depending on x)
+            for (var i = 0; i < boxes.Length; i++)
+            {
+                if (this.gameObject.Velocity.X <= 0)
                 {
-                    x += sign(velocity.X);   
-                }
-                velocity.x = 0;
-             }
-             movement left or right();
-             */
+                    this.collideRight = false;
 
-            //........................................................ Vertical Collision
-            /*
-            if(functionCollision(x, y+velocity.Y, objectCollider)) {
-                while(!functionCollision(x, y + sign(velocity.Y), objectCollider) { (sign returns 1 or -1 depending on x)
-                {
-                    y += sign(velocity.y);   
+                    if (this.collisionHandler.DetectCollisionLeft(boxes[i].Collider, this.gameObject))
+                    {
+                        this.collideLeft = true;
+                        break;
+                    }
+                    else
+                        this.collideLeft = false;
                 }
-                velocity.y = 0;
-             }
-             * */
+            }
+
+            for (var i = 0; i < boxes.Length; i++)
+            {
+                if (this.gameObject.Velocity.Y >= 0)
+                {
+                    if (this.collisionHandler.DetectCollisionBottom(boxes[i].Collider, this.gameObject))
+                    {
+                        this.onGround = true;
+                        break;
+                    }
+                    else
+                        this.onGround = false;
+                }
+            }
+
+            for (var i = 0; i < boxes.Length; i++)
+            {
+                if (this.gameObject.Velocity.Y < 0)
+                {
+                    this.onGround = false;
+                    if (this.collisionHandler.DetectCollisionTop(boxes[i].Collider, this.gameObject))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
-        public bool Colliding(float x, float y, BoxCollider boxCollider)
+        public CollisionHandler CollisionHandler
         {
-            if (boxCollider.IsSolid)
-            {
-                Debug.WriteLine("NextY " + y + ", ColliderTop " + boxCollider.Box.Rect.Top);
+            get { return this.collisionHandler; }
+        }
 
-                if (y > boxCollider.Box.Rect.Top)
-                {
-                    return true;
-                }
-                return false;
-            }
-            return true;
-            
+        public bool OnGround
+        {
+            get { return this.onGround; }
+            set { this.onGround = value; }
+        }
+
+        public bool CollideRight
+        {
+            get { return this.collideRight; }
+            set { this.collideRight = value; }
+        }
+
+        public bool CollideLeft
+        {
+            get { return this.collideLeft; }
+            set { this.collideLeft = value; }
         }
     }
 }

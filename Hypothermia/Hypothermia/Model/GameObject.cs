@@ -73,7 +73,11 @@ namespace Hypothermia.Model
        
         public Vector2 Position { 
             get { return position; }
-            set { this.position = value;  }
+            set { 
+                this.position = value;
+                this.rect.X = (int)Math.Round(value.X) - this.texture.Width / 2;
+                this.rect.Y = (int)Math.Round(value.Y) - this.texture.Height;
+            }
         }
 
         public float PositionX { set { this.position.X = value;  } }

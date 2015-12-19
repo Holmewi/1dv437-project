@@ -1,4 +1,4 @@
-C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Debug\Hypothermia.exe
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\player.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\tempTiles.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Hypothermia.exe
@@ -22,5 +22,5 @@ C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Win
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\SharpDX.Direct2D1.xml
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\SharpDX.RawInput.xml
-C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\SharpDX.Direct3D9.xml
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Debug\Hypothermia.exe
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Debug\Hypothermia.pdb

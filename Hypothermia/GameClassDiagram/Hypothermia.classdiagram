@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="084e2099-1807-4f66-9fda-70d6dc84c9a0" name="Hypothermia" linkedPackageId="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="084e2099-1807-4f66-9fda-70d6dc84c9a0" name="Hypothermia" linkedPackageId="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasPackages>
       <package Id="ea3c5fce-e08e-409a-a496-9b4275288fa5" name="Controller">
@@ -226,6 +226,12 @@
           <packageHasNamedElement>
             <class Id="4223a47c-8504-4315-87e9-120ebe482564" name="RigidBody&lt;Component&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="54b9fbe7-831e-4bf7-afd0-271578f50c4e" />
+              <suppliersInternal>
+                <dependency Id="202f3663-beed-4110-a121-1ff0cb43a518">
+                  <classMoniker Id="a36eed2f-29e9-45af-9ee9-fd22a3bbc132" LastKnownName="CollisionHandler" />
+                  <elementDefinition Id="8ceaede6-57d3-468b-8dc5-05bb0132f4fb" />
+                </dependency>
+              </suppliersInternal>
               <ownedOperationsInternal>
                 <operation Id="5df3aad2-0806-4f82-beb5-b753d1ca7282" name="Fall" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
                   <elementDefinition Id="5eba4e16-9615-4b05-8288-aece0e5cda08" />
@@ -279,11 +285,6 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="c1e801c8-93de-455e-8d23-807a675e4ce6" name="BoxCollider&lt;Component&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
-              <elementDefinition Id="2d81205d-1dd2-4243-ab40-ec6907e15e24" />
-            </class>
-          </packageHasNamedElement>
-          <packageHasNamedElement>
             <class Id="5cc62f3a-b250-4d45-8dfd-70ed0ec8918d" name="Level" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2" />
             </class>
@@ -292,9 +293,9 @@
             <class Id="d65bf85a-95e9-46e8-8fad-f06a90383843" name="Enemy" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="68f9a7e8-d324-4e89-86c3-994e75a50bf8" />
               <generalsInternal>
-                <generalization Id="1f0070f6-db7c-4fab-bc8c-d87743422f60" isSubstitutable="false">
+                <generalization Id="b2d527d5-fcaa-403d-8812-c85024b9c813" isSubstitutable="false">
                   <classMoniker Id="23a71413-15be-4e43-879b-90b2a2c09c99" LastKnownName="GameObject" />
-                  <elementDefinition Id="ac4dafce-63ac-414a-8fc2-820bb7bced0f" />
+                  <elementDefinition Id="781e0be1-b9e8-4a07-8985-1c393cc0f68a" />
                 </generalization>
               </generalsInternal>
               <targetEnds>
@@ -332,6 +333,11 @@
               <elementDefinition Id="aefae925-65e7-4dc1-bdf9-b19b0218527d" />
             </class>
           </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="a36eed2f-29e9-45af-9ee9-fd22a3bbc132" name="CollisionHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="f301a78f-50a8-4389-94fa-c1de82b53d4f" />
+            </class>
+          </packageHasNamedElement>
         </packagedElements>
       </package>
     </logicalClassDesignerModelHasPackages>
@@ -362,6 +368,24 @@
           <packageHasNamedElement>
             <class Id="333a5693-bd62-415d-bb2b-40b546124f5a" name="Box" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="0c150aab-d905-44da-b852-982309149242" />
+              <targetEnds>
+                <association Id="6db3e91f-04c2-445e-9cf1-e514367ca46b" isDerived="false" sourceEndRoleName="Box" targetEndRoleName="BoxCollider" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="cc8f7a8d-50c5-4d92-a60b-9104af43b9c6" LastKnownName="BoxCollider" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="b300766c-8ebf-49ac-b1da-8a67f2172576" name="Box" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="f076c0ad-7ed0-43fa-bda8-2126cdcfc5c4" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="187ac608-f38d-44d0-8b50-b0f70dd6456c" name="BoxCollider" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="96225ed6-4e00-48f4-91c4-91d110afb698" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="8481f6f7-b431-41a0-952b-871434620771" />
+                </association>
+              </targetEnds>
             </class>
           </packageHasNamedElement>
         </packagedElements>

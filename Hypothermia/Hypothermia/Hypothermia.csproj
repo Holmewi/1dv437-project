@@ -41,6 +41,7 @@
     <Compile Include="Controller\GameController.cs" />
     <Compile Include="Model\Box.cs" />
     <Compile Include="Model\BoxCollider.cs" />
+    <Compile Include="Model\CollisionHandler.cs" />
     <Compile Include="Model\GameObject.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Controller\PlayerController.cs" />

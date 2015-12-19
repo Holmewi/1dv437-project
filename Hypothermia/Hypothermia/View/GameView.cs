@@ -11,7 +11,7 @@ namespace Hypothermia.View
 {
     public class GameView
     {
-        private Model.Box[] boxes = new Model.Box[10];
+        private Model.Box[] boxes = new Model.Box[20];
         private Texture2D tiles;
 
         private Rectangle noCol = new Rectangle(0, 0, 64, 64);
@@ -25,10 +25,38 @@ namespace Hypothermia.View
 
         public void LoadContent()
         {
-            for (int i = 0; i < 10; i++)
+            var count = 0;
+            int j = 3;
+            for (int i = 0; i < this.boxes.Length; i++)
             {
-                this.boxes[i] = new Model.Box(this.tiles, new Rectangle(64 * i, 400, 64, 64), this.collider, 0, 0);
+                
+                if (count == 4)
+                {
+                    this.boxes[i] = new Model.Box(this.tiles, new Rectangle(64 * i, 350, 64, 64), this.collider, 0, 0);
+                }
+                else
+                {
+                    //int start = 4 * i;          //  0, 4, 8, 12
+                    //int end = start + 2 + i;    //  3, 7, 11, 15
+                    int start = 0;
+                    int end = 0;
+                    if (count <= 10)
+                    {
+                        this.boxes[i] = new Model.Box(this.tiles, new Rectangle(64 * i, 400, 64, 64), this.collider, start, end);
+                    }
+
+                    else
+                    {
+                        this.boxes[i] = new Model.Box(this.tiles, new Rectangle(64 * j, 200, 64, 64), this.collider, start, end);
+                        j++;
+                    }
+                    
+                }
+                
+                count++;
+                
             }
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)

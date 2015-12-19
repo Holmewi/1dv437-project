@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,16 +11,16 @@ namespace Hypothermia.Model
         private bool isSolid;
         private int startX;
         private int endX;
-    
-        private Box box;
 
-        public BoxCollider(Box box, int startX, int endX)
+        private Rectangle rect;
+
+        public BoxCollider(Rectangle rect, int startX, int endX)
         {
-            this.box = box;
+            this.rect = rect;
             this.startX = startX;
             this.endX = endX;
 
-            if (startX == 0 && endX == 0)
+            if (startX == endX)
                 this.isSolid = true;
             else
                 this.isSolid = false;
@@ -31,18 +32,6 @@ namespace Hypothermia.Model
 
         public int EndX { get { return this.endX; } }
 
-        public Box Box { get { return this.box; } }
-
-
-        /*
-         * if(player.intersects(tileGameObject) {
-         *  if(tileGameObject.IsSolid) {
-         *      player.position.X 
-         *  }
-         * }
-         * 
-         * 
-         * 
-         */
+        public Rectangle Rect { get { return this.rect; } }
     }
 }

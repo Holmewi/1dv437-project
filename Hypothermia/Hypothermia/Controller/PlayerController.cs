@@ -8,41 +8,41 @@ namespace Hypothermia.Controller
 {
     public class PlayerController
     {
-        private bool onGround = false;
+        private bool isIdle = false;
 
         private float movementSpeed = 5.0f;
-        private float jumpingSpeed = 5.0f;
+        private float jumpingSpeed = 8.0f;
 
         private Model.GameObject gameObject;
+        private Model.RigidBody rigidBody;
 
-        public PlayerController(Model.GameObject gameObject)
+        public PlayerController(Model.GameObject gameObject, Model.RigidBody rigidBody)
         {
             this.gameObject = gameObject;
+            this.rigidBody = rigidBody;
         }
 
         public void Movement()
         {
-            if (this.onGround)
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && this.rigidBody.OnGround)
             {
-                if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                {
-                    this.Jump();
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.A))
-                {
-                    this.MovingLeft();
-                }
-                if (Keyboard.GetState().IsKeyDown(Keys.D))
-                {
-                    this.MovingRight();
-                }
-                else if (Keyboard.GetState().IsKeyUp(Keys.A) && Keyboard.GetState().IsKeyUp(Keys.D))
-                {
-                    this.Idle();
-                }
+                this.Jump();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && !this.rigidBody.CollideLeft)
+            {
+                this.MovingLeft();
+            }
+            if (Keyboard.GetState().IsKeyDown(Keys.D) && !this.rigidBody.CollideRight)
+            {
+                this.MovingRight();
+            }
+            else if (Keyboard.GetState().IsKeyUp(Keys.A) && Keyboard.GetState().IsKeyUp(Keys.D) && this.rigidBody.OnGround)
+            {
+                this.Idle();
             }
         }
 
+        //TODO: Manage animation throuh these functions
         public void MovingLeft()
         {
             if (this.gameObject.Velocity.X >= -movementSpeed)
@@ -57,9 +57,9 @@ namespace Hypothermia.Controller
 
         public void Idle()
         {
-            if(this.gameObject.Velocity.X < 0)
+            if (this.gameObject.Velocity.X < 0)
                 this.gameObject.VelocityX = this.gameObject.Velocity.X + this.gameObject.Acceleration.X;
-            else if(this.gameObject.Velocity.X > 0)
+            else if (this.gameObject.Velocity.X > 0)
                 this.gameObject.VelocityX = this.gameObject.Velocity.X - this.gameObject.Acceleration.X;
         }
 
@@ -68,9 +68,10 @@ namespace Hypothermia.Controller
             this.gameObject.VelocityY = this.gameObject.Velocity.Y - jumpingSpeed;
         }
 
-        public bool OnGround { 
-            get { return this.onGround; } 
-            set { this.onGround = value; } 
+        public bool IsIdle
+        {
+            get { return this.isIdle; }
+            set { this.isIdle = value; }
         }
     }
 }

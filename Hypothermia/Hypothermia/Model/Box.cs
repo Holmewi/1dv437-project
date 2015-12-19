@@ -28,7 +28,7 @@ namespace Hypothermia.Model
             this.rect = rect;
             this.textureRect = textureRect;
 
-            this.boxCollider = new BoxCollider(this, startX, endX);
+            this.boxCollider = new BoxCollider(this.rect, startX, endX);
         }
 
         public Texture2D Texture { get { return this.texture; } }
