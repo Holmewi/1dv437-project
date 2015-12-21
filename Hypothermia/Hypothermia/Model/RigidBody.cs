@@ -46,7 +46,7 @@ namespace Hypothermia.Model
             }
         }
 
-        public void DetectCollision(View.Box[] boxes)
+        public void DetectCollision(List<View.Map.Tile> tiles)
         {
             /**
              *  1st - Check which direction the GameObject is moving (X directions needs to be checked first)
@@ -56,14 +56,14 @@ namespace Hypothermia.Model
              *  5th - (CollisionHandler) When GameObject has collided with bottom, left or right - set it's position to the BoxCollider this.gameObject.
             */
 
-            for (var i = 0; i < boxes.Length; i++)
+            for (var i = 0; i < tiles.Count(); i++)
             {
                 if (this.gameObject.Velocity.X >= 0)
                 {
                     this.collideLeft = false;
-                    if (this.collisionHandler.DetectCollisionRight(boxes[i].Collider, this.gameObject))
+                    if (this.collisionHandler.DetectCollisionRight(tiles[i].Collider, this.gameObject))
                     {
-                        gameObject.PositionX = boxes[i].Collider.Rect.Left - (gameObject.Texture.Width / 2);
+                        gameObject.PositionX = tiles[i].Collider.Rect.Left - (gameObject.Texture.Width / 2);
                         gameObject.VelocityX = 0;
                         this.collideRight = true;
                         break;
@@ -73,15 +73,15 @@ namespace Hypothermia.Model
                 }
             }
 
-            for (var i = 0; i < boxes.Length; i++)
+            for (var i = 0; i < tiles.Count(); i++)
             {
                 if (this.gameObject.Velocity.X <= 0)
                 {
                     this.collideRight = false;
 
-                    if (this.collisionHandler.DetectCollisionLeft(boxes[i].Collider, this.gameObject))
+                    if (this.collisionHandler.DetectCollisionLeft(tiles[i].Collider, this.gameObject))
                     {
-                        gameObject.PositionX = boxes[i].Collider.Rect.Right + (gameObject.Texture.Width / 2);
+                        gameObject.PositionX = tiles[i].Collider.Rect.Right + (gameObject.Texture.Width / 2);
                         gameObject.VelocityX = 0;
                         this.collideLeft = true;
                         break;
@@ -91,13 +91,13 @@ namespace Hypothermia.Model
                 }
             }
 
-            for (var i = 0; i < boxes.Length; i++)
+            for (var i = 0; i < tiles.Count(); i++)
             {
                 if (this.gameObject.Velocity.Y >= 0)
                 {
-                    if (this.collisionHandler.DetectCollisionBottom(boxes[i].Collider, this.gameObject))
+                    if (this.collisionHandler.DetectCollisionBottom(tiles[i].Collider, this.gameObject))
                     {
-                        gameObject.PositionY = boxes[i].Collider.Rect.Top;
+                        gameObject.PositionY = tiles[i].Collider.Rect.Top;
                         gameObject.VelocityY = 0;
                         this.onGround = true;
                         break;
@@ -107,12 +107,12 @@ namespace Hypothermia.Model
                 }
             }
 
-            for (var i = 0; i < boxes.Length; i++)
+            for (var i = 0; i < tiles.Count(); i++)
             {
                 if (this.gameObject.Velocity.Y < 0)
                 {
                     this.onGround = false;
-                    if (this.collisionHandler.DetectCollisionTop(boxes[i].Collider, this.gameObject))
+                    if (this.collisionHandler.DetectCollisionTop(tiles[i].Collider, this.gameObject))
                     {
                         gameObject.VelocityY = 0;
                         break;

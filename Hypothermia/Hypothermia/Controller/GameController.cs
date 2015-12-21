@@ -22,7 +22,7 @@ namespace Hypothermia.Controller
         public GameState CurrentGameState;
 
         private View.Camera camera;
-        private View.MenuView menuView;    
+        private View.Menu.MenuView menuView;    
         private View.GameView gameView;
         private Model.Player player;
 
@@ -45,9 +45,9 @@ namespace Hypothermia.Controller
             if (this.player == null)
                 this.player = new Model.Player();
 
-            this.camera = new View.Camera(GraphicsDevice);
+            this.camera = new View.Camera(GraphicsDevice, 64);
             this.gameView = new View.GameView(this.camera, this.player);
-            this.menuView = new View.MenuView(graphics, this.camera);
+            this.menuView = new View.Menu.MenuView(graphics, this.camera);
 
             
             base.Initialize();
@@ -62,7 +62,9 @@ namespace Hypothermia.Controller
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             this.menuView.LoadContent(Content);
-            this.gameView.LoadContent(Content);
+
+            //TODO: Make a solution to change levels
+            this.gameView.LoadContent(Content, 1);
         }
 
         /// <summary>
@@ -81,11 +83,9 @@ namespace Hypothermia.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //TODO: Update these in game- or mapView
             this.camera.MapWidth = this.gameView.MapWidth;
             this.camera.MapHeight = this.gameView.MapHeight;
-
-            Debug.WriteLine(this.camera.GetVisualCoordinates(0, 100));
-           
 
             float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
@@ -133,7 +133,8 @@ namespace Hypothermia.Controller
                 this.menuView.NewButton.IsClicked = false;
                 this.camera.FocusOnPlayer(elapsedTime, this.player.Position, this.player.Velocity, this.gameView.MapWidth, this.gameView.MapHeight);
                 this.player.MapCollision(this.gameView.MapWidth, this.gameView.MapHeight);
-                this.player.Update(elapsedTime, this.gameView.Boxes);
+                this.player.Update(elapsedTime, this.gameView.Tiles);
+                this.gameView.Update(this.player.Velocity, elapsedTime);
             }
             else if (CurrentGameState == GameState.Options)
             {

@@ -86,7 +86,7 @@
             isAbstract="false">
             <classMoniker
               Id="02c51978-7199-4f74-952d-ba210e9b4175"
-              LastKnownName="LevelView"
+              LastKnownName="MapView"
               LastKnownLocation="Package_1623.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -171,7 +171,7 @@
     <packageHasNamedElement>
       <class
         Id="0c150aab-d905-44da-b852-982309149242"
-        name="Box"
+        name="Tile"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -221,7 +221,7 @@
     <packageHasNamedElement>
       <class
         Id="07747be7-0a30-4149-925c-66b6aa58dbbe"
-        name="Map"
+        name="MapGenerator"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -235,7 +235,7 @@
             isAbstract="false">
             <classMoniker
               Id="0c150aab-d905-44da-b852-982309149242"
-              LastKnownName="Box"
+              LastKnownName="Tile"
               LastKnownLocation="Package_1623.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -277,13 +277,52 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="6c9ec786-af45-44b1-a9a4-98e6f5024f0b"
+            isDerived="false"
+            sourceEndRoleName="LevelView"
+            targetEndRoleName="Background"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="9c9d7a91-d8ca-420b-92e1-02865f8498de"
+              LastKnownName="Background"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="cbe32003-522e-44eb-8d90-101ab9182eb5"
+                  name="LevelView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c3bc84bc-c23c-447d-958f-5b3ba2fcc758"
+                  name="Background"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
         Id="02c51978-7199-4f74-952d-ba210e9b4175"
-        name="LevelView"
+        name="MapView"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -297,7 +336,7 @@
             isAbstract="false">
             <classMoniker
               Id="07747be7-0a30-4149-925c-66b6aa58dbbe"
-              LastKnownName="Map"
+              LastKnownName="MapGenerator"
               LastKnownLocation="Package_1623.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -355,6 +394,22 @@
           </dependency>
         </suppliersInternal>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9c9d7a91-d8ca-420b-92e1-02865f8498de"
+        name="Background"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2"
+        name="MapSimulator"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

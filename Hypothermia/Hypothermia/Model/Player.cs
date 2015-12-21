@@ -38,7 +38,7 @@ namespace Hypothermia.Model
                 Debug.WriteLine("Game Over");
         }
 
-        public void Update(float elapsedTime, View.Box[] boxes)
+        public void Update(float elapsedTime, List<View.Map.Tile> tiles)
         {
             this.controller.Movement();
             
@@ -49,7 +49,7 @@ namespace Hypothermia.Model
                 this.rigidBody.Fall(elapsedTime);
             }
 
-            this.rigidBody.DetectCollision(boxes);
+            this.rigidBody.DetectCollision(tiles);
         }
     }
 }

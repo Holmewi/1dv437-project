@@ -12,43 +12,33 @@ namespace Hypothermia.View
     public class GameView
     {
         private PlayerView playerView;
-        private Map map;
+        private Map.MapView mapView;
 
         public GameView(Camera camera, Model.Player player)
         {
-            this.playerView = new View.PlayerView(camera, player);
-            this.map = new Map();
+            this.playerView = new PlayerView(camera, player);
+            this.mapView = new Map.MapView(camera);
         }
-
-        public void LoadContent(ContentManager content)
+        
+        public void LoadContent(ContentManager content, int level)
         {
             this.playerView.LoadContent(content);
-            this.map.LoadContent(content);
+            this.mapView.LoadContent(content, level);
+        }
 
-            map.GenerateMap(new int[,]{
-                {0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
-                {1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
-                {0,0,0,0,0,2,2,0,0,0,0,0,1,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,1,1,0,0,0,0,1,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
-                {1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
-            }, 64);
+        public void Update(Vector2 playerVelocity, float elapsedTime)
+        {
+            this.mapView.Update(playerVelocity, elapsedTime);
         }
 
         public void Draw(SpriteBatch sb)
         {
-            this.map.Draw(sb);
+            this.mapView.Draw(sb);
             this.playerView.Draw(sb);
         }
 
-        public View.Box[] Boxes { get { return this.map.Boxes; } }
-        public int MapWidth { get { return this.map.Width; } }
-        public int MapHeight { get { return this.map.Height; } }
+        public List<Map.Tile> Tiles { get { return this.mapView.Tiles; } }
+        public int MapWidth { get { return this.mapView.Width; } }
+        public int MapHeight { get { return this.mapView.Height; } }
     }
 }

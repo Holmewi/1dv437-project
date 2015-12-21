@@ -71,32 +71,6 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="cf5efa8d-5acc-41b1-ad6d-c68f36229c50" />
                 </association>
-                <association Id="47b2ae8c-1319-4306-b0fd-1ab97eb74a0f" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="2f40f976-b701-4719-a663-8ad4e9dc9b8f" LastKnownName="MenuController" />
-                  <relationshipOwnedElementsInternal>
-                    <associationHasOwnedEnds>
-                      <memberEnd Id="652b0b95-bcb3-40a4-b9c7-330f7c5998dc" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                        <lowerValueInternal>
-                          <literalString Id="8ebd0167-44ed-43cb-bd0b-28b34657a855" name="Lower">
-                            <elementDefinition Id="2ff66889-0571-47c1-b8e4-ecab542de789" />
-                          </literalString>
-                        </lowerValueInternal>
-                        <upperValueInternal>
-                          <literalString Id="74e0b57a-7558-4be8-b05b-43eb265f631f" name="Upper">
-                            <elementDefinition Id="57faeafd-a933-46b9-a711-b3c264cdd992" />
-                          </literalString>
-                        </upperValueInternal>
-                        <elementDefinition Id="e1206ca2-54bf-4295-b33a-a5c8694cac01" />
-                      </memberEnd>
-                    </associationHasOwnedEnds>
-                    <associationHasOwnedEnds>
-                      <memberEnd Id="8dec01ba-dfcc-4d9d-b617-ec32f55a89d5" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                        <elementDefinition Id="91519a58-a6b0-4c22-b50d-6ff445c11e63" />
-                      </memberEnd>
-                    </associationHasOwnedEnds>
-                  </relationshipOwnedElementsInternal>
-                  <elementDefinition Id="0b24257b-552b-487e-acc2-ad2b6167def9" />
-                </association>
                 <association Id="bd3a2074-98dd-4dd8-8049-11de2b18b21a" isDerived="false" sourceEndRoleName="" targetEndRoleName="Camera" isLeaf="false" isAbstract="false">
                   <classMoniker Id="1e6678f0-f352-4142-8ec8-eca26b34c5c0" LastKnownName="Camera" />
                   <relationshipOwnedElementsInternal>
@@ -149,13 +123,6 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="126dc73a-0955-4f32-b52c-f3f7e074ecee" />
                 </association>
-              </targetEnds>
-            </class>
-          </packageHasNamedElement>
-          <packageHasNamedElement>
-            <class Id="2f40f976-b701-4719-a663-8ad4e9dc9b8f" name="MenuController" isAbstract="false" isLeaf="false" isActiveClass="false">
-              <elementDefinition Id="b1090263-ef95-4209-b2cb-ff9ab9bdadc8" />
-              <targetEnds>
                 <association Id="1715b57a-62a4-4bc3-ba7e-4e07f5e86142" isDerived="false" sourceEndRoleName="" targetEndRoleName="MenuView" isLeaf="false" isAbstract="false">
                   <classMoniker Id="e4828d8e-660a-40e8-9e2f-c19d96df5c28" LastKnownName="MenuView" />
                   <relationshipOwnedElementsInternal>
@@ -377,7 +344,7 @@
                   <elementDefinition Id="9325aa73-bcac-45c7-b91b-8a351b7fcaeb" />
                 </association>
                 <association Id="e43fa05a-ddcb-4157-bdce-247182c3bddd" isDerived="false" sourceEndRoleName="" targetEndRoleName="LevelView" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="9d8aac97-c55f-47e1-bc29-602de056a9f1" LastKnownName="LevelView" />
+                  <classMoniker Id="9d8aac97-c55f-47e1-bc29-602de056a9f1" LastKnownName="MapView" />
                   <relationshipOwnedElementsInternal>
                     <associationHasOwnedEnds>
                       <memberEnd Id="770307a2-2f00-4aaa-8d62-2a5bdbb0d908" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -419,7 +386,7 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="333a5693-bd62-415d-bb2b-40b546124f5a" name="Box" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="333a5693-bd62-415d-bb2b-40b546124f5a" name="Tile" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="0c150aab-d905-44da-b852-982309149242" />
               <targetEnds>
                 <association Id="6db3e91f-04c2-445e-9cf1-e514367ca46b" isDerived="false" sourceEndRoleName="Box" targetEndRoleName="BoxCollider" isLeaf="false" isAbstract="false">
@@ -442,11 +409,11 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="d74d7d1e-a979-44fc-bca6-7acfa6f9d1d5" name="Map" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="d74d7d1e-a979-44fc-bca6-7acfa6f9d1d5" name="MapGenerator" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="07747be7-0a30-4149-925c-66b6aa58dbbe" />
               <targetEnds>
                 <association Id="07eceb89-7287-4d5f-9b2e-3c156a471176" isDerived="false" sourceEndRoleName="" targetEndRoleName="Box" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="333a5693-bd62-415d-bb2b-40b546124f5a" LastKnownName="Box" />
+                  <classMoniker Id="333a5693-bd62-415d-bb2b-40b546124f5a" LastKnownName="Tile" />
                   <relationshipOwnedElementsInternal>
                     <associationHasOwnedEnds>
                       <memberEnd Id="6a975af7-fdc6-4c4c-b330-14f2d3fca4d9" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -471,15 +438,31 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="57cd9cf9-6a25-4044-a22b-fb248198936e" />
                 </association>
+                <association Id="7d3eafff-1d3c-454b-aa98-3b0844d5bdb5" isDerived="false" sourceEndRoleName="LevelView" targetEndRoleName="Background" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="e74da080-06f3-488b-a708-ca02d1c1f90f" LastKnownName="Background" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="6b3829b3-115e-41c6-8278-b07b0d7bb5f1" name="LevelView" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="cbe32003-522e-44eb-8d90-101ab9182eb5" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="0a22eee7-2925-493b-a769-82edda9dd6a7" name="Background" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="c3bc84bc-c23c-447d-958f-5b3ba2fcc758" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="6c9ec786-af45-44b1-a9a4-98e6f5024f0b" />
+                </association>
               </targetEnds>
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="9d8aac97-c55f-47e1-bc29-602de056a9f1" name="LevelView" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="9d8aac97-c55f-47e1-bc29-602de056a9f1" name="MapView" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="02c51978-7199-4f74-952d-ba210e9b4175" />
               <targetEnds>
                 <association Id="21655f7b-9d8c-4530-8ca5-c8b1289c14c3" isDerived="false" sourceEndRoleName="LevelView" targetEndRoleName="Map" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="d74d7d1e-a979-44fc-bca6-7acfa6f9d1d5" LastKnownName="Map" />
+                  <classMoniker Id="d74d7d1e-a979-44fc-bca6-7acfa6f9d1d5" LastKnownName="MapGenerator" />
                   <relationshipOwnedElementsInternal>
                     <associationHasOwnedEnds>
                       <memberEnd Id="8c9dce87-fd73-4920-9b3b-bbbda05e0e51" name="LevelView" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
@@ -513,14 +496,19 @@
               </suppliersInternal>
             </class>
           </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="e74da080-06f3-488b-a708-ca02d1c1f90f" name="Background" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="9c9d7a91-d8ca-420b-92e1-02865f8498de" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="5cc62f3a-b250-4d45-8dfd-70ed0ec8918d" name="MapSimulator" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2" />
+            </class>
+          </packageHasNamedElement>
         </packagedElements>
       </package>
     </logicalClassDesignerModelHasPackages>
-    <packageHasNamedElement>
-      <class Id="5cc62f3a-b250-4d45-8dfd-70ed0ec8918d" name="LevelSystem" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2" />
-      </class>
-    </packageHasNamedElement>
   </packagedElements>
   <package Id="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" name="GameClassDiagram">
     <elementDefinition Id="3dfc7fe9-4923-4302-a75d-00dc51560ea5" />

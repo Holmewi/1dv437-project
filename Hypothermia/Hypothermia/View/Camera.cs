@@ -12,28 +12,24 @@ namespace Hypothermia.View
     public class Camera
     {
         private GraphicsDevice device;
+
         private Matrix transform;
         private Vector2 cameraTargetPosition;
-
         private float offset = 0;
+
+        private int tileSize;
         private int mapWidth;
         private int mapHeight;
 
-        public Camera(GraphicsDevice device)
+        public Camera(GraphicsDevice device, int tileSize)
         {
             this.device = device;
-            this.cameraTargetPosition = this.GetVisualCoordinates(this.device.Viewport.Width / 2, this.device.Viewport.Height / 2);
+            this.tileSize = tileSize;
+            this.cameraTargetPosition = new Vector2(this.device.Viewport.Width / 2, this.device.Viewport.Height / 2);
         }
 
         public int MapWidth { set { this.mapWidth = value; } }
         public int MapHeight { set { this.mapHeight = value; } }
-
-        public Vector2 GetVisualCoordinates(float logicX, float logicY)
-        {
-            float visualX = logicX;
-            float visualY = this.mapHeight - logicY;
-            return new Vector2(visualX, visualY);
-        }
 
         /*
          * This method is used for interface to render on screen
@@ -44,6 +40,18 @@ namespace Hypothermia.View
             float logicY = this.cameraTargetPosition.Y - visualY;
 
             return new Vector2(logicX, logicY);
+        }
+
+        public Vector2 GetVisualCoordinates(int tileX, int tileY)
+        {
+            Vector2 mapTiles = new Vector2(this.mapWidth / this.tileSize, this.mapHeight / this.tileSize );
+
+            if (tileX > mapTiles.X || tileY > mapTiles.Y)
+                throw new ArgumentOutOfRangeException("The tileX does not exist in the map.");
+
+            float visualX = tileX * this.tileSize;
+            float visualY = tileY * this.tileSize;
+            return new Vector2(visualX, visualY);
         }
 
         private int Panning(float elapsedTime, Vector2 playerVelocity)
@@ -89,5 +97,7 @@ namespace Hypothermia.View
         }
 
         public Vector2 Target { get { return this.cameraTargetPosition; } }
+
+        public int TileSize { get { return this.tileSize; } }
     }
 }
