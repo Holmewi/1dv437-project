@@ -6,5 +6,10 @@
   <SourceFiles>
     <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/tempTiles.png</File>
     <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/player.png</File>
+    <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/playButton.png</File>
+    <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/optionButton.png</File>
+    <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/quitButton.png</File>
+    <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/newButton.png</File>
+    <File>C:/Users/Holmewi/Documents/GitHub/1dv437-project/Hypothermia/Hypothermia/Content/resumeButton.png</File>
   </SourceFiles>
 </SourceFileCollection>

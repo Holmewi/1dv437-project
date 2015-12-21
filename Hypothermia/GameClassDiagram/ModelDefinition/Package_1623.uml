@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
   dslVersion="1.0.0.0"
   Id="f4f965a1-f9a6-4270-9aac-f183b8ac3abb"
   name="View" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
@@ -124,7 +124,49 @@
         name="MenuView"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="8e7eac4b-fc16-4482-91b6-de77d11e2ee5"
+            isDerived="false"
+            sourceEndRoleName="MenuView"
+            targetEndRoleName="Button"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="8be1887f-b71e-44a5-bc78-18ab14bc003c"
+              LastKnownName="Button"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="64818e05-8d64-4515-9720-1efeabcfe8a9"
+                  name="MenuView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="87e0d379-20cd-425c-83d2-2560ab74044b"
+                  name="Button"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
@@ -244,7 +286,75 @@
         name="LevelView"
         isAbstract="false"
         isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="782d1fe9-8e02-431c-9101-e817eb3db899"
+            isDerived="false"
+            sourceEndRoleName="LevelView"
+            targetEndRoleName="Map"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="07747be7-0a30-4149-925c-66b6aa58dbbe"
+              LastKnownName="Map"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="13d970b9-2ad7-4e07-a5bb-ae70e2d47269"
+                  name="LevelView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="df1e7a3a-33f5-420e-9592-decf7cba2512"
+                  name="Map"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8be1887f-b71e-44a5-bc78-18ab14bc003c"
+        name="Button"
+        isAbstract="false"
+        isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ad2f9f8f-11d5-45f4-95de-b77e3276e855"
+        name="Options"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="6bbfa7f0-5d73-4400-b7ba-e23ea73f5cce">
+            <classMoniker
+              Id="4849a3df-cc72-47e1-a540-159571dce6c2"
+              LastKnownName="MenuView"
+              LastKnownLocation="Package_1623.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

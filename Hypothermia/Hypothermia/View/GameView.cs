@@ -11,33 +11,40 @@ namespace Hypothermia.View
 {
     public class GameView
     {
-        private Texture2D boxTextures;
-
+        private PlayerView playerView;
         private Map map;
 
-        public GameView(GraphicsDevice device, ContentManager content)
+        public GameView(Camera camera, Model.Player player)
         {
-            this.boxTextures = content.Load<Texture2D>("tempTiles");
-            this.map = new Map(this.boxTextures);
-
-            LoadContent();
+            this.playerView = new View.PlayerView(camera, player);
+            this.map = new Map();
         }
 
-        public void LoadContent()
+        public void LoadContent(ContentManager content)
         {
+            this.playerView.LoadContent(content);
+            this.map.LoadContent(content);
+
             map.GenerateMap(new int[,]{
-                {0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1},
-                {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1},
-                {1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
+                {0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
+                {1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
+                {0,0,0,0,0,2,2,0,0,0,0,0,1,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,1,1,0,0,0,0,1,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
+                {1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
             }, 64);
         }
 
         public void Draw(SpriteBatch sb)
         {
             this.map.Draw(sb);
+            this.playerView.Draw(sb);
         }
 
         public View.Box[] Boxes { get { return this.map.Boxes; } }

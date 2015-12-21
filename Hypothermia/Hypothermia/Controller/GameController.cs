@@ -6,28 +6,30 @@ using System.Diagnostics;
 
 namespace Hypothermia.Controller
 {
-    /// <summary>
-    /// This is the main type for your game.
-    /// </summary>
+    public enum GameState
+    {
+        MainMenu,
+        Options,
+        Playing,
+        Paused
+    }
+
     public class GameController : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Texture2D texture;
 
+        public GameState CurrentGameState;
 
-        // temp
         private View.Camera camera;
-        private View.PlayerView playerView;
-        private View.GameView view;
+        private View.MenuView menuView;    
+        private View.GameView gameView;
         private Model.Player player;
 
         public GameController()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
-           
         }
 
         /// <summary>
@@ -38,9 +40,16 @@ namespace Hypothermia.Controller
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            this.camera = new View.Camera(GraphicsDevice);
+            CurrentGameState = GameState.MainMenu;
 
+            if (this.player == null)
+                this.player = new Model.Player();
+
+            this.camera = new View.Camera(GraphicsDevice);
+            this.gameView = new View.GameView(this.camera, this.player);
+            this.menuView = new View.MenuView(graphics, this.camera);
+
+            
             base.Initialize();
         }
 
@@ -50,19 +59,10 @@ namespace Hypothermia.Controller
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-            
-            this.view = new View.GameView(GraphicsDevice, Content);
-            this.playerView = new View.PlayerView(Content);
-            this.texture = Content.Load<Texture2D>("player");
-
-            // TODO: Add your update logic here
-            if (this.player == null)
-                this.player = new Model.Player(this.texture);
-            
+            this.menuView.LoadContent(Content);
+            this.gameView.LoadContent(Content);
         }
 
         /// <summary>
@@ -81,14 +81,64 @@ namespace Hypothermia.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            this.camera.MapWidth = this.gameView.MapWidth;
+            this.camera.MapHeight = this.gameView.MapHeight;
+
+            Debug.WriteLine(this.camera.GetVisualCoordinates(0, 100));
+           
+
             float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            MouseState mouse = Mouse.GetState();
 
-            this.camera.Update(elapsedTime, this.player);
-            this.player.MapCollision(this.view.MapWidth);
-            this.player.Update(elapsedTime, this.view.Boxes);
+            this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
+
+            if (CurrentGameState == GameState.MainMenu)
+            {
+                this.player.Start();
+                this.IsMouseVisible = true;
+                if (this.menuView.PlayButton.IsClicked == true)
+                    CurrentGameState = GameState.Playing;
+                if (this.menuView.OptionButton.IsClicked == true)
+                    Debug.WriteLine("Option menu");
+                if (this.menuView.QuitButton.IsClicked == true)
+                    Exit();
+                this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
+            }
+            else if (CurrentGameState == GameState.Paused)
+            {
+                this.IsMouseVisible = true;
+                this.menuView.PlayButton.IsClicked = false;
+                if (this.menuView.ResumeButton.IsClicked == true)
+                    CurrentGameState = GameState.Playing;
+                if (this.menuView.NewButton.IsClicked == true)
+                {
+                    this.player.Start();
+                    CurrentGameState = GameState.Playing;
+                }
+                if (this.menuView.OptionButton.IsClicked == true)
+                    Debug.WriteLine("Option menu");
+                if (this.menuView.QuitButton.IsClicked == true)
+                    Exit();
+                this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
+            }
+            else if (CurrentGameState == GameState.Playing)
+            {
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    CurrentGameState = GameState.Paused;
+    
+                this.IsMouseVisible = false;
+                this.menuView.PlayButton.IsClicked = false;
+                this.menuView.ResumeButton.IsClicked = false;
+                this.menuView.NewButton.IsClicked = false;
+                this.camera.FocusOnPlayer(elapsedTime, this.player.Position, this.player.Velocity, this.gameView.MapWidth, this.gameView.MapHeight);
+                this.player.MapCollision(this.gameView.MapWidth, this.gameView.MapHeight);
+                this.player.Update(elapsedTime, this.gameView.Boxes);
+            }
+            else if (CurrentGameState == GameState.Options)
+            {
+                this.IsMouseVisible = true;
+            }
 
             base.Update(gameTime);
         }
@@ -101,16 +151,27 @@ namespace Hypothermia.Controller
         {
             GraphicsDevice.Clear(Color.White);
 
-            // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
             
-            this.view.Draw(spriteBatch);
+            if (CurrentGameState == GameState.Playing)
+            {
+                this.gameView.Draw(spriteBatch);
+            }
+            else if (CurrentGameState == GameState.Paused)
+            {
+                this.gameView.Draw(spriteBatch);
+                this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
 
-            Vector2 textureCenterBottomDisplacement = new Vector2 ((float)this.player.Texture.Bounds.Width / 2, (float)this.player.Texture.Bounds.Height);
+            }
+            else if (CurrentGameState == GameState.Options)
+            {
 
+            }
+            else if (CurrentGameState == GameState.MainMenu)
+            {
+                this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
+            }
 
-            spriteBatch.Draw(this.player.Texture, this.player.Position, null, Color.White, 0f, textureCenterBottomDisplacement, 1f, SpriteEffects.None, 0f);
-            
             spriteBatch.End();
 
             base.Draw(gameTime);

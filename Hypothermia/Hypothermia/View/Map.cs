@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,14 @@ namespace Hypothermia.View
 
         private Texture2D boxTextures;
 
-        public Map(Texture2D boxTextures)
+        public Map()
         {
-            this.boxTextures = boxTextures;
+            
+        }
+
+        public void LoadContent(ContentManager content)
+        {
+            this.boxTextures = content.Load<Texture2D>("tempTiles");
         }
 
         public void GenerateMap(int[,] map, int size)

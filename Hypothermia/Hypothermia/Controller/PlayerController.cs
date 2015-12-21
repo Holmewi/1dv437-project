@@ -30,11 +30,11 @@ namespace Hypothermia.Controller
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A) && !this.rigidBody.CollideLeft)
             {
-                this.MovingLeft();
+                this.MoveLeft();
             }
             if (Keyboard.GetState().IsKeyDown(Keys.D) && !this.rigidBody.CollideRight)
             {
-                this.MovingRight();
+                this.MoveRight();
             }
             else if (Keyboard.GetState().IsKeyUp(Keys.A) && Keyboard.GetState().IsKeyUp(Keys.D) && this.rigidBody.OnGround)
             {
@@ -42,17 +42,21 @@ namespace Hypothermia.Controller
             }
         }
 
-        //TODO: Manage animation throuh these functions
-        public void MovingLeft()
+        public void MoveLeft()
         {
             if (this.gameObject.Velocity.X >= -movementSpeed)
                 this.gameObject.VelocityX = this.gameObject.Velocity.X - this.gameObject.Acceleration.X;
         }
 
-        public void MovingRight()
+        public void MoveRight()
         {
             if (this.gameObject.Velocity.X <= movementSpeed)
                 this.gameObject.VelocityX = this.gameObject.Velocity.X + this.gameObject.Acceleration.X;
+        }
+
+        public void Jump()
+        {
+            this.gameObject.VelocityY = this.gameObject.Velocity.Y - jumpingSpeed;
         }
 
         public void Idle()
@@ -61,17 +65,6 @@ namespace Hypothermia.Controller
                 this.gameObject.VelocityX = this.gameObject.Velocity.X + this.gameObject.Acceleration.X;
             else if (this.gameObject.Velocity.X > 0)
                 this.gameObject.VelocityX = this.gameObject.Velocity.X - this.gameObject.Acceleration.X;
-        }
-
-        public void Jump()
-        {
-            this.gameObject.VelocityY = this.gameObject.Velocity.Y - jumpingSpeed;
-        }
-
-        public bool IsIdle
-        {
-            get { return this.isIdle; }
-            set { this.isIdle = value; }
         }
     }
 }

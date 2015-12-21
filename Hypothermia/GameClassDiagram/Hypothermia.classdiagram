@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="084e2099-1807-4f66-9fda-70d6dc84c9a0" name="Hypothermia" linkedPackageId="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="084e2099-1807-4f66-9fda-70d6dc84c9a0" name="Hypothermia" linkedPackageId="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
   <packagedElements>
     <logicalClassDesignerModelHasPackages>
       <package Id="ea3c5fce-e08e-409a-a496-9b4275288fa5" name="Controller">
@@ -398,6 +398,24 @@
           <packageHasNamedElement>
             <class Id="e4828d8e-660a-40e8-9e2f-c19d96df5c28" name="MenuView" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="4849a3df-cc72-47e1-a540-159571dce6c2" />
+              <targetEnds>
+                <association Id="0b53aaa3-6530-4397-a964-04b5833192df" isDerived="false" sourceEndRoleName="MenuView" targetEndRoleName="Button" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="68f26234-8b30-483a-a8ae-d00ee956fe58" LastKnownName="Button" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="eb79b017-b82b-4666-a15e-b512ec15b334" name="MenuView" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="64818e05-8d64-4515-9720-1efeabcfe8a9" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="ed746918-88aa-4f98-9ec3-430c9ed2c6d4" name="Button" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="87e0d379-20cd-425c-83d2-2560ab74044b" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="8e7eac4b-fc16-4482-91b6-de77d11e2ee5" />
+                </association>
+              </targetEnds>
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
@@ -459,6 +477,40 @@
           <packageHasNamedElement>
             <class Id="9d8aac97-c55f-47e1-bc29-602de056a9f1" name="LevelView" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="02c51978-7199-4f74-952d-ba210e9b4175" />
+              <targetEnds>
+                <association Id="21655f7b-9d8c-4530-8ca5-c8b1289c14c3" isDerived="false" sourceEndRoleName="LevelView" targetEndRoleName="Map" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="d74d7d1e-a979-44fc-bca6-7acfa6f9d1d5" LastKnownName="Map" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="8c9dce87-fd73-4920-9b3b-bbbda05e0e51" name="LevelView" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="13d970b9-2ad7-4e07-a5bb-ae70e2d47269" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="9d2597a1-18d4-48d3-9c85-b67dab057014" name="Map" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="df1e7a3a-33f5-420e-9592-decf7cba2512" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="782d1fe9-8e02-431c-9101-e817eb3db899" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="68f26234-8b30-483a-a8ae-d00ee956fe58" name="Button" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="8be1887f-b71e-44a5-bc78-18ab14bc003c" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="cb26d65b-eba4-4cd6-9819-447804e89927" name="Options" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="ad2f9f8f-11d5-45f4-95de-b77e3276e855" />
+              <suppliersInternal>
+                <dependency Id="46b373de-09a1-4edf-8107-c47a42ca8b57">
+                  <classMoniker Id="e4828d8e-660a-40e8-9e2f-c19d96df5c28" LastKnownName="MenuView" />
+                  <elementDefinition Id="6bbfa7f0-5d73-4400-b7ba-e23ea73f5cce" />
+                </dependency>
+              </suppliersInternal>
             </class>
           </packageHasNamedElement>
         </packagedElements>

@@ -20,22 +20,21 @@ namespace Hypothermia.Model
         private float dragCoefficient = 0.4f;  // (Unit c) 0.4f is a humans drag coefficient
         private float airDensity = 1.3f; // (Unit d) 1.3f earth air density 
 
-        // Todo: Decide if this value should stay here or be moved to the GameObject
-        private float frontArea = 5.5f; // (Unit A) The objects area that hits the drag
-
         private CollisionHandler collisionHandler;
         private GameObject gameObject;
 
-        public RigidBody(GameObject gameObject)
+        public RigidBody(GameObject gameObject, float mass, float frontArea)
         {
             this.gameObject = gameObject;
-            this.collisionHandler = new CollisionHandler(this);
+            this.gameObject.Mass = mass;
+            this.gameObject.FrontArea = frontArea;
+            this.collisionHandler = new CollisionHandler();
         }
 
         public void Fall(float elapsedTime)
         {
             //  Calculates the force of the air drag: F = cA * (d (v*v)/2)
-            this.drag = this.dragCoefficient * this.frontArea * (this.airDensity * (this.gameObject.Velocity.Y * this.gameObject.Velocity.Y) / 2);
+            this.drag = this.dragCoefficient * this.gameObject.FrontArea * (this.airDensity * (this.gameObject.Velocity.Y * this.gameObject.Velocity.Y) / 2);
 
             //  Calculates the gravitation towards the ground floor (earth): Q = mg
             this.gravity.Y = this.gameObject.Mass * this.gravityAcceleration;
@@ -43,7 +42,7 @@ namespace Hypothermia.Model
             if (this.drag < this.gravity.Y)
             {
                 //  Calculates the new speed after a period of time: v = v + Square root [2mg / (c A d)] * elapsedTime
-                this.gameObject.VelocityY = this.gameObject.Velocity.Y + ((float)Math.Sqrt((2 * this.gameObject.Mass * this.gravityAcceleration) / (this.dragCoefficient * this.frontArea * this.airDensity))) * elapsedTime;
+                this.gameObject.VelocityY = this.gameObject.Velocity.Y + ((float)Math.Sqrt((2 * this.gameObject.Mass * this.gravityAcceleration) / (this.dragCoefficient * this.gameObject.FrontArea * this.airDensity))) * elapsedTime;
             }
         }
 
@@ -64,6 +63,8 @@ namespace Hypothermia.Model
                     this.collideLeft = false;
                     if (this.collisionHandler.DetectCollisionRight(boxes[i].Collider, this.gameObject))
                     {
+                        gameObject.PositionX = boxes[i].Collider.Rect.Left - (gameObject.Texture.Width / 2);
+                        gameObject.VelocityX = 0;
                         this.collideRight = true;
                         break;
                     }
@@ -80,6 +81,8 @@ namespace Hypothermia.Model
 
                     if (this.collisionHandler.DetectCollisionLeft(boxes[i].Collider, this.gameObject))
                     {
+                        gameObject.PositionX = boxes[i].Collider.Rect.Right + (gameObject.Texture.Width / 2);
+                        gameObject.VelocityX = 0;
                         this.collideLeft = true;
                         break;
                     }
@@ -94,6 +97,8 @@ namespace Hypothermia.Model
                 {
                     if (this.collisionHandler.DetectCollisionBottom(boxes[i].Collider, this.gameObject))
                     {
+                        gameObject.PositionY = boxes[i].Collider.Rect.Top;
+                        gameObject.VelocityY = 0;
                         this.onGround = true;
                         break;
                     }
@@ -109,15 +114,11 @@ namespace Hypothermia.Model
                     this.onGround = false;
                     if (this.collisionHandler.DetectCollisionTop(boxes[i].Collider, this.gameObject))
                     {
+                        gameObject.VelocityY = 0;
                         break;
                     }
                 }
             }
-        }
-
-        public CollisionHandler CollisionHandler
-        {
-            get { return this.collisionHandler; }
         }
 
         public bool OnGround

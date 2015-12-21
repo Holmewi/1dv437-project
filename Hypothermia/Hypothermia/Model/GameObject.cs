@@ -20,6 +20,7 @@ namespace Hypothermia.Model
         private Vector2 acceleration;
 
         private float mass = 70f;
+        private float frontArea;
         private float radius;
 
         public GameObject()
@@ -105,6 +106,12 @@ namespace Hypothermia.Model
         {
             get { return mass; }
             set { this.mass = value; }
+        }
+
+        public float FrontArea
+        {
+            get { return frontArea; }
+            set { this.frontArea = value; }
         }
 
         public float Radius

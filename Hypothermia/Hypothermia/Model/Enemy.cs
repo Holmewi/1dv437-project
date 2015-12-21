@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hypothermia.View
+namespace Hypothermia.Model
 {
-    class MenuController
+    class Enemy
     {
 
     }
