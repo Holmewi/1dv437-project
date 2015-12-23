@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\GameController.cs" />
+    <Compile Include="View\GFX\Animation.cs" />
     <Compile Include="View\GFX\Background.cs" />
     <Compile Include="View\Map\MapContent.cs" />
     <Compile Include="View\Map\Tile.cs" />

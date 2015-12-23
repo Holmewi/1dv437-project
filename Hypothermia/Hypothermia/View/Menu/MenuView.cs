@@ -46,13 +46,13 @@ namespace Hypothermia.View.Menu
 
         public void Update(GraphicsDevice device, MouseState mouse, GameState state)
         {
-            Vector2 logicMouse = this.camera.GetLogicCoordinates(device.Viewport.Width / 2, device.Viewport.Height / 2);
+            Vector2 logicMouse = this.camera.GetDeviceCoordinates(device.Viewport.Width / 2, device.Viewport.Height / 2);
 
-            this.playButton.Position = this.camera.GetLogicCoordinates(this.playButton.Texture.Width / 2, 140);
-            this.resumeButton.Position = this.camera.GetLogicCoordinates(this.resumeButton.Texture.Width / 2, 200);
-            this.newButton.Position = this.camera.GetLogicCoordinates(this.newButton.Texture.Width / 2, 140);
-            this.optionButton.Position = this.camera.GetLogicCoordinates(this.optionButton.Texture.Width / 2, 80);
-            this.quitButton.Position = this.camera.GetLogicCoordinates(this.quitButton.Texture.Width / 2, 20);
+            this.playButton.Position = this.camera.GetDeviceCoordinates(this.playButton.Texture.Width / 2, 140);
+            this.resumeButton.Position = this.camera.GetDeviceCoordinates(this.resumeButton.Texture.Width / 2, 200);
+            this.newButton.Position = this.camera.GetDeviceCoordinates(this.newButton.Texture.Width / 2, 140);
+            this.optionButton.Position = this.camera.GetDeviceCoordinates(this.optionButton.Texture.Width / 2, 80);
+            this.quitButton.Position = this.camera.GetDeviceCoordinates(this.quitButton.Texture.Width / 2, 20);
 
             if (state == GameState.MainMenu)
             {

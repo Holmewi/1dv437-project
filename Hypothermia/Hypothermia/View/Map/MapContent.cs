@@ -8,18 +8,16 @@ using System.Text;
 
 namespace Hypothermia.View.Map
 {
-    public class MapContent
+    public class MapContent : MapGenerator
     {
         private List<GFX.Background> backgrounds = new List<View.GFX.Background>();
         private List<Tile> tiles = new List<Tile>();
 
-        private MapGenerator map;
-        private int tileSize;
+        private Camera camera;
 
-        public MapContent(int tileSize)
+        public MapContent(Camera camera)
         {
-            this.tileSize = tileSize;
-            this.map = new MapGenerator();
+            this.camera = camera;
         }
 
         public void Level1(ContentManager content)
@@ -27,27 +25,38 @@ namespace Hypothermia.View.Map
             this.backgrounds.Clear();
             this.tiles.Clear();
 
-            Texture2D bg1 = content.Load<Texture2D>("Background/background1");
-            Texture2D bg2 = content.Load<Texture2D>("Background/background2");
+            Texture2D bg1 = content.Load<Texture2D>("Backgrounds/background1");
+            Texture2D bg2 = content.Load<Texture2D>("Backgrounds/background2");
             Texture2D tempTiles = content.Load<Texture2D>("tempTiles");
 
-            this.backgrounds.Add(new GFX.Background(bg1, new Rectangle(0, 0, bg1.Width, bg1.Height), 0.5f));
-            this.backgrounds.Add(new GFX.Background(bg2, new Rectangle(bg1.Width, 0, bg1.Width, bg1.Height), 0.5f));
-
-            this.tiles = this.map.GetTileList(new int[,]{
-                {0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+            this.tiles = base.GetTileList(new int[,]{
+                {0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
+                {0,0,0,0,0,0,1,0,0,0,0,0,0,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,0,1,1,1,1,1,0,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
+                {0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+                {0,0,1,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
+                {1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
+                {0,0,0,0,0,2,2,0,0,0,0,0,1,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
                 {0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
                 {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
                 {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
-                {1,1,1,1,1,1,0,0,1,1,0,0,0,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
-                {0,0,0,0,0,2,2,0,0,0,0,0,1,2,2,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,1,1,0,0,0,0,1,0,1,1,0,0,0,0,0,0,2,2,0,0,0,0,0,0,2,2,0},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-                {0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,0,0,0,1,1,0,0,0,0,0,0,0,0,1,1},
                 {1,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0,1,1,1,1,1,0,0,1,1,1,1,1,1,0,0},
-            }, tempTiles, this.tileSize);
+            }, tempTiles, this.camera.TileSize);
+
+            this.camera.MapWidth = base.MapWidth;
+            this.camera.MapHeight = base.MapHeight;
+
+            Vector2 bg1Position = this.camera.GetLogicCoordinates(0, bg1.Height);
+            Vector2 bg2Position = this.camera.GetLogicCoordinates(bg1.Width, bg1.Height);
+
+            this.backgrounds.Add(new GFX.Background(bg1, new Rectangle((int)bg1Position.X, (int)bg1Position.Y, bg1.Width, bg1.Height), 0.5f));
+            this.backgrounds.Add(new GFX.Background(bg2, new Rectangle((int)bg2Position.X, (int)bg2Position.Y, bg1.Width, bg1.Height), 0.5f));
         }
 
         public void Level2(ContentManager content)
@@ -62,7 +71,5 @@ namespace Hypothermia.View.Map
 
         public List<GFX.Background> Backgrounds { get { return this.backgrounds; } }
         public List<Tile> Tiles { get { return this.tiles; } }
-        public int Width { get { return this.map.Width; } }
-        public int Height { get { return this.map.Height; } }
     }
 }

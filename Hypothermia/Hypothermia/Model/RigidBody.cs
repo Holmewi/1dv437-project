@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Hypothermia.Model
 {
-    public class RigidBody
+    public class RigidBody : CollisionHandler
     {
         private bool onGround = false;
         private bool collideRight = false;
@@ -20,7 +20,6 @@ namespace Hypothermia.Model
         private float dragCoefficient = 0.4f;  // (Unit c) 0.4f is a humans drag coefficient
         private float airDensity = 1.3f; // (Unit d) 1.3f earth air density 
 
-        private CollisionHandler collisionHandler;
         private GameObject gameObject;
 
         public RigidBody(GameObject gameObject, float mass, float frontArea)
@@ -28,7 +27,6 @@ namespace Hypothermia.Model
             this.gameObject = gameObject;
             this.gameObject.Mass = mass;
             this.gameObject.FrontArea = frontArea;
-            this.collisionHandler = new CollisionHandler();
         }
 
         public void Fall(float elapsedTime)
@@ -46,79 +44,92 @@ namespace Hypothermia.Model
             }
         }
 
-        public void DetectCollision(List<View.Map.Tile> tiles)
+        /**
+        *  1st - Check which direction the GameObject is moving (X directions needs to be checked first)
+        *  2nd - (CollisionHandler) Check if the BoxCollider is in that direction and if it's within it's range
+        *  3rd - (CollisionHandler) Check if the GameObject is about to collide with the BoxCollider
+        *  4th - (CollisionHandler) If true - Calculate the collision position smoothly
+        *  5th - (CollisionHandler) When GameObject has collided with bottom, left or right - set it's position to the BoxCollider this.gameObject.
+        */
+        public bool IsOnGround(List<View.Map.Tile> tiles)
         {
-            /**
-             *  1st - Check which direction the GameObject is moving (X directions needs to be checked first)
-             *  2nd - (CollisionHandler) Check if the BoxCollider is in that direction and if it's within it's range
-             *  3rd - (CollisionHandler) Check if the GameObject is about to collide with the BoxCollider
-             *  4th - (CollisionHandler) If true - Calculate the collision position smoothly
-             *  5th - (CollisionHandler) When GameObject has collided with bottom, left or right - set it's position to the BoxCollider this.gameObject.
-            */
+            for (var i = 0; i < tiles.Count(); i++)
+            {
+                if (base.IsOnGround(tiles[i].Collider, this.gameObject))
+                {
+                    this.onGround = true;
+                    return true;
+                }
+            }
+            this.onGround = false;
+            return false;
+        }
+
+        public bool DetectRightCollision(List<View.Map.Tile> tiles)
+        {
+            for (var i = 0; i < tiles.Count(); i++)
+            {
+                this.collideLeft = false;
+
+                if (base.IsCollidingRight(tiles[i].Collider, this.gameObject))
+                {
+                    gameObject.PositionX = tiles[i].Collider.Rect.Left - (gameObject.Rect.Width / 2);
+                    gameObject.VelocityX = 0;
+                    this.collideRight = true;
+                    return true;
+                }
+            }
+            this.collideRight = false;
+            return false;
+        }
+
+        public bool DetectLeftCollision(List<View.Map.Tile> tiles)
+        {
+            for (var i = 0; i < tiles.Count(); i++)
+            {
+                this.collideRight = false;
+
+                if (base.IsCollidingLeft(tiles[i].Collider, this.gameObject))
+                {
+                    gameObject.PositionX = tiles[i].Collider.Rect.Right + (gameObject.Rect.Width / 2);
+                    gameObject.VelocityX = 0;
+                    this.collideLeft = true;
+                    return true;
+                }
+            }
+            this.collideLeft = false;
+            return false;
+        }
+
+        public bool DetectBottomCollision(List<View.Map.Tile> tiles)
+        {
+            for (var i = 0; i < tiles.Count(); i++)
+            {
+                if (base.IsCollidingBottom(tiles[i].Collider, this.gameObject))
+                {
+                    gameObject.PositionY = tiles[i].Collider.Rect.Top;
+                    gameObject.VelocityY = 0;
+                    this.onGround = true;
+                    return true;
+                }
+            }
+            this.onGround = false;
+            return false;
+        }
+
+        public bool DetectTopCollision(List<View.Map.Tile> tiles)
+        {
+            this.onGround = false;
 
             for (var i = 0; i < tiles.Count(); i++)
             {
-                if (this.gameObject.Velocity.X >= 0)
+                if (base.IsCollidingTop(tiles[i].Collider, this.gameObject))
                 {
-                    this.collideLeft = false;
-                    if (this.collisionHandler.DetectCollisionRight(tiles[i].Collider, this.gameObject))
-                    {
-                        gameObject.PositionX = tiles[i].Collider.Rect.Left - (gameObject.Texture.Width / 2);
-                        gameObject.VelocityX = 0;
-                        this.collideRight = true;
-                        break;
-                    }
-                    else
-                        this.collideRight = false;
+                    gameObject.VelocityY = 0;
+                    return true;
                 }
             }
-
-            for (var i = 0; i < tiles.Count(); i++)
-            {
-                if (this.gameObject.Velocity.X <= 0)
-                {
-                    this.collideRight = false;
-
-                    if (this.collisionHandler.DetectCollisionLeft(tiles[i].Collider, this.gameObject))
-                    {
-                        gameObject.PositionX = tiles[i].Collider.Rect.Right + (gameObject.Texture.Width / 2);
-                        gameObject.VelocityX = 0;
-                        this.collideLeft = true;
-                        break;
-                    }
-                    else
-                        this.collideLeft = false;
-                }
-            }
-
-            for (var i = 0; i < tiles.Count(); i++)
-            {
-                if (this.gameObject.Velocity.Y >= 0)
-                {
-                    if (this.collisionHandler.DetectCollisionBottom(tiles[i].Collider, this.gameObject))
-                    {
-                        gameObject.PositionY = tiles[i].Collider.Rect.Top;
-                        gameObject.VelocityY = 0;
-                        this.onGround = true;
-                        break;
-                    }
-                    else
-                        this.onGround = false;
-                }
-            }
-
-            for (var i = 0; i < tiles.Count(); i++)
-            {
-                if (this.gameObject.Velocity.Y < 0)
-                {
-                    this.onGround = false;
-                    if (this.collisionHandler.DetectCollisionTop(tiles[i].Collider, this.gameObject))
-                    {
-                        gameObject.VelocityY = 0;
-                        break;
-                    }
-                }
-            }
+            return false;
         }
 
         public bool OnGround

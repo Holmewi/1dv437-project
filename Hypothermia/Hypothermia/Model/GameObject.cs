@@ -76,8 +76,8 @@ namespace Hypothermia.Model
             get { return position; }
             set { 
                 this.position = value;
-                this.rect.X = (int)Math.Round(value.X) - this.texture.Width / 2;
-                this.rect.Y = (int)Math.Round(value.Y) - this.texture.Height;
+                this.rect.X = (int)Math.Round(value.X) - this.rect.Width / 2;
+                this.rect.Y = (int)Math.Round(value.Y) - this.rect.Height;
             }
         }
 

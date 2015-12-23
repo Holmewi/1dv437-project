@@ -11,6 +11,104 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="209f219b-f5d7-468d-9000-2f2e1217c4d4">
+            <classMoniker
+              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
+              LastKnownName="Camera"
+              LastKnownLocation="Package_1623.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="07bc32fb-a1a4-45de-9f02-4956e0ddfcca"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Player"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="79a24f82-f4ab-4b0e-a375-64f0e336a90d"
+              LastKnownName="Player"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5b437cd7-f6e2-4ab1-aa69-bbcafc92a7a0"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="d65c7172-06d8-463e-9a5c-d4556aaf1eec"
+                  name="Player"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="9325aa73-bcac-45c7-b91b-8a351b7fcaeb"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="PlayerView"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="eec66e69-38d7-4779-9abf-3447b8a9399f"
+              LastKnownName="PlayerView"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="6219cccd-5cde-43fe-9db3-5192a575aaae"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="afa6f6c0-70f3-4c43-94e7-b4cbb50bf08b"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="2acdee5d-5a99-4750-8255-748dca2f0c26"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c5735458-4223-4050-ab20-aa1ffa03b460"
+                  name="PlayerView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
         <ownedOperationsInternal>
           <operation
             Id="6a3c95a9-2716-4231-967b-7845be29231c"
@@ -30,6 +128,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="5d721b6a-c695-4284-8546-4227b7a475c1">
+            <enumerationMoniker
+              Id="28926808-b709-4841-9fc5-ffb65deaf151"
+              LastKnownName="GameState"
+              LastKnownLocation="Package_1622.uml" />
+          </dependency>
+        </suppliersInternal>
         <targetEnds>
           <association
             Id="57227d3f-dc4a-4b7c-bf22-bb15b5974543"
@@ -237,7 +344,7 @@
             <classMoniker
               Id="4849a3df-cc72-47e1-a540-159571dce6c2"
               LastKnownName="MenuView"
-              LastKnownLocation="Package_1623.uml" />
+              LastKnownLocation="Package1_2357.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -276,8 +383,52 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="81ede5ac-7d26-46c8-aa95-ad3ca60a1b31"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="f2857cb3-f6ab-4b0f-a7f7-e75127bb7101"
+              LastKnownName="PlayerController"
+              LastKnownLocation="Package_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f9e5acea-e97f-4a19-bb6f-459090a018a2"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="b18142bd-5cb8-4045-9a36-131e59663556"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="28926808-b709-4841-9fc5-ffb65deaf151"
+        name="GameState"
+        isAbstract="false"
+        isLeaf="false" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

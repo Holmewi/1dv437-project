@@ -10,13 +10,8 @@ namespace Hypothermia.View.Map
 {
     public class MapGenerator
     {
-        private int width;
-        private int height;
-
-        public MapGenerator()
-        {
-            
-        }
+        private int mapWidth;
+        private int mapHeight;
 
         public List<Tile> GetTileList(int[,] map, Texture2D tileTextures, int size)
         {
@@ -30,18 +25,11 @@ namespace Hypothermia.View.Map
                     if(number > 0)
                         tiles.Add(new Tile(tileTextures, new Rectangle(x * size, y * size, size, size), this.Texture(number), 0, 0));
 
-                    this.width = (x + 1) * size;
-                    this.height = (y + 1) * size;
+                    this.mapWidth = (x + 1) * size;
+                    this.mapHeight = (y + 1) * size;
                 }
             }
             return tiles;
-        }
-
-        public List<GFX.Background> GetBackgroundList()
-        {
-            List<GFX.Background> backgrounds = new List<GFX.Background>();
-
-            return backgrounds;
         }
 
         public Rectangle Texture(int number)
@@ -57,7 +45,7 @@ namespace Hypothermia.View.Map
             }
         }
 
-        public int Width { get { return this.width; } }
-        public int Height { get { return this.height; } }
+        public int MapWidth { get { return this.mapWidth; } }
+        public int MapHeight { get { return this.mapHeight; } }
     }
 }

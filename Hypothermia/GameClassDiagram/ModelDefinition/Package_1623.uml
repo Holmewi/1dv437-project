@@ -18,31 +18,33 @@
         name="PlayerView"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="4823c746-4565-4687-b3ee-5c24fcc85e28"
-        name="GameView"
-        isAbstract="false"
-        isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="568bbabe-3f41-4e30-bbee-65776910286b">
+            <classMoniker
+              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
+              LastKnownName="Camera"
+              LastKnownLocation="Package_1623.uml" />
+          </dependency>
+        </suppliersInternal>
         <targetEnds>
           <association
-            Id="9325aa73-bcac-45c7-b91b-8a351b7fcaeb"
+            Id="5940c153-c82f-4315-93db-132cc8501179"
             isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="PlayerView"
+            sourceEndRoleName="PlayerView"
+            targetEndRoleName="Animation"
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="eec66e69-38d7-4779-9abf-3447b8a9399f"
-              LastKnownName="PlayerView"
-              LastKnownLocation="Package_1623.uml" />
+              Id="30d67b3c-e1f4-4681-a22c-6018305c6010"
+              LastKnownName="Animation"
+              LastKnownLocation="Package_2357.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="6219cccd-5cde-43fe-9db3-5192a575aaae"
+                  Id="1c1700f5-669a-4d63-a487-9f8b669fefe4"
+                  name="PlayerView"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -50,23 +52,12 @@
                   isDerivedUnion="false"
                   aggregation="None"
                   isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="afa6f6c0-70f3-4c43-94e7-b4cbb50bf08b"
-                      name="Lower" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="2acdee5d-5a99-4750-8255-748dca2f0c26"
-                      name="Upper" />
-                  </upperValueInternal>
-                </memberEnd>
+                  isNavigableOwned="false" />
               </associationHasOwnedEnds>
               <associationHasOwnedEnds>
                 <memberEnd
-                  Id="c5735458-4223-4050-ab20-aa1ffa03b460"
-                  name="PlayerView"
+                  Id="2be64c60-d8e7-4cf2-94c2-78168db9e82a"
+                  name="Animation"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -77,6 +68,26 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4823c746-4565-4687-b3ee-5c24fcc85e28"
+        name="GameView"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="b00115ee-da88-4f90-94d7-3d0a9baaeea5">
+            <classMoniker
+              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
+              LastKnownName="Camera"
+              LastKnownLocation="Package_1623.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
           <association
             Id="d7bc6f3b-ab2a-46c7-bef9-56a8ddec0961"
             isDerived="false"
@@ -87,7 +98,7 @@
             <classMoniker
               Id="02c51978-7199-4f74-952d-ba210e9b4175"
               LastKnownName="MapView"
-              LastKnownLocation="Package_1623.uml" />
+              LastKnownLocation="Package_0000.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -119,297 +130,22 @@
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <class
-        Id="4849a3df-cc72-47e1-a540-159571dce6c2"
-        name="MenuView"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="8e7eac4b-fc16-4482-91b6-de77d11e2ee5"
-            isDerived="false"
-            sourceEndRoleName="MenuView"
-            targetEndRoleName="Button"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="8be1887f-b71e-44a5-bc78-18ab14bc003c"
-              LastKnownName="Button"
-              LastKnownLocation="Package_1623.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="64818e05-8d64-4515-9720-1efeabcfe8a9"
-                  name="MenuView"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="87e0d379-20cd-425c-83d2-2560ab74044b"
-                  name="Button"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
+      <packageMoniker
+        Id="0139108c-54aa-4b9a-85d9-83502e62e405"
+        LastKnownName="GFX"
+        LastKnownLocation="Package_2357.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <class
-        Id="0c150aab-d905-44da-b852-982309149242"
-        name="Tile"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="8481f6f7-b431-41a0-952b-871434620771"
-            isDerived="false"
-            sourceEndRoleName="Box"
-            targetEndRoleName="BoxCollider"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
-              LastKnownName="BoxCollider"
-              LastKnownLocation="Package1_1622.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="f076c0ad-7ed0-43fa-bda8-2126cdcfc5c4"
-                  name="Box"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="96225ed6-4e00-48f4-91c4-91d110afb698"
-                  name="BoxCollider"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
+      <packageMoniker
+        Id="d71cd9d1-de04-49da-95ea-8c6db2d72e95"
+        LastKnownName="Menu"
+        LastKnownLocation="Package1_2357.uml" />
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <class
-        Id="07747be7-0a30-4149-925c-66b6aa58dbbe"
-        name="MapGenerator"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="57cd9cf9-6a25-4044-a22b-fb248198936e"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="Box"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="0c150aab-d905-44da-b852-982309149242"
-              LastKnownName="Tile"
-              LastKnownLocation="Package_1623.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="7d7fb3df-6a79-4263-9ef8-034fda5033ba"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="b1c7f66c-db6c-4862-87bc-f906c618f83c"
-                  name="Box"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="ed89c452-291f-4853-92d6-3e71d9a3220b"
-                      name="Lower"
-                      value="*" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="b966b542-4544-4a10-8bdb-9566f9b95c49"
-                      name="Upper"
-                      value="*" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="6c9ec786-af45-44b1-a9a4-98e6f5024f0b"
-            isDerived="false"
-            sourceEndRoleName="LevelView"
-            targetEndRoleName="Background"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="9c9d7a91-d8ca-420b-92e1-02865f8498de"
-              LastKnownName="Background"
-              LastKnownLocation="Package_1623.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="cbe32003-522e-44eb-8d90-101ab9182eb5"
-                  name="LevelView"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c3bc84bc-c23c-447d-958f-5b3ba2fcc758"
-                  name="Background"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="02c51978-7199-4f74-952d-ba210e9b4175"
-        name="MapView"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <targetEnds>
-          <association
-            Id="782d1fe9-8e02-431c-9101-e817eb3db899"
-            isDerived="false"
-            sourceEndRoleName="LevelView"
-            targetEndRoleName="Map"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="07747be7-0a30-4149-925c-66b6aa58dbbe"
-              LastKnownName="MapGenerator"
-              LastKnownLocation="Package_1623.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="13d970b9-2ad7-4e07-a5bb-ae70e2d47269"
-                  name="LevelView"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="df1e7a3a-33f5-420e-9592-decf7cba2512"
-                  name="Map"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="8be1887f-b71e-44a5-bc78-18ab14bc003c"
-        name="Button"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="ad2f9f8f-11d5-45f4-95de-b77e3276e855"
-        name="Options"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="6bbfa7f0-5d73-4400-b7ba-e23ea73f5cce">
-            <classMoniker
-              Id="4849a3df-cc72-47e1-a540-159571dce6c2"
-              LastKnownName="MenuView"
-              LastKnownLocation="Package_1623.uml" />
-          </dependency>
-        </suppliersInternal>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="9c9d7a91-d8ca-420b-92e1-02865f8498de"
-        name="Background"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
-        Id="328a24e9-9ba2-41eb-8fdc-b1ab4888bee2"
-        name="MapSimulator"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false" />
+      <packageMoniker
+        Id="b57ea43e-5341-4715-a80e-d5995423a605"
+        LastKnownName="Map"
+        LastKnownLocation="Package_0000.uml" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

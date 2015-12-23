@@ -16,7 +16,7 @@ namespace Hypothermia.View.Map
         public MapView(Camera camera)
         {
             this.camera = camera;
-            this.content = new MapContent(camera.TileSize);
+            this.content = new MapContent(this.camera);
         }
 
         public void LoadContent(ContentManager content, int level)
@@ -35,10 +35,10 @@ namespace Hypothermia.View.Map
             }
         }
 
-        public void Update(Vector2 playerVelocity, float elapsedTime)
+        public void Update(float elapsedTime, Vector2 playerVelocity, Vector2 playerPosition)
         {
             foreach (GFX.Background background in this.content.Backgrounds)
-                background.Update(playerVelocity);
+                background.Update(playerVelocity, playerPosition, this.camera.MapWidth);
         }
 
         public void Draw(SpriteBatch sb)
@@ -51,7 +51,5 @@ namespace Hypothermia.View.Map
         }
 
         public List<Tile> Tiles { get { return this.content.Tiles; } }
-        public int Width { get { return this.content.Width; } }
-        public int Height { get { return this.content.Height; } }
     }
 }

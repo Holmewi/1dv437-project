@@ -28,13 +28,10 @@ namespace Hypothermia.View
             this.cameraTargetPosition = new Vector2(this.device.Viewport.Width / 2, this.device.Viewport.Height / 2);
         }
 
-        public int MapWidth { set { this.mapWidth = value; } }
-        public int MapHeight { set { this.mapHeight = value; } }
-
         /*
          * This method is used for interface to render on screen
          */
-        public Vector2 GetLogicCoordinates(int visualX, int visualY)
+        public Vector2 GetDeviceCoordinates(int visualX, int visualY)
         {
             float logicX = this.cameraTargetPosition.X - visualX;
             float logicY = this.cameraTargetPosition.Y - visualY;
@@ -42,7 +39,7 @@ namespace Hypothermia.View
             return new Vector2(logicX, logicY);
         }
 
-        public Vector2 GetVisualCoordinates(int tileX, int tileY)
+        public Vector2 GetMapCoordinates(int tileX, int tileY)
         {
             Vector2 mapTiles = new Vector2(this.mapWidth / this.tileSize, this.mapHeight / this.tileSize );
 
@@ -54,11 +51,19 @@ namespace Hypothermia.View
             return new Vector2(visualX, visualY);
         }
 
-        private int Panning(float elapsedTime, Vector2 playerVelocity)
+        public Vector2 GetLogicCoordinates(int visualX, int visualY)
         {
-            if (playerVelocity.X > 0 && offset <= 125)
+            float logicX = 0 + visualX;
+            float logicY = this.mapHeight - visualY;
+
+            return new Vector2(logicX, logicY);
+        }
+
+        private int Panning(float elapsedTime, bool faceForward)
+        {
+            if (faceForward && offset <= 125)
                 offset = offset + 25 * elapsedTime;
-            else if (playerVelocity.X < 0 && offset >= -125)
+            else if (!faceForward && offset >= -125)
                 offset = offset - 25 * elapsedTime;
             else
             {
@@ -70,14 +75,14 @@ namespace Hypothermia.View
             return (int)Math.Round(offset);
         }
 
-        public void FocusOnPlayer(float elapsedTime, Vector2 playerPosition, Vector2 playerVelocity, int mapWidth, int mapHeight)
+        public void FocusOnPlayer(float elapsedTime, Vector2 playerPosition, bool faceForward, int mapWidth, int mapHeight)
         {
-            if (playerPosition.X < this.device.Viewport.Width / 2 - this.Panning(elapsedTime, playerVelocity))
+            if (playerPosition.X < this.device.Viewport.Width / 2 - this.Panning(elapsedTime, faceForward))
                 this.cameraTargetPosition.X = this.device.Viewport.Width / 2;
-            else if (playerPosition.X > mapWidth - (this.device.Viewport.Width / 2) - this.Panning(elapsedTime, playerVelocity))
+            else if (playerPosition.X > mapWidth - (this.device.Viewport.Width / 2) - this.Panning(elapsedTime, faceForward))
                 this.cameraTargetPosition.X = mapWidth - (this.device.Viewport.Width / 2);
             else
-                this.cameraTargetPosition.X = playerPosition.X + this.Panning(elapsedTime, playerVelocity);
+                this.cameraTargetPosition.X = playerPosition.X + this.Panning(elapsedTime, faceForward);
 
             if (playerPosition.Y > mapHeight - (this.device.Viewport.Height / 2))
                 this.cameraTargetPosition.Y = mapHeight - (this.device.Viewport.Height / 2);
@@ -99,5 +104,16 @@ namespace Hypothermia.View
         public Vector2 Target { get { return this.cameraTargetPosition; } }
 
         public int TileSize { get { return this.tileSize; } }
+
+        public int MapWidth
+        {
+            get { return this.mapWidth; }
+            set { this.mapWidth = value; }
+        }
+        public int MapHeight
+        {
+            get { return this.mapHeight; }
+            set { this.mapHeight = value; }
+        }
     }
 }

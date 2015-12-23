@@ -20,9 +20,10 @@ namespace Hypothermia.View.GFX
             this.scrollingSpeed = scrollingSpeed;
         }
 
-        public void Update(Vector2 playerVelocity)
+        public void Update(Vector2 playerVelocity, Vector2 playerPosition, int mapWidth)
         {
-            this.rect.X -= (int)Math.Round(playerVelocity.X * this.scrollingSpeed);
+            if(playerPosition.X > 128 && playerPosition.X < (float)mapWidth - 128)
+                this.rect.X -= (int)Math.Round(playerVelocity.X * this.scrollingSpeed);
         }
 
         public void Draw(SpriteBatch sb)

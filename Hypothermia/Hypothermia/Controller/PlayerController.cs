@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,63 +10,63 @@ namespace Hypothermia.Controller
 {
     public class PlayerController
     {
-        private bool isIdle = false;
+        private View.Camera camera;
+        private Model.Player player;
+        private View.PlayerView playerView;
 
-        private float movementSpeed = 5.0f;
-        private float jumpingSpeed = 8.0f;
-
-        private Model.GameObject gameObject;
-        private Model.RigidBody rigidBody;
-
-        public PlayerController(Model.GameObject gameObject, Model.RigidBody rigidBody)
+        public PlayerController(View.Camera camera)
         {
-            this.gameObject = gameObject;
-            this.rigidBody = rigidBody;
+            this.camera = camera;
+
+            this.playerView = new View.PlayerView(this.camera);
+            this.player = new Model.Player();
         }
 
-        public void Movement()
+        public void Restart()
         {
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && this.rigidBody.OnGround)
-            {
-                this.Jump();
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.A) && !this.rigidBody.CollideLeft)
-            {
-                this.MoveLeft();
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.D) && !this.rigidBody.CollideRight)
-            {
-                this.MoveRight();
-            }
-            else if (Keyboard.GetState().IsKeyUp(Keys.A) && Keyboard.GetState().IsKeyUp(Keys.D) && this.rigidBody.OnGround)
-            {
-                this.Idle();
-            }
+            this.player = new Model.Player();
         }
 
-        public void MoveLeft()
+        public void LoadContent(ContentManager content)
         {
-            if (this.gameObject.Velocity.X >= -movementSpeed)
-                this.gameObject.VelocityX = this.gameObject.Velocity.X - this.gameObject.Acceleration.X;
+            this.playerView.LoadContent(content);
         }
 
-        public void MoveRight()
+        public void Update(float elapsedTime, List<View.Map.Tile> tiles)
         {
-            if (this.gameObject.Velocity.X <= movementSpeed)
-                this.gameObject.VelocityX = this.gameObject.Velocity.X + this.gameObject.Acceleration.X;
+            this.Movement(elapsedTime);
+            this.camera.FocusOnPlayer(elapsedTime, this.player.Position, this.player.FaceForward, this.camera.MapWidth, this.camera.MapHeight);
+            this.player.MapCollision(this.camera.MapWidth, this.camera.MapHeight);
+            this.player.Update(elapsedTime, tiles);
+            this.playerView.Update(elapsedTime, this.player.FaceForward, this.player.CurrentPlayerState);
         }
 
-        public void Jump()
+        public void Draw(SpriteBatch sb)
         {
-            this.gameObject.VelocityY = this.gameObject.Velocity.Y - jumpingSpeed;
+            this.playerView.Draw(sb, this.player.Position);
         }
 
-        public void Idle()
+        private void Movement(float elapsedTime)
         {
-            if (this.gameObject.Velocity.X < 0)
-                this.gameObject.VelocityX = this.gameObject.Velocity.X + this.gameObject.Acceleration.X;
-            else if (this.gameObject.Velocity.X > 0)
-                this.gameObject.VelocityX = this.gameObject.Velocity.X - this.gameObject.Acceleration.X;
+            if (Keyboard.GetState().IsKeyDown(Keys.Space) && this.player.RigidBody.OnGround)
+                this.player.Jump(elapsedTime);
+            
+            if (Keyboard.GetState().IsKeyDown(Keys.A) && !this.player.RigidBody.CollideLeft)
+                this.player.MoveLeft();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D) && !this.player.RigidBody.CollideRight)
+                this.player.MoveRight();
+
+            if (Keyboard.GetState().IsKeyUp(Keys.A) && Keyboard.GetState().IsKeyUp(Keys.D) && this.player.RigidBody.OnGround)
+                this.player.Idle();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) && this.player.RigidBody.OnGround)
+                this.player.Sprint(true);
+
+            if (Keyboard.GetState().IsKeyUp(Keys.LeftShift) && this.player.RigidBody.OnGround)
+                this.player.Sprint(false);
         }
+
+        public Model.Player Player { get { return this.player; } }
     }
 }

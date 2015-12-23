@@ -25,10 +25,19 @@
     <Content Include="ModelDefinition\Package1_1622.uml">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="ModelDefinition\Package1_2357.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_0000.uml">
+      <SubType>Content</SubType>
+    </Content>
     <Content Include="ModelDefinition\Package_1622.uml">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ModelDefinition\Package_1623.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2357.uml">
       <SubType>Content</SubType>
     </Content>
     <Folder Include="ModelDefinition\" />

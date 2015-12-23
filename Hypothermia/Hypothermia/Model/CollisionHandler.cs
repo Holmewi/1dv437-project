@@ -12,23 +12,30 @@ namespace Hypothermia.Model
     */
     public class CollisionHandler
     {
-        public CollisionHandler()
+        public bool IsOnGround(BoxCollider boxCollider, GameObject gameObject)
         {
-
+            if (boxCollider.Rect.Top <= gameObject.Rect.Bottom &&
+                boxCollider.Rect.Top >= gameObject.Rect.Bottom - 1 &&
+                boxCollider.Rect.Right >= gameObject.Rect.Left + (gameObject.Rect.Width / 5) &&
+                boxCollider.Rect.Left <= gameObject.Rect.Right - (gameObject.Rect.Width / 5))
+            {
+                return true;
+            }
+            return false;
         }
 
-        public bool DetectCollisionRight(BoxCollider boxCollider, GameObject gameObject)
+        public bool IsCollidingRight(BoxCollider boxCollider, GameObject gameObject)
         {
             if (boxCollider.Rect.Left >= gameObject.Rect.Left &&
                 boxCollider.Rect.Left <= gameObject.Rect.Right + 5 &&
                 boxCollider.Rect.Top <= gameObject.Rect.Bottom - (gameObject.Rect.Width / 4) &&
                 boxCollider.Rect.Bottom >= gameObject.Rect.Top + (gameObject.Rect.Width / 4))
             {
-                if (CollidingRight(gameObject.Position.X + (gameObject.Texture.Width / 2) + gameObject.Velocity.X, gameObject.Position.Y, boxCollider))
+                if (CollidingRight(gameObject.Position.X + (gameObject.Rect.Width / 2) + gameObject.Velocity.X, gameObject.Position.Y, boxCollider))
                 {
-                    while (!CollidingRight(gameObject.Position.X + (gameObject.Texture.Width / 2) + Math.Sign(gameObject.Velocity.X), gameObject.Position.Y, boxCollider))
+                    while (!CollidingRight(gameObject.Position.X + (gameObject.Rect.Width / 2) + Math.Sign(gameObject.Velocity.X), gameObject.Position.Y, boxCollider))
                     {
-                        gameObject.PositionX = gameObject.Position.X + (gameObject.Texture.Width / 2) + Math.Sign(gameObject.Velocity.X);
+                        gameObject.PositionX = gameObject.Position.X + (gameObject.Rect.Width / 2) + Math.Sign(gameObject.Velocity.X);
                     }
                     return true;
                 }
@@ -36,18 +43,18 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectCollisionLeft(BoxCollider boxCollider, GameObject gameObject)
+        public bool IsCollidingLeft(BoxCollider boxCollider, GameObject gameObject)
         {
             if (boxCollider.Rect.Right <= gameObject.Rect.Right &&
                 boxCollider.Rect.Right >= gameObject.Rect.Left - 5 &&
                 boxCollider.Rect.Top <= gameObject.Rect.Bottom - (gameObject.Rect.Width / 4) &&
                 boxCollider.Rect.Bottom >= gameObject.Rect.Top + (gameObject.Rect.Width / 4))
             {
-                if (CollidingLeft(gameObject.Position.X - (gameObject.Texture.Width / 2) + gameObject.Velocity.X, gameObject.Position.Y, boxCollider))
+                if (CollidingLeft(gameObject.Position.X - (gameObject.Rect.Width / 2) + gameObject.Velocity.X, gameObject.Position.Y, boxCollider))
                 {
-                    while (!CollidingLeft(gameObject.Position.X - (gameObject.Texture.Width / 2) + Math.Sign(gameObject.Velocity.X), gameObject.Position.Y, boxCollider))
+                    while (!CollidingLeft(gameObject.Position.X - (gameObject.Rect.Width / 2) + Math.Sign(gameObject.Velocity.X), gameObject.Position.Y, boxCollider))
                     {
-                        gameObject.PositionX = gameObject.Position.X - (gameObject.Texture.Width / 2) + Math.Sign(gameObject.Velocity.X);
+                        gameObject.PositionX = gameObject.Position.X - (gameObject.Rect.Width / 2) + Math.Sign(gameObject.Velocity.X);
                     }
                     return true;
                 }
@@ -55,10 +62,9 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectCollisionBottom(BoxCollider boxCollider, GameObject gameObject)
+        public bool IsCollidingBottom(BoxCollider boxCollider, GameObject gameObject)
         {
-            if (boxCollider.Rect.Top <= gameObject.Rect.Bottom + (gameObject.Rect.Height / 5) &&
-                boxCollider.Rect.Top >= gameObject.Rect.Bottom - 1 &&
+            if (boxCollider.Rect.Top >= gameObject.Rect.Bottom &&
                 boxCollider.Rect.Right >= gameObject.Rect.Left + (gameObject.Rect.Width / 5) &&
                 boxCollider.Rect.Left <= gameObject.Rect.Right - (gameObject.Rect.Width / 5))
             {
@@ -74,16 +80,16 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectCollisionTop(BoxCollider boxCollider, GameObject gameObject)
+        public bool IsCollidingTop(BoxCollider boxCollider, GameObject gameObject)
         {
             if (boxCollider.Rect.Bottom >= gameObject.Rect.Top - 1 &&
                boxCollider.Rect.Bottom <= gameObject.Rect.Top + (boxCollider.Rect.Height / 2) &&
                boxCollider.Rect.Right >= gameObject.Rect.Left + (gameObject.Rect.Width / 5) &&
                boxCollider.Rect.Left <= gameObject.Rect.Right - (gameObject.Rect.Width / 5))
             {
-                if (CollidingTop(gameObject.Position.X, gameObject.Position.Y - gameObject.Texture.Height + gameObject.Velocity.Y, boxCollider))
+                if (CollidingTop(gameObject.Position.X, gameObject.Position.Y - gameObject.Rect.Height + gameObject.Velocity.Y, boxCollider))
                 {
-                    while (!CollidingTop(gameObject.Position.X, gameObject.Position.Y - gameObject.Texture.Height + Math.Sign(gameObject.Velocity.Y), boxCollider))
+                    while (!CollidingTop(gameObject.Position.X, gameObject.Position.Y - gameObject.Rect.Height + Math.Sign(gameObject.Velocity.Y), boxCollider))
                     {
                         gameObject.PositionY = gameObject.Position.Y + Math.Sign(gameObject.Velocity.Y);
                     }

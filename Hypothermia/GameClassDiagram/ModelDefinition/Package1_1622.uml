@@ -21,13 +21,30 @@
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="8ceaede6-57d3-468b-8dc5-05bb0132f4fb">
+            Id="f7243f9b-a028-4c39-bd27-9031c01cfd17">
+            <classMoniker
+              Id="03b0ad90-3f6e-4088-a07a-e16f18d5866d"
+              LastKnownName="GameObject"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+          <dependency
+            Id="b597837d-1b1c-4440-8e01-0dc266d03dab">
+            <classMoniker
+              Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
+              LastKnownName="BoxCollider"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="969db937-a869-44b6-a7c6-da8d0d3ebfbf"
+            isSubstitutable="false">
             <classMoniker
               Id="f301a78f-50a8-4389-94fa-c1de82b53d4f"
               LastKnownName="CollisionHandler&lt;Component&gt;"
               LastKnownLocation="Package1_1622.uml" />
-          </dependency>
-        </suppliersInternal>
+          </generalization>
+        </generalsInternal>
         <ownedOperationsInternal>
           <operation
             Id="5eba4e16-9615-4b05-8288-aece0e5cda08"
@@ -49,11 +66,18 @@
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="fb6c4143-1d5c-4407-a054-8c12ba3161e1">
+            Id="0cfd76e4-c6d9-4430-a93c-4557135e6c41">
+            <enumerationMoniker
+              Id="70ef8288-61b0-4efa-bd25-dad5a32742fc"
+              LastKnownName="PlayerState"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+          <dependency
+            Id="2b380aa4-0650-495d-ac69-af2e372fa93f">
             <classMoniker
-              Id="f2857cb3-f6ab-4b0f-a7f7-e75127bb7101"
-              LastKnownName="PlayerController"
-              LastKnownLocation="Package_1622.uml" />
+              Id="0c150aab-d905-44da-b852-982309149242"
+              LastKnownName="Tile"
+              LastKnownLocation="Package_0000.uml" />
           </dependency>
         </suppliersInternal>
         <generalsInternal>
@@ -105,45 +129,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="0a81f4c1-143d-4efc-97c8-f248f00432ed"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="b8d4b819-abd0-4e65-afc6-6277e02d4f14"
-            isDerived="false"
-            sourceEndRoleName="Player"
-            targetEndRoleName="Camera"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
-              LastKnownName="Camera"
-              LastKnownLocation="Package_1623.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="dad27917-b7ac-46b4-95f9-81c4c6334e7b"
-                  name="Player"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="42faf39b-2d7c-4b0a-881a-1e0937955a02"
-                  name="Camera"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -243,17 +228,32 @@
         name="CollisionHandler&lt;Component&gt;"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="c4daf6cf-11c6-43c0-b4f7-268592bcd769">
-            <classMoniker
-              Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
-              LastKnownName="BoxCollider"
-              LastKnownLocation="Package1_1622.uml" />
-          </dependency>
-        </suppliersInternal>
-      </class>
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="70ef8288-61b0-4efa-bd25-dad5a32742fc"
+        name="PlayerState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="8eade77a-9934-4ef5-87fd-6780ce6f9f84"
+            name="Idle" />
+          <enumerationLiteral
+            Id="4647d7b3-a1c5-4f05-98ab-d8c3ea1f0210"
+            name="MoveLeft" />
+          <enumerationLiteral
+            Id="6ed70ab9-2b21-4138-b0fb-dd600cf6bf95"
+            name="MoveRight" />
+          <enumerationLiteral
+            Id="38034bbc-ce31-405c-b6e2-bf248f885346"
+            name="Jump" />
+          <enumerationLiteral
+            Id="7370125f-4350-4544-9355-0bd1d7c24ea0"
+            name="Fall" />
+        </ownedLiterals>
+      </enumeration>
     </packageHasNamedElement>
   </packagedElements>
 </package>
