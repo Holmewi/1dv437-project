@@ -39,9 +39,12 @@ namespace Hypothermia.View
             return new Vector2(logicX, logicY);
         }
 
+        /*
+         * This method is used to get tile based position
+         */
         public Vector2 GetMapCoordinates(int tileX, int tileY)
         {
-            Vector2 mapTiles = new Vector2(this.mapWidth / this.tileSize, this.mapHeight / this.tileSize );
+            Vector2 mapTiles = new Vector2(this.mapWidth / this.tileSize, this.mapHeight / this.tileSize);
 
             if (tileX > mapTiles.X || tileY > mapTiles.Y)
                 throw new ArgumentOutOfRangeException("The tileX does not exist in the map.");

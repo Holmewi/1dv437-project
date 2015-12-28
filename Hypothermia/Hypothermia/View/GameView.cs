@@ -11,28 +11,63 @@ namespace Hypothermia.View
 {
     public class GameView
     {
-        private Map.MapView mapView;
+        private Camera camera;
+        private Map.MapContent content;
+        private Enemy.EnemySpawner spawner;
 
         public GameView(Camera camera)
         {
-            this.mapView = new Map.MapView(camera);
+            this.camera = camera;
+            this.content = new Map.MapContent(this.camera);
+            this.spawner = new Enemy.EnemySpawner(this.camera);
         }
-        
+
+        public void Start()
+        {
+            this.content.Start();
+            this.spawner.Start();
+        }
+
         public void LoadContent(ContentManager content, int level)
         {
-            this.mapView.LoadContent(content, level);
+            switch (level)
+            {
+                case 1:
+                    this.content.Level1(content);
+                    this.spawner.Level1(content);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                default:
+                    break;
+            }
         }
 
         public void Update(float elapsedTime, Vector2 playerVelocity, Vector2 playerPosition)
         {
-            this.mapView.Update(elapsedTime, playerVelocity, playerPosition);
+            foreach (GFX.Background background in this.content.Backgrounds)
+                background.Update(playerVelocity, playerPosition, this.camera.MapWidth);
+
+            // TODO: Place this is EnemySimulation
+            foreach (Model.Enemy enemy in this.spawner.Enemies)
+                enemy.Update(elapsedTime, this.content.Tiles);
         }
 
         public void Draw(SpriteBatch sb)
         {
-            this.mapView.Draw(sb);
+            foreach (GFX.Background background in this.content.Backgrounds)
+                background.Draw(sb);
+
+            for (int i = 0; i < this.content.Tiles.Count(); i++)
+                this.content.Tiles[i].Draw(sb);
+
+            foreach (Model.Enemy enemy in this.spawner.Enemies)
+                enemy.Draw(sb);
         }
 
-        public List<Map.Tile> Tiles { get { return this.mapView.Tiles; } }
+        public List<Map.Tile> Tiles { get { return this.content.Tiles; } }
+        public List<Model.Enemy> Enemies { get { return this.spawner.Enemies; } }
     }
 }

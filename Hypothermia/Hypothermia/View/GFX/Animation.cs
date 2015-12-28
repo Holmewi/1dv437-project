@@ -56,40 +56,12 @@ namespace Hypothermia.View.GFX
             set { this.texture = value; }
         }
 
-        public Rectangle Rect
-        {
-            get { return this.rect; }
-            set { this.rect = value; }
-        }
+        public Rectangle Rect { get { return this.rect; } }
 
-        public Vector2 Origin
-        {
-            get { return this.origin; }
-            set { this.origin = value; }
-        }
+        public Vector2 Origin { get { return this.origin; } }
 
-        public int CurrentFrame
-        {
-            get { return this.currentFrame; }
-            set { this.currentFrame = value; }
-        }
+        public int FrameWidth { get { return this.frameWidth; } }
 
-        public int FrameWidth
-        {
-            get { return this.frameWidth; }
-            set { this.frameWidth = value; }
-        }
-
-        public int FrameHeight
-        {
-            get { return this.frameHeight; }
-            set { this.frameHeight = value; }
-        }
-
-        public int SpriteLine
-        {
-            get { return this.spriteLine; }
-            set { this.spriteLine = value; }
-        }
+        public int FrameHeight { get { return this.frameHeight; } }
     }
 }

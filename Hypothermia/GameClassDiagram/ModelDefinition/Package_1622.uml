@@ -63,7 +63,7 @@
             Id="9325aa73-bcac-45c7-b91b-8a351b7fcaeb"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="PlayerView"
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -97,7 +97,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="c5735458-4223-4050-ab20-aa1ffa03b460"
-                  name="PlayerView"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -139,108 +138,10 @@
         </suppliersInternal>
         <targetEnds>
           <association
-            Id="57227d3f-dc4a-4b7c-bf22-bb15b5974543"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="Player"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="79a24f82-f4ab-4b0e-a375-64f0e336a90d"
-              LastKnownName="Player"
-              LastKnownLocation="Package1_1622.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="968120d2-b5d7-4b4b-8ceb-e24305e1f652"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="30d52e75-29c8-4a47-a871-ec47c24c8f14"
-                      name="Lower" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="be687694-df73-45d7-9365-439eb3c0c7d5"
-                      name="Upper" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="dd5ecd31-d75f-4f72-8327-4e99c0422c36"
-                  name="Player"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
-            Id="cf5efa8d-5acc-41b1-ad6d-c68f36229c50"
-            isDerived="false"
-            sourceEndRoleName=""
-            targetEndRoleName="Enemy"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="68f9a7e8-d324-4e89-86c3-994e75a50bf8"
-              LastKnownName="Enemy"
-              LastKnownLocation="Package1_1622.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="ce9a4923-f94f-4d32-878a-5df32194b53e"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false">
-                  <lowerValueInternal>
-                    <literalString
-                      Id="197ff75d-e7d7-4873-b3f3-e18fcde70718"
-                      name="Lower" />
-                  </lowerValueInternal>
-                  <upperValueInternal>
-                    <literalString
-                      Id="6c64df1a-49b2-4f9d-a2a1-6f8fb29f4418"
-                      name="Upper" />
-                  </upperValueInternal>
-                </memberEnd>
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="02f32817-e21c-43a5-a6c5-505cde9c34c5"
-                  name="Enemy"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-          <association
             Id="904a0034-1d27-4412-98d6-4fbaf99d079e"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="Camera"
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -274,7 +175,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="ae31f0dc-7d81-4d92-8265-eb1b8e45918d"
-                  name="Camera"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"

@@ -46,10 +46,10 @@ namespace Hypothermia.View
             }
 
             else if (state == PlayerState.MoveLeft)
-                this.animation.Animate(elapsedTime, 2, 3, 13, 0.03f);
+                this.animation.Animate(elapsedTime, 2, 3, 12, 0.03f);
 
             else if (state == PlayerState.MoveRight)
-                this.animation.Animate(elapsedTime, 1, 3, 13, 0.03f);
+                this.animation.Animate(elapsedTime, 1, 3, 12, 0.03f);
 
             else if (state == PlayerState.Idle)
             {
@@ -65,6 +65,7 @@ namespace Hypothermia.View
             sb.Draw(this.animation.Texture, playerPosition, this.animation.Rect, Color.White, 0f, this.animation.Origin, 1f, SpriteEffects.None, 0f);
         }
 
-
+        public int FrameWidth { get { return this.animation.FrameWidth; } }
+        public int FrameHeight { get { return this.animation.FrameHeight; } }
     }
 }

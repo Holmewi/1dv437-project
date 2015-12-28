@@ -72,13 +72,6 @@
               LastKnownName="PlayerState"
               LastKnownLocation="Package1_1622.uml" />
           </dependency>
-          <dependency
-            Id="2b380aa4-0650-495d-ac69-af2e372fa93f">
-            <classMoniker
-              Id="0c150aab-d905-44da-b852-982309149242"
-              LastKnownName="Tile"
-              LastKnownLocation="Package_0000.uml" />
-          </dependency>
         </suppliersInternal>
         <generalsInternal>
           <generalization
@@ -163,7 +156,7 @@
           <association
             Id="bcb7927f-8562-4a2c-9067-0ee046edd5de"
             isDerived="false"
-            sourceEndRoleName="Enemy"
+            sourceEndRoleName=""
             targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
@@ -175,7 +168,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="f79eced1-9972-4adf-b327-13f93afccd15"
-                  name="Enemy"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -187,14 +179,12 @@
                   <lowerValueInternal>
                     <literalString
                       Id="86c662ab-76f5-4e81-9cf4-b0ba00dfc244"
-                      name="Lower"
-                      value="*" />
+                      name="Lower" />
                   </lowerValueInternal>
                   <upperValueInternal>
                     <literalString
                       Id="bf6e47ae-52fb-4206-9d3a-4d45bcb14bc1"
-                      name="Upper"
-                      value="*" />
+                      name="Upper" />
                   </upperValueInternal>
                 </memberEnd>
               </associationHasOwnedEnds>
@@ -207,7 +197,77 @@
                   isDerived="false"
                   isDerivedUnion="false"
                   aggregation="None"
-                  isComposite="false" />
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="ce3026a9-670d-4219-8f90-2cd9657648db"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="9fccf2b2-8031-41a2-9b82-4d1c440650ac"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5d8019d5-7049-4877-b73e-df7abb37800d"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="138f9186-2849-4853-b2b5-c01ca8b6d7c3"
+              LastKnownName="EnemySimulation"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="51655c97-fb0f-4d5c-982d-0f16dd7b827c"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="2b83fc3e-23e9-4c62-9f55-f696bea94c4f"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="ecaac11d-c366-4d77-a200-2df5ab7a313c"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="0a259e09-3bae-4254-846e-5d5e0d1a5b03"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="86ee13ea-2dc0-4617-9374-121906a889b1"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="5647ea84-a2de-4d8e-aa5a-65c56196a30d"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
@@ -252,8 +312,19 @@
           <enumerationLiteral
             Id="7370125f-4350-4544-9355-0bd1d7c24ea0"
             name="Fall" />
+          <enumerationLiteral
+            Id="3f57e138-ec34-4472-b828-e3e116d3518f"
+            name="Dead" />
         </ownedLiterals>
       </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="138f9186-2849-4853-b2b5-c01ca8b6d7c3"
+        name="EnemySimulation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
     </packageHasNamedElement>
   </packagedElements>
 </package>

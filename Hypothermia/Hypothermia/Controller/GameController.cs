@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Hypothermia.Model;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -11,7 +12,8 @@ namespace Hypothermia.Controller
         MainMenu,
         Options,
         Playing,
-        Paused
+        Paused,
+        GameOver
     }
 
     public class GameController : Game
@@ -23,9 +25,9 @@ namespace Hypothermia.Controller
 
         private View.Camera camera;
         private PlayerController playerController;
+        private Model.EnemySimulation enemySimulation;
         private View.Menu.MenuView menuView;    
         private View.GameView gameView;
-        
 
         public GameController()
         {
@@ -45,9 +47,9 @@ namespace Hypothermia.Controller
 
             this.camera = new View.Camera(GraphicsDevice, 64);
 
-            if (this.playerController == null)
-                this.playerController = new PlayerController(this.camera);
-            
+            this.playerController = new PlayerController(this.camera);
+            this.enemySimulation = new Model.EnemySimulation(this.camera);
+
             this.gameView = new View.GameView(this.camera);
             this.menuView = new View.Menu.MenuView(graphics, this.camera);
             
@@ -93,7 +95,11 @@ namespace Hypothermia.Controller
             {
                 this.IsMouseVisible = true;
                 if (this.menuView.PlayButton.IsClicked == true)
+                {
+                    this.gameView.Start();
+                    this.playerController.Start();
                     CurrentGameState = GameState.Playing;
+                }
                 if (this.menuView.OptionButton.IsClicked == true)
                     Debug.WriteLine("Option menu");
                 if (this.menuView.QuitButton.IsClicked == true)
@@ -108,7 +114,8 @@ namespace Hypothermia.Controller
                     CurrentGameState = GameState.Playing;
                 if (this.menuView.NewButton.IsClicked == true)
                 {
-                    this.playerController.Restart();
+                    this.playerController.Start();
+                    this.gameView.Start();
                     CurrentGameState = GameState.Playing;
                 }
                 if (this.menuView.OptionButton.IsClicked == true)
@@ -123,14 +130,28 @@ namespace Hypothermia.Controller
                 this.menuView.PlayButton.IsClicked = false;
                 this.menuView.ResumeButton.IsClicked = false;
                 this.menuView.NewButton.IsClicked = false;
+                
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                     CurrentGameState = GameState.Paused;
+                if (this.playerController.Player.PlayerState == PlayerState.Dead)
+                    CurrentGameState = GameState.GameOver;
+
                 this.playerController.Update(elapsedTime, this.gameView.Tiles);
                 this.gameView.Update(elapsedTime, this.playerController.Player.Velocity, this.playerController.Player.Position);
+                foreach (Model.Enemy enemy in this.gameView.Enemies)
+                    this.enemySimulation.Update(elapsedTime, enemy, this.gameView.Tiles);
+
             }
             else if (CurrentGameState == GameState.Options)
             {
                 this.IsMouseVisible = true;
+            }
+            else if (CurrentGameState == GameState.GameOver)
+            {
+                //  TODO: Create a gameover screen
+                this.playerController.Start();
+                this.gameView.Start();
+                CurrentGameState = GameState.Playing;
             }
 
             base.Update(gameTime);
@@ -142,7 +163,7 @@ namespace Hypothermia.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.DeepSkyBlue);
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
             

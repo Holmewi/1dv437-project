@@ -15,7 +15,8 @@ namespace Hypothermia.Model
         MoveLeft,
         MoveRight,
         Jump,
-        Fall
+        Fall,
+        Dead
     }
 
     public class Player : GameObject
@@ -28,12 +29,14 @@ namespace Hypothermia.Model
         private float jumpingSpeed = 8.0f;
         private bool faceForward = true;
 
-        public Player()
+        private int health = 100;
+
+        public Player(int width, int height)
         {
-            base.Position = new Vector2(96, 0);
-            base.Velocity = new Vector2(0, 0);
-            base.Acceleration = new Vector2(0.5f, 0.0f);
-            base.Rect = new Rectangle((int)Math.Round(base.Position.X) - 64 / 2, (int)Math.Round(base.Position.Y) - 64, 64, 64);
+            //base.Position = new Vector2(30,570);
+            base.Position = new Vector2(900, 500);
+            base.Acceleration = new Vector2(0.3f, 0.0f);
+            base.Rect = new Rectangle((int)Math.Round(base.Position.X) - width / 2, (int)Math.Round(base.Position.Y) - height, width, height);
 
             this.rigidBody = new RigidBody(this, 70f, 5.5f);
         }
@@ -45,32 +48,37 @@ namespace Hypothermia.Model
             if (base.Position.X > mapWidth)
                 base.PositionX = mapWidth;
             if (base.Position.Y > mapHeight)
-                Debug.WriteLine("Game Over");
+                this.health = 0;
         }
 
         public void Update(float elapsedTime, List<View.Map.Tile> tiles)
         {
             base.Position = base.Position + base.Velocity;
 
-            if (!this.rigidBody.OnGround)
+            if (this.health <= 0)
+                this.CurrentPlayerState = PlayerState.Dead;
+            else
             {
-                this.rigidBody.Fall(elapsedTime);
-                if (base.Velocity.Y <= 0)
-                    CurrentPlayerState = PlayerState.Jump;
-                else if (base.Velocity.Y > 0)
-                    CurrentPlayerState = PlayerState.Fall;
-            }
-
-            if (base.Velocity.Y == 0)
-                this.rigidBody.IsOnGround(tiles);
-            if(base.Velocity.X >= 0)
-                this.rigidBody.DetectRightCollision(tiles);
-            if (base.Velocity.X <= 0)
-                this.rigidBody.DetectLeftCollision(tiles);
-            if (base.Velocity.Y > 0)
-                this.rigidBody.DetectBottomCollision(tiles);
-            if (base.Velocity.Y < 0)
-                this.rigidBody.DetectTopCollision(tiles);
+                if (!this.rigidBody.OnGround)
+                {
+                    this.rigidBody.Fall(elapsedTime);
+                    if (base.Velocity.Y <= 0)
+                        this.CurrentPlayerState = PlayerState.Jump;
+                    else if (base.Velocity.Y > 0)
+                        this.CurrentPlayerState = PlayerState.Fall;
+                }
+                
+                if (base.Velocity.Y == 0)
+                    this.rigidBody.IsOnGround(tiles);
+                if (base.Velocity.X >= 0)
+                    this.rigidBody.DetectRightCollision(tiles);
+                if (base.Velocity.X <= 0)
+                    this.rigidBody.DetectLeftCollision(tiles);
+                if (base.Velocity.Y > 0)
+                    this.rigidBody.DetectBottomCollision(tiles);
+                if (base.Velocity.Y < 0)
+                    this.rigidBody.DetectTopCollision(tiles);
+            }  
         }
 
         public void MoveLeft()
@@ -78,7 +86,7 @@ namespace Hypothermia.Model
             if (base.Velocity.X >= -movementSpeed)
                 base.VelocityX = base.Velocity.X - base.Acceleration.X;
             if (this.rigidBody.OnGround)
-                CurrentPlayerState = PlayerState.MoveLeft;
+                this.CurrentPlayerState = PlayerState.MoveLeft;
             this.faceForward = false;
         }
 
@@ -87,7 +95,7 @@ namespace Hypothermia.Model
             if (base.Velocity.X <= movementSpeed)
                 base.VelocityX = base.Velocity.X + base.Acceleration.X;
             if(this.rigidBody.OnGround)
-                CurrentPlayerState = PlayerState.MoveRight;
+                this.CurrentPlayerState = PlayerState.MoveRight;
             this.faceForward = true;
         }
 
@@ -98,12 +106,14 @@ namespace Hypothermia.Model
 
         public void Idle()
         {
-            if (base.Velocity.X < 0)
+            if (base.Velocity.X > -base.Acceleration.X && base.Velocity.X < base.Acceleration.X) {
+                base.VelocityX = 0;
+                this.CurrentPlayerState = PlayerState.Idle;
+            }
+            else if (base.Velocity.X < 0)
                 base.VelocityX = base.Velocity.X + base.Acceleration.X;
             else if (base.Velocity.X > 0)
                 base.VelocityX = base.Velocity.X - base.Acceleration.X;
-            else if (base.Velocity.X == 0)
-                CurrentPlayerState = PlayerState.Idle;
         }
 
         public void Sprint(bool isSprinting)
@@ -116,5 +126,7 @@ namespace Hypothermia.Model
 
         public RigidBody RigidBody { get { return this.rigidBody; } }
         public bool FaceForward { get { return this.faceForward; } }
+        public int Health { get { return this.health; } }
+        public PlayerState PlayerState { get { return this.CurrentPlayerState; } }
     }
 }

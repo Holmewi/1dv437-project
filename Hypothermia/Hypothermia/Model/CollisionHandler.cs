@@ -7,8 +7,8 @@ using System.Text;
 namespace Hypothermia.Model
 {
     /**
-    *   Component class that handles rectangle collision
-    *   This component class needs to be instansiated by the RigidBody class
+     *  Component class that handles rectangle collision
+     *  This class should be inherited by a RigidBody class
     */
     public class CollisionHandler
     {

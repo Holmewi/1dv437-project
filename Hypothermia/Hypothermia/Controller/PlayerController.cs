@@ -17,14 +17,12 @@ namespace Hypothermia.Controller
         public PlayerController(View.Camera camera)
         {
             this.camera = camera;
-
             this.playerView = new View.PlayerView(this.camera);
-            this.player = new Model.Player();
         }
 
-        public void Restart()
+        public void Start()
         {
-            this.player = new Model.Player();
+            this.player = new Model.Player(this.playerView.FrameWidth, this.playerView.FrameHeight);
         }
 
         public void LoadContent(ContentManager content)
@@ -38,7 +36,7 @@ namespace Hypothermia.Controller
             this.camera.FocusOnPlayer(elapsedTime, this.player.Position, this.player.FaceForward, this.camera.MapWidth, this.camera.MapHeight);
             this.player.MapCollision(this.camera.MapWidth, this.camera.MapHeight);
             this.player.Update(elapsedTime, tiles);
-            this.playerView.Update(elapsedTime, this.player.FaceForward, this.player.CurrentPlayerState);
+            this.playerView.Update(elapsedTime, this.player.FaceForward, this.player.PlayerState);
         }
 
         public void Draw(SpriteBatch sb)

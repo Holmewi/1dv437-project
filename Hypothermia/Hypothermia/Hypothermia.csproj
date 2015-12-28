@@ -39,6 +39,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\GameController.cs" />
+    <Compile Include="View\EnemySimulation.cs" />
+    <Compile Include="Model\HealthSystem.cs" />
+    <Compile Include="View\Enemy\EnemySpawner.cs" />
+    <Compile Include="Model\EnemyTypes.cs" />
     <Compile Include="View\GFX\Animation.cs" />
     <Compile Include="View\GFX\Background.cs" />
     <Compile Include="View\Map\MapContent.cs" />
@@ -56,7 +60,6 @@
     <Compile Include="View\Camera.cs" />
     <Compile Include="View\GameView.cs" />
     <Compile Include="View\Map\MapGenerator.cs" />
-    <Compile Include="View\Map\MapView.cs" />
     <Compile Include="View\Menu\MenuView.cs" />
     <Compile Include="View\Menu\Options.cs" />
     <Compile Include="View\PlayerView.cs" />

@@ -32,7 +32,7 @@
           <association
             Id="5940c153-c82f-4315-93db-132cc8501179"
             isDerived="false"
-            sourceEndRoleName="PlayerView"
+            sourceEndRoleName=""
             targetEndRoleName="Animation"
             isLeaf="false"
             isAbstract="false">
@@ -44,7 +44,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="1c1700f5-669a-4d63-a487-9f8b669fefe4"
-                  name="PlayerView"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -92,12 +91,12 @@
             Id="d7bc6f3b-ab2a-46c7-bef9-56a8ddec0961"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="LevelView"
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
-              Id="02c51978-7199-4f74-952d-ba210e9b4175"
-              LastKnownName="MapView"
+              Id="a100af97-4aac-499f-bff8-0bc3c7c4ea3d"
+              LastKnownName="MapContent"
               LastKnownLocation="Package_0000.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
@@ -115,7 +114,43 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="d4084a5a-860b-45da-b0e9-514a0062b9bc"
-                  name="LevelView"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="4e3d5f03-1255-4f62-b3cb-7a51e7226634"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="b9c8208f-3591-4af3-91f1-56374a6a385b"
+              LastKnownName="EnemySpawner"
+              LastKnownLocation="Package_0000.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="716d56cc-c195-4901-93e1-4ddbd9c51bae"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="371db536-1a76-4dc0-a491-e1e2e4ddb804"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"

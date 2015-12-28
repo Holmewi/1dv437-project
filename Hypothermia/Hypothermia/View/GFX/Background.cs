@@ -13,9 +13,12 @@ namespace Hypothermia.View.GFX
         private Rectangle rect;
         private float scrollingSpeed;
 
+        private Rectangle startRect;
+
         public Background(Texture2D texture, Rectangle rect, float scrollingSpeed)
         {
             this.texture = texture;
+            this.startRect = rect;
             this.rect = rect;
             this.scrollingSpeed = scrollingSpeed;
         }
@@ -30,5 +33,8 @@ namespace Hypothermia.View.GFX
         {
             sb.Draw(this.texture, this.rect, Color.White);
         }
+
+        public Rectangle Rect { set { this.rect = value; } }
+        public Rectangle ResetRect { get { return this.startRect; } }
     }
 }

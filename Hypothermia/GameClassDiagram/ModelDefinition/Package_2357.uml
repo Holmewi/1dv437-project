@@ -3,6 +3,18 @@
   dslVersion="1.0.0.0"
   Id="0139108c-54aa-4b9a-85d9-83502e62e405"
   name="GFX" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="2623ae09-6f54-43a2-b2db-b2d37f8e0ad0">
+      <body>TODO</body>
+      <annotatedElements>
+        <classMoniker
+          Id="3a89c858-bfa8-4945-9f99-6dc69451f216"
+          LastKnownName="Particle"
+          LastKnownLocation="Package_2357.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <packagedElements>
     <packageHasNamedElement>
       <class
@@ -16,6 +28,14 @@
       <class
         Id="30d67b3c-e1f4-4681-a22c-6018305c6010"
         name="Animation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3a89c858-bfa8-4945-9f99-6dc69451f216"
+        name="Particle"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />

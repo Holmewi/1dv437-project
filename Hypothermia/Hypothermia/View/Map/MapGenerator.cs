@@ -23,7 +23,7 @@ namespace Hypothermia.View.Map
                     int number = map[y, x];
 
                     if(number > 0)
-                        tiles.Add(new Tile(tileTextures, new Rectangle(x * size, y * size, size, size), this.Texture(number), 0, 0));
+                        tiles.Add(new Tile(tileTextures, new Rectangle(x * size, y * size, size, size), this.Sprite(number), 0, 0));
 
                     this.mapWidth = (x + 1) * size;
                     this.mapHeight = (y + 1) * size;
@@ -32,7 +32,7 @@ namespace Hypothermia.View.Map
             return tiles;
         }
 
-        public Rectangle Texture(int number)
+        public Rectangle Sprite(int number)
         {
             switch (number)
             {

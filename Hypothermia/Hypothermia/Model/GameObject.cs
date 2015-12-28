@@ -19,7 +19,7 @@ namespace Hypothermia.Model
         private Vector2 velocity;
         private Vector2 acceleration;
 
-        private float mass = 70f;
+        private float mass;
         private float frontArea;
         private float radius;
 

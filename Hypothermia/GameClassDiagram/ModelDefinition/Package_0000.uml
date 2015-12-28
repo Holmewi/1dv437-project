@@ -118,65 +118,6 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
-        Id="02c51978-7199-4f74-952d-ba210e9b4175"
-        name="MapView"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false">
-        <suppliersInternal>
-          <dependency
-            Id="15809e30-5d01-4043-8edf-942ea421d84c">
-            <classMoniker
-              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
-              LastKnownName="Camera"
-              LastKnownLocation="Package_1623.uml" />
-          </dependency>
-        </suppliersInternal>
-        <targetEnds>
-          <association
-            Id="8c22b0d7-4afc-4302-b534-a73779656f51"
-            isDerived="false"
-            sourceEndRoleName="MapView"
-            targetEndRoleName="MapContent"
-            isLeaf="false"
-            isAbstract="false">
-            <classMoniker
-              Id="a100af97-4aac-499f-bff8-0bc3c7c4ea3d"
-              LastKnownName="MapContent"
-              LastKnownLocation="Package_0000.uml" />
-            <relationshipOwnedElementsInternal>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="c7cba0d1-f511-47a4-936a-841e70272009"
-                  name="MapView"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false"
-                  isNavigableOwned="false" />
-              </associationHasOwnedEnds>
-              <associationHasOwnedEnds>
-                <memberEnd
-                  Id="8711eb5e-53d8-419e-ab39-c00b27a0e859"
-                  name="MapContent"
-                  isLeaf="false"
-                  isStatic="false"
-                  isReadOnly="false"
-                  isDerived="false"
-                  isDerivedUnion="false"
-                  aggregation="None"
-                  isComposite="false" />
-              </associationHasOwnedEnds>
-            </relationshipOwnedElementsInternal>
-          </association>
-        </targetEnds>
-      </class>
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
         Id="a100af97-4aac-499f-bff8-0bc3c7c4ea3d"
         name="MapContent"
         isAbstract="false"
@@ -242,6 +183,105 @@
             </relationshipOwnedElementsInternal>
           </association>
         </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="685c838f-bd6e-4ce4-b919-7139f36c34e7"
+            name="List&lt;Tile&gt; tiles"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+          <property
+            Id="86864f68-3083-43cb-a5be-71949f3093f6"
+            name="List&lt;Background&gt; bg"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b9c8208f-3591-4af3-91f1-56374a6a385b"
+        name="EnemySpawner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="93b8ce39-6647-4ed0-8284-2b932d937c34"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Enemy"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="68f9a7e8-d324-4e89-86c3-994e75a50bf8"
+              LastKnownName="Enemy"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c519b0cf-deaf-42f5-9985-3f8ab74f239b"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ab550db2-c06d-47b4-86e4-05f2c9ccc455"
+                  name="Enemy"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="387e3d57-bf1a-463a-827e-e4d076bd5b3f"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c7413c28-d809-4838-91a2-896ec6a473a3"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="48160623-c721-42ff-be8d-807eb453aa99"
+            name="List &lt;Enemy&gt; enemis"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
       </class>
     </packageHasNamedElement>
   </packagedElements>
