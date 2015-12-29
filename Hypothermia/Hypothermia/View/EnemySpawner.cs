@@ -25,9 +25,9 @@ namespace Hypothermia.View
 
             Texture2D wolfTexture  = content.Load<Texture2D>("player");
 
-            this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(3, 15)));
+            this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(17, 10)));
             this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(10, 15)));
-            this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(19, 9)));
+            this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(16, 7)));
         }
 
         public List<Model.Enemy> Enemies { get { return this.enemies; } }

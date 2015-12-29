@@ -257,6 +257,32 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="3d1a25cf-2bb5-41e4-a9f3-14d53b246493" />
                 </association>
+                <association Id="30380abe-3223-4ae9-9bcd-9507817e3190" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="985daa16-8cc5-42a2-bebc-0a9f1296f0c1" LastKnownName="Arrow" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="7bfc1c6b-4558-44c8-af80-b9184f31fd9f" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="e3f2d2b3-b8f3-4385-8cbb-93c380773090" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="faaaf08d-2890-4136-8f53-16cb04bbe814" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="44de8443-f3d8-4746-8e0b-32c103ca0c89" name="Lower" value="*">
+                            <elementDefinition Id="38f051bd-6b67-4e20-89a6-ff4b54537b52" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="30abef8a-6782-4d18-8d58-57812c6d9390" name="Upper" value="*">
+                            <elementDefinition Id="e9256397-dc39-4aae-a70f-e7f875e68b25" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="ab6cd222-713e-49dc-a3da-3cad76dcbfac" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="7cc00081-07ac-455d-87db-f60c1c428f5a" />
+                </association>
               </targetEnds>
             </class>
           </packageHasNamedElement>
@@ -404,6 +430,45 @@
           <packageHasNamedElement>
             <class Id="91bc5134-37c0-4916-a8c6-115f81792faf" name="GameTypes" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="4c9a0d1f-6bf1-44d9-a389-9a3aaaad9822" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="985daa16-8cc5-42a2-bebc-0a9f1296f0c1" name="Arrow" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="3ff14257-e3d9-4b43-bcc7-474836ce3fb9" />
+              <suppliersInternal>
+                <dependency Id="4085c19d-9ab2-4262-b398-e175b87f8c6f">
+                  <classMoniker Id="cc8f7a8d-50c5-4d92-a60b-9104af43b9c6" LastKnownName="BoxCollider" />
+                  <elementDefinition Id="f5a08ccc-d9f2-484e-b094-c74e5f1a0346" />
+                </dependency>
+              </suppliersInternal>
+              <targetEnds>
+                <association Id="04d3f354-3c36-46fa-a501-6f2322825e11" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="4223a47c-8504-4315-87e9-120ebe482564" LastKnownName="RigidBody&lt;Component&gt;" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="e335d0b6-2070-4538-923f-95dd5431a869" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="a650ef14-d61a-4ea7-9341-4bd3da718827" name="Lower">
+                            <elementDefinition Id="ac142781-b1a9-45a3-b889-8558621cf305" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="fbc496d0-d659-4f71-b3a5-f62a633d799a" name="Upper">
+                            <elementDefinition Id="985bb6ad-2f67-43bf-8edc-7e94b42b66c0" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="09cffe70-b5a0-4df6-beb9-dd35cab42545" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="2984eaee-6bf7-4e6c-8451-eadfe363bfa1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="f37cf80c-3f7b-4b32-a882-a6954419b7af" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="51e72180-a103-461e-bbe1-4f500998b681" />
+                </association>
+              </targetEnds>
             </class>
           </packageHasNamedElement>
         </packagedElements>

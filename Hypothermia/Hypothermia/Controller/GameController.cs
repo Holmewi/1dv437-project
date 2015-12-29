@@ -70,8 +70,8 @@ namespace Hypothermia.Controller
             this.menuView.LoadContent(Content);
             
             //  TODO: Make a solution to change levels
-            this.GFX.LoadContent(Content, 1);
             this.gameView.LoadContent(Content, 1);
+            this.GFX.LoadContent(Content, 1);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace Hypothermia.Controller
                     Debug.WriteLine("Option menu");
                 if (this.menuView.QuitButton.IsClicked == true)
                     Exit();
-                this.GFX.Update(elapsedTime);
+                this.GFX.UpdatePregame(elapsedTime);
                 this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
                 
             }
@@ -142,8 +142,8 @@ namespace Hypothermia.Controller
                     CurrentGameState = GameState.GameOver;
 
                 this.playerController.Update(elapsedTime, this.gameView.Tiles);
-                this.gameView.Update(elapsedTime, this.playerController.Player.Velocity, this.playerController.Player.Position);
-                this.GFX.Update(elapsedTime);
+                this.gameView.Update(elapsedTime);
+                this.GFX.UpdateIngame(elapsedTime, this.playerController.Player.Velocity, this.playerController.Player.Position);
                 for (int i = 0; i < this.gameView.Enemies.Count; i++)
                 {
                     this.enemySimulation.Update(elapsedTime, this.gameView.Enemies[i], this.gameView.Tiles);
@@ -174,21 +174,23 @@ namespace Hypothermia.Controller
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.DeepSkyBlue);
+            GraphicsDevice.Clear(Color.Lerp(Color.White, Color.DeepSkyBlue, 0.5f));
 
             spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
             
             if (CurrentGameState == GameState.Playing)
             {
+                this.GFX.DrawBackground(spriteBatch, CurrentGameState);
                 this.gameView.Draw(spriteBatch);
                 this.playerController.Draw(spriteBatch);
-                this.GFX.DrawForeground(spriteBatch);
+                this.GFX.DrawForeground(spriteBatch, CurrentGameState);
             }
             else if (CurrentGameState == GameState.Paused)
             {
+                this.GFX.DrawBackground(spriteBatch, CurrentGameState);
                 this.gameView.Draw(spriteBatch);
                 this.playerController.Draw(spriteBatch);
-                this.GFX.DrawForeground(spriteBatch);
+                this.GFX.DrawForeground(spriteBatch, CurrentGameState);
                 this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
 
             }
@@ -198,7 +200,7 @@ namespace Hypothermia.Controller
             }
             else if (CurrentGameState == GameState.MainMenu)
             {
-                this.GFX.DrawForeground(spriteBatch);
+                this.GFX.DrawForeground(spriteBatch, CurrentGameState);
                 this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
             }
 

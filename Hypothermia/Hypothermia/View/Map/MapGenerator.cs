@@ -37,9 +37,15 @@ namespace Hypothermia.View.Map
             switch (number)
             {
                 case 1:
-                    return new Rectangle(0, 0, 64, 64);
+                    return new Rectangle(0, 256, 64, 64);
                 case 2:
-                    return new Rectangle(64, 0, 64, 64);
+                    return new Rectangle(64, 256, 64, 64);
+                case 3:
+                    return new Rectangle(128, 256, 64, 64);
+                case 4:
+                    return new Rectangle(192, 256, 64, 64);
+                case 5:
+                    return new Rectangle(256, 256, 64, 64);
                 default:
                     throw new ArgumentOutOfRangeException("The texture didn't exist in the sprite sheet");
             }

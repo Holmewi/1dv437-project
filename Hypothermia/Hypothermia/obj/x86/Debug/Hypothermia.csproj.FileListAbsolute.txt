@@ -22,9 +22,7 @@ C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Win
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Debug\Hypothermia.exe
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Debug\Hypothermia.pdb
-C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\Backgrounds\background2.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\arrow.xnb
-C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\Backgrounds\background1.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\newButton.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\optionButton.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\Particles\snowflake1.xnb
@@ -34,3 +32,8 @@ C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Win
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\resumeButton.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\tempTiles.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\TexturePacks\playerAnimation.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Debug\Hypothermia.csprojResolveAssemblyReference.cache
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\Planes\bgDepth4.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\Planes\bgDepth6a.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\Planes\bgDepth6b.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Debug\Content\TexturePacks\tileSpriteSheet.xnb

@@ -124,6 +124,6 @@ namespace Hypothermia.View
         }
 
         public int DeviceWidth { get { return this.deviceWidth; } }
-        public int DeviceHight { get { return this.deviceHeight; } }
+        public int DeviceHeight { get { return this.deviceHeight; } }
     }
 }

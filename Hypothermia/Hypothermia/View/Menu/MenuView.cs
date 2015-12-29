@@ -75,7 +75,7 @@ namespace Hypothermia.View.Menu
         {
             if (state == GameState.MainMenu)
             {
-                device.Clear(Color.DeepSkyBlue);
+                device.Clear(Color.Lerp(Color.White, Color.LightSlateGray, 0.5f));
 
                 this.playButton.Draw(sb);
                 this.optionButton.Draw(sb);

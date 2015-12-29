@@ -37,7 +37,7 @@ namespace Hypothermia.Model
 
         public Player(int width, int height)
         {
-            base.Position = new Vector2(30,570);
+            base.Position = new Vector2(64, 570);
             base.Acceleration = new Vector2(0.3f, 0.0f);
             base.Rect = new Rectangle((int)Math.Round(base.Position.X) - width / 2, (int)Math.Round(base.Position.Y) - height, width, height);
 
@@ -183,7 +183,7 @@ namespace Hypothermia.Model
 
         public void Combat(Enemy enemy)
         {
-            if (base.Rect.Intersects(enemy.Rect))
+            if (base.Rect.Intersects(enemy.Rect) && enemy.Health > 0)
                 this.Health = 0;
 
             for (int i = 0; i < this.arrows.Count; i++)

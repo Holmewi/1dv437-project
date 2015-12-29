@@ -39,11 +39,8 @@ namespace Hypothermia.View
             }
         }
 
-        public void Update(float elapsedTime, Vector2 playerVelocity, Vector2 playerPosition)
+        public void Update(float elapsedTime)
         {
-            foreach (GFX.Background background in this.content.Backgrounds)
-                background.Update(playerVelocity, playerPosition, this.camera.MapWidth);
-
             // TODO: Place this is EnemySimulation
             foreach (Model.Enemy enemy in this.spawner.Enemies)
                 enemy.Update(elapsedTime, this.content.Tiles);
@@ -51,9 +48,6 @@ namespace Hypothermia.View
 
         public void Draw(SpriteBatch sb)
         {
-            foreach (GFX.Background background in this.content.Backgrounds)
-                background.Draw(sb);
-
             for (int i = 0; i < this.content.Tiles.Count(); i++)
                 this.content.Tiles[i].Draw(sb);
 
