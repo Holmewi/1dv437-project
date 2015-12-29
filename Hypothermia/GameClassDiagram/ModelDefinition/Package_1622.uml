@@ -189,7 +189,7 @@
             Id="126dc73a-0955-4f32-b52c-f3f7e074ecee"
             isDerived="false"
             sourceEndRoleName=""
-            targetEndRoleName="GameView"
+            targetEndRoleName=""
             isLeaf="false"
             isAbstract="false">
             <classMoniker
@@ -223,7 +223,6 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="32f58a27-c2e7-477d-ab15-5a2ebc216c66"
-                  name="GameView"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"

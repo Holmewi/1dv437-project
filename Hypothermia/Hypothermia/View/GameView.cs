@@ -13,19 +13,13 @@ namespace Hypothermia.View
     {
         private Camera camera;
         private Map.MapContent content;
-        private Enemy.EnemySpawner spawner;
+        private EnemySpawner spawner;
 
         public GameView(Camera camera)
         {
             this.camera = camera;
             this.content = new Map.MapContent(this.camera);
-            this.spawner = new Enemy.EnemySpawner(this.camera);
-        }
-
-        public void Start()
-        {
-            this.content.Start();
-            this.spawner.Start();
+            this.spawner = new EnemySpawner(this.camera);
         }
 
         public void LoadContent(ContentManager content, int level)

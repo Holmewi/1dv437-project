@@ -132,6 +132,56 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="7cc00081-07ac-455d-87db-f60c1c428f5a"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="3ff14257-e3d9-4b43-bcc7-474836ce3fb9"
+              LastKnownName="Arrow"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="e3f2d2b3-b8f3-4385-8cbb-93c380773090"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ab6cd222-713e-49dc-a3da-3cad76dcbfac"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="38f051bd-6b67-4e20-89a6-ff4b54537b52"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="e9256397-dc39-4aae-a70f-e7f875e68b25"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
@@ -142,6 +192,15 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ddeea19a-03f8-410f-91d0-4e40e6b0f175">
+            <classMoniker
+              Id="4c9a0d1f-6bf1-44d9-a389-9a3aaaad9822"
+              LastKnownName="GameTypes"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+        </suppliersInternal>
         <generalsInternal>
           <generalization
             Id="781e0be1-b9e8-4a07-8985-1c393cc0f68a"
@@ -324,7 +383,100 @@
         name="EnemySimulation"
         isAbstract="false"
         isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="d5074327-03cf-400d-9dd6-409adbc041d9">
+            <classMoniker
+              Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
+              LastKnownName="BoxCollider"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+          <dependency
+            Id="62dfefcd-7fe4-4aec-baad-793aad4036e8">
+            <classMoniker
+              Id="eec66e69-38d7-4779-9abf-3447b8a9399f"
+              LastKnownName="PlayerView"
+              LastKnownLocation="Package_1623.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4c9a0d1f-6bf1-44d9-a389-9a3aaaad9822"
+        name="GameTypes"
+        isAbstract="false"
+        isLeaf="false"
         isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3ff14257-e3d9-4b43-bcc7-474836ce3fb9"
+        name="Arrow"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="f5a08ccc-d9f2-484e-b094-c74e5f1a0346">
+            <classMoniker
+              Id="aefae925-65e7-4dc1-bdf9-b19b0218527d"
+              LastKnownName="BoxCollider"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="51e72180-a103-461e-bbe1-4f500998b681"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="54b9fbe7-831e-4bf7-afd0-271578f50c4e"
+              LastKnownName="RigidBody&lt;Component&gt;"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="09cffe70-b5a0-4df6-beb9-dd35cab42545"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="ac142781-b1a9-45a3-b889-8558621cf305"
+                      name="Lower" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="985bb6ad-2f67-43bf-8edc-7e94b42b66c0"
+                      name="Upper" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f37cf80c-3f7b-4b32-a882-a6954419b7af"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

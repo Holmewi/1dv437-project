@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace Hypothermia.View.GFX
+namespace Hypothermia.View
 {
     public class Animation
     {

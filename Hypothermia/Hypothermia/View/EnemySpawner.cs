@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hypothermia.View.Enemy
+namespace Hypothermia.View
 {
-    public class EnemySpawner : Model.EnemyTypes
+    public class EnemySpawner : Model.GameTypes
     {
         private List<Model.Enemy> enemies = new List<Model.Enemy>();
 
@@ -19,18 +19,13 @@ namespace Hypothermia.View.Enemy
             this.camera = camera;
         }
 
-        public void Start()
-        {
-
-        }
-
         public void Level1(ContentManager content)
         {
             this.enemies.Clear();
 
             Texture2D wolfTexture  = content.Load<Texture2D>("player");
 
-            this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(1, 15)));
+            this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(3, 15)));
             this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(10, 15)));
             this.enemies.Add(new Model.Enemy(ENEMY_WOLF, wolfTexture, this.camera.GetMapCoordinates(19, 9)));
         }

@@ -10,14 +10,12 @@ namespace Hypothermia.Model
     public class GameObject
     {
         private Texture2D texture;
-        private Color color;
         private Rectangle rect;
-        private int width;
-        private int height;
 
         private Vector2 position;
         private Vector2 velocity;
         private Vector2 acceleration;
+        private Vector2 origin;
 
         private float mass;
         private float frontArea;
@@ -34,23 +32,10 @@ namespace Hypothermia.Model
             this.rect = rect;
         }
 
-        public GameObject(Vector2 position, int width, int height)
-        {
-            this.Position = position;
-            this.width = width;
-            this.height = height;
-        }
-
         public Texture2D Texture
         {
             get { return texture; }
             set { this.texture = value; }
-        }
-
-        public Color Color
-        {
-            get { return color; }
-            set { this.color = value; }
         }
 
         public Rectangle Rect
@@ -58,19 +43,6 @@ namespace Hypothermia.Model
             get { return rect; }
             set { this.rect = value; }
         }
-
-        public int Width
-        {
-            get { return width; }
-            set { this.width = value; }
-        }
-
-        public int Height
-        {
-            get { return height; }
-            set { this.height = value; }
-        }
-
        
         public Vector2 Position { 
             get { return position; }
@@ -101,6 +73,12 @@ namespace Hypothermia.Model
 
         public float AccelerationX { set { this.acceleration.X = value; } }
         public float AccelerationY { set { this.acceleration.Y = value; } }
+
+        public Vector2 Origin
+        {
+            get { return origin; }
+            set { this.origin = value; }
+        }
 
         public float Mass
         {

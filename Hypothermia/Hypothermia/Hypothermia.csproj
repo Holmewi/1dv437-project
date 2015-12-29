@@ -39,12 +39,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Model\Arrow.cs" />
     <Compile Include="View\EnemySimulation.cs" />
     <Compile Include="Model\HealthSystem.cs" />
-    <Compile Include="View\Enemy\EnemySpawner.cs" />
-    <Compile Include="Model\EnemyTypes.cs" />
-    <Compile Include="View\GFX\Animation.cs" />
+    <Compile Include="View\EnemySpawner.cs" />
+    <Compile Include="Model\GameTypes.cs" />
+    <Compile Include="View\Animation.cs" />
     <Compile Include="View\GFX\Background.cs" />
+    <Compile Include="View\GFX\Particle.cs" />
+    <Compile Include="View\GFX\SnowSystem.cs" />
     <Compile Include="View\Map\MapContent.cs" />
     <Compile Include="View\Map\Tile.cs" />
     <Compile Include="Model\BoxCollider.cs" />
@@ -62,6 +65,7 @@
     <Compile Include="View\Map\MapGenerator.cs" />
     <Compile Include="View\Menu\MenuView.cs" />
     <Compile Include="View\Menu\Options.cs" />
+    <Compile Include="View\GFXRenderer.cs" />
     <Compile Include="View\PlayerView.cs" />
   </ItemGroup>
   <ItemGroup>

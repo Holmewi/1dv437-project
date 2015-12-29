@@ -13,7 +13,7 @@ namespace Hypothermia.View
     public class PlayerView
     {
         private Camera camera;
-        private GFX.Animation animation;
+        private Animation animation;
 
         public PlayerView(Camera camera)
         {
@@ -22,7 +22,7 @@ namespace Hypothermia.View
 
         public void LoadContent(ContentManager content)
         {
-            this.animation = new GFX.Animation(content.Load<Texture2D>("TexturePacks/playerAnimation"), 15, 5);
+            this.animation = new Animation(content.Load<Texture2D>("TexturePacks/playerAnimation"), 15, 5);
         }
 
         public void Update(float elapsedTime, bool faceForward, PlayerState state)
@@ -60,9 +60,11 @@ namespace Hypothermia.View
             }
         }
 
-        public void Draw(SpriteBatch sb, Vector2 playerPosition)
+        public void Draw(SpriteBatch sb, Vector2 playerPosition, List<Arrow> arrows)
         {
             sb.Draw(this.animation.Texture, playerPosition, this.animation.Rect, Color.White, 0f, this.animation.Origin, 1f, SpriteEffects.None, 0f);
+            for (int i = 0; i < arrows.Count; i++)
+                arrows[i].Draw(sb);
         }
 
         public int FrameWidth { get { return this.animation.FrameWidth; } }

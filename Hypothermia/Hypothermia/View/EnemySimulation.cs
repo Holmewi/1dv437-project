@@ -21,9 +21,9 @@ namespace Hypothermia.Model
         public void Update(float elapsedTime, Enemy enemy, List<View.Map.Tile> tiles)
         {
             this.Movement(enemy);
-            enemy.MapCollision(this.camera.MapWidth, this.camera.MapHeight);
+            this.MapCollision(enemy);
             enemy.Update(elapsedTime, tiles);
-            if (enemy.Type.IsIntelligent)
+            if (enemy.Type.BoundToPlatform)
                 this.PathFinding(enemy, tiles);
         }
 
@@ -33,6 +33,16 @@ namespace Hypothermia.Model
                 enemy.MoveLeft();
             else if (enemy.EnemyState == EnemyState.MoveRight)
                 enemy.MoveRight();
+        }
+
+        private void MapCollision(Enemy enemy)
+        {
+            if (enemy.Position.X < 0)
+                enemy.CurrentEnemyState = EnemyState.MoveRight;
+            if (enemy.Position.X > this.camera.MapWidth)
+                enemy.CurrentEnemyState = EnemyState.MoveLeft;
+            if (enemy.Position.Y > this.camera.MapHeight)
+                enemy.Health = 0;
         }
 
         /**

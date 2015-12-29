@@ -20,9 +20,13 @@ namespace Hypothermia.View
         private int tileSize;
         private int mapWidth;
         private int mapHeight;
+        private int deviceWidth;
+        private int deviceHeight;
 
         public Camera(GraphicsDevice device, int tileSize)
         {
+            this.deviceWidth = device.Viewport.Width;
+            this.deviceHeight = device.Viewport.Height;
             this.device = device;
             this.tileSize = tileSize;
             this.cameraTargetPosition = new Vector2(this.device.Viewport.Width / 2, this.device.Viewport.Height / 2);
@@ -118,5 +122,8 @@ namespace Hypothermia.View
             get { return this.mapHeight; }
             set { this.mapHeight = value; }
         }
+
+        public int DeviceWidth { get { return this.deviceWidth; } }
+        public int DeviceHight { get { return this.deviceHeight; } }
     }
 }

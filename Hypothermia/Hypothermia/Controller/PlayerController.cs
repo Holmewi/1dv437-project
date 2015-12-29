@@ -10,9 +10,14 @@ namespace Hypothermia.Controller
 {
     public class PlayerController
     {
+        // TODO: Create an item texture helper in a later version
+        private Texture2D arrowTexture;
+
         private View.Camera camera;
         private Model.Player player;
         private View.PlayerView playerView;
+
+        private KeyboardState pastKey;
 
         public PlayerController(View.Camera camera)
         {
@@ -28,6 +33,7 @@ namespace Hypothermia.Controller
         public void LoadContent(ContentManager content)
         {
             this.playerView.LoadContent(content);
+            this.arrowTexture = content.Load<Texture2D>("arrow");
         }
 
         public void Update(float elapsedTime, List<View.Map.Tile> tiles)
@@ -41,7 +47,7 @@ namespace Hypothermia.Controller
 
         public void Draw(SpriteBatch sb)
         {
-            this.playerView.Draw(sb, this.player.Position);
+            this.playerView.Draw(sb, this.player.Position, this.player.Arrows);
         }
 
         private void Movement(float elapsedTime)
@@ -63,6 +69,14 @@ namespace Hypothermia.Controller
 
             if (Keyboard.GetState().IsKeyUp(Keys.LeftShift) && this.player.RigidBody.OnGround)
                 this.player.Sprint(false);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.E))
+                this.player.MeleeAttack();
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Q) && this.pastKey.IsKeyUp(Keys.Q) && !this.player.IsSprinting && this.player.ShootTimer <= 0f)
+                this.player.RangeAttack(this.arrowTexture);
+
+            this.pastKey = Keyboard.GetState();
         }
 
         public Model.Player Player { get { return this.player; } }

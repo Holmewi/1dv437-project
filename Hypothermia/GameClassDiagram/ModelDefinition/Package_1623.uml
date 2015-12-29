@@ -39,7 +39,7 @@
             <classMoniker
               Id="30d67b3c-e1f4-4681-a22c-6018305c6010"
               LastKnownName="Animation"
-              LastKnownLocation="Package_2357.uml" />
+              LastKnownLocation="Package_1623.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -134,7 +134,7 @@
             <classMoniker
               Id="b9c8208f-3591-4af3-91f1-56374a6a385b"
               LastKnownName="EnemySpawner"
-              LastKnownLocation="Package_0000.uml" />
+              LastKnownLocation="Package_1623.uml" />
             <relationshipOwnedElementsInternal>
               <associationHasOwnedEnds>
                 <memberEnd
@@ -151,6 +151,43 @@
               <associationHasOwnedEnds>
                 <memberEnd
                   Id="371db536-1a76-4dc0-a491-e1e2e4ddb804"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+          <association
+            Id="5386cbe8-01f7-474c-bea9-99bb60e83fcd"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="ab3a4869-28d5-4d01-8f29-073235a78351"
+              LastKnownName="GFXRenderer"
+              LastKnownLocation="Package_1623.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="35b543ff-06ec-449e-a007-1c9f8b1bc560"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="5563581d-ead1-4d12-ab81-4a07fa254d0a"
                   isLeaf="false"
                   isStatic="false"
                   isReadOnly="false"
@@ -181,6 +218,146 @@
         Id="b57ea43e-5341-4715-a80e-d5995423a605"
         LastKnownName="Map"
         LastKnownLocation="Package_0000.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="ab3a4869-28d5-4d01-8f29-073235a78351"
+        name="GFXRenderer"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="af253355-2099-449a-89e0-aea77c682909"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e9ec4fb6-9599-4a04-81ec-88ee40057570"
+              LastKnownName="SnowSystem"
+              LastKnownLocation="Package_2357.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="1d6a039e-fa74-4009-b5e5-46912137b9b4"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="962e345a-0bd9-459b-b0ae-d66a8a5619a3"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="30d67b3c-e1f4-4681-a22c-6018305c6010"
+        name="Animation"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="b9c8208f-3591-4af3-91f1-56374a6a385b"
+        name="EnemySpawner"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="b915a338-8a5a-4d5c-8b49-a151b73efb20">
+            <classMoniker
+              Id="e8b38df9-748d-4fb1-ae7e-53d7aacda145"
+              LastKnownName="Camera"
+              LastKnownLocation="Package_1623.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="93b8ce39-6647-4ed0-8284-2b932d937c34"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Enemy"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="68f9a7e8-d324-4e89-86c3-994e75a50bf8"
+              LastKnownName="Enemy"
+              LastKnownLocation="Package1_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="c519b0cf-deaf-42f5-9985-3f8ab74f239b"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="ab550db2-c06d-47b4-86e4-05f2c9ccc455"
+                  name="Enemy"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="387e3d57-bf1a-463a-827e-e4d076bd5b3f"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="c7413c28-d809-4838-91a2-896ec6a473a3"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property
+            Id="48160623-c721-42ff-be8d-807eb453aa99"
+            name="List &lt;Enemy&gt; enemies"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false" />
+        </ownedAttributesInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

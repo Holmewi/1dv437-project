@@ -3,18 +3,6 @@
   dslVersion="1.0.0.0"
   Id="0139108c-54aa-4b9a-85d9-83502e62e405"
   name="GFX" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
-  <ownedCommentsInternal>
-    <comment
-      Id="2623ae09-6f54-43a2-b2db-b2d37f8e0ad0">
-      <body>TODO</body>
-      <annotatedElements>
-        <classMoniker
-          Id="3a89c858-bfa8-4945-9f99-6dc69451f216"
-          LastKnownName="Particle"
-          LastKnownLocation="Package_2357.uml" />
-      </annotatedElements>
-    </comment>
-  </ownedCommentsInternal>
   <packagedElements>
     <packageHasNamedElement>
       <class
@@ -26,19 +14,83 @@
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class
-        Id="30d67b3c-e1f4-4681-a22c-6018305c6010"
-        name="Animation"
-        isAbstract="false"
-        isLeaf="false"
-        isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <class
         Id="3a89c858-bfa8-4945-9f99-6dc69451f216"
         name="Particle"
         isAbstract="false"
         isLeaf="false"
-        isActiveClass="false" />
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="1a7631db-9196-46d8-b7c8-e17c9d558a46">
+            <classMoniker
+              Id="4c9a0d1f-6bf1-44d9-a389-9a3aaaad9822"
+              LastKnownName="GameTypes"
+              LastKnownLocation="Package1_1622.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e9ec4fb6-9599-4a04-81ec-88ee40057570"
+        name="SnowSystem"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <targetEnds>
+          <association
+            Id="8299fb1a-b3f9-4a64-b87a-77f3eb431e63"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName="Particle"
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="3a89c858-bfa8-4945-9f99-6dc69451f216"
+              LastKnownName="Particle"
+              LastKnownLocation="Package_2357.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="360be81a-6b0e-46e5-a3a8-d1ffed9ced27"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="4838e0f9-18dd-4b76-a7ac-13581b23896d"
+                  name="Particle"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false">
+                  <lowerValueInternal>
+                    <literalString
+                      Id="fb318153-3f8c-40d5-b7cf-d2f51479230e"
+                      name="Lower"
+                      value="*" />
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString
+                      Id="97079257-45b5-4012-959b-d6b3ab4f0789"
+                      name="Upper"
+                      value="*" />
+                  </upperValueInternal>
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>
