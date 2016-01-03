@@ -36,6 +36,171 @@
         LastKnownName="View"
         LastKnownLocation="Package_1623.uml" />
     </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="7e663cfd-d52d-4115-8254-be70ff124c4d"
+        name="LevelState"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="e8919aff-3a7e-40f9-bd79-97aa3edd9b36"
+        name="PlayerState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="6665e57c-ebef-4261-bf3b-80d608710fdf"
+            name="Idle" />
+          <enumerationLiteral
+            Id="ab28d4fc-e7f3-471f-964e-00cef12a038b"
+            name="MoveLeft" />
+          <enumerationLiteral
+            Id="3ca63452-6223-455e-9925-892e25c5c102"
+            name="MoveRight" />
+          <enumerationLiteral
+            Id="feb0cc7f-d958-4698-a2e2-96133c3369fd"
+            name="Jump" />
+          <enumerationLiteral
+            Id="dd5689df-0ece-41f4-b786-e8357a931256"
+            name="Fall" />
+          <enumerationLiteral
+            Id="6b73434e-bd67-467e-89da-3cf70dc1227a"
+            name="Dead" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="e8ba6300-9b74-4ef7-838a-56ecc7331180"
+        name="GameState"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="648467ca-7d41-4ace-a73a-38f6495200d5"
+        LastKnownName="Controller"
+        LastKnownLocation="Package_1444.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="ccf523dd-9670-4376-8e37-7fe993e36733"
+        LastKnownName="View"
+        LastKnownLocation="Package_1445.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="26a3a601-f0fb-4463-ab60-5bb4280598e5"
+        LastKnownName="Model"
+        LastKnownLocation="Package1_1445.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9b7134e3-5b65-46b5-b27b-d27996feac74"
+        LastKnownName="View/Screen"
+        LastKnownLocation="Package_1448.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="a84c06ae-dd15-4081-851e-817e6c965e89"
+        name="GameState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="6793cbe8-7481-487d-99da-c249259cd595"
+            name="MainMenu" />
+          <enumerationLiteral
+            Id="9b4d04f5-42d8-48ad-b5e6-38cc3aae48a8"
+            name="Options" />
+          <enumerationLiteral
+            Id="788b3457-da37-440c-8e27-de871693f7c6"
+            name="Playing" />
+          <enumerationLiteral
+            Id="1c06cbbd-8f13-4c0c-af85-fd840dddcd25"
+            name="Paused" />
+          <enumerationLiteral
+            Id="c5986817-037d-4ffc-bf6c-1943c3410de4"
+            name="GameOver" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="c6dc03a4-43ee-4512-8e03-20091acde387"
+        name="LevelState"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="a6b29e38-17b4-4059-b8f1-3ed532dc7ceb"
+            name="PreLevel" />
+          <enumerationLiteral
+            Id="e0c7f802-6715-4a4f-83e7-623e1d269361"
+            name="PostLevel" />
+          <enumerationLiteral
+            Id="5f130ef2-28be-4d9a-ac54-1220a096edad"
+            name="InLevel" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="98d54f03-075b-4a00-9714-617e51d18ea2"
+        name="PlayerState"
+        isAbstract="false"
+        isLeaf="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="6b2bd717-62d1-47c1-aa35-536e38e56648"
+        LastKnownName="View/GFX"
+        LastKnownLocation="Package_1457.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="78e2e207-e604-43e4-b323-0423db1bff6b"
+        LastKnownName="Controller"
+        LastKnownLocation="Package_1533.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="b9de9fc1-df11-43c0-9762-8bd9b6406556"
+        LastKnownName="View"
+        LastKnownLocation="Package1_1533.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="9c427829-9362-460f-921e-49f51f3f11af"
+        LastKnownName="Model"
+        LastKnownLocation="Package2_1533.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="f4738ee8-3370-419e-bd13-ad57376cdab0"
+        LastKnownName="Levels"
+        LastKnownLocation="Package_1540.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="5535a263-48d7-49d4-8ea8-2f5fd08a81d6"
+        LastKnownName="View/GFX"
+        LastKnownLocation="Package_1723.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="74c7fcc4-df07-4ee2-96b0-5de8825e9ad1"
+        LastKnownName="View/Menu"
+        LastKnownLocation="Package_0139.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="2dc510b9-4f67-4747-9845-c8b256d8ed16"
+        LastKnownName="Collections"
+        LastKnownLocation="Package_0146.uml" />
+    </packageHasNamedElement>
   </packagedElements>
   <primitiveType
     Id="220a3521-e091-4221-bae9-3ef9018e845c"

@@ -1,212 +1,114 @@
-﻿using Hypothermia.Model;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Text;
 
 namespace Hypothermia.Controller
 {
-    public enum GameState
+    public class GameController : Collection.MapCollection
     {
-        MainMenu,
-        Options,
-        Playing,
-        Paused,
-        GameOver
-    }
-
-    public class GameController : Game
-    {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-
-        public GameState CurrentGameState = GameState.MainMenu;
-
         private View.Camera camera;
+        private Model.Player player;
         private PlayerController playerController;
-        private Model.EnemySimulation enemySimulation;
-        private View.Menu.MenuView menuView;    
-        private View.GameView gameView;
-        private View.GFXRenderer GFX;
+        private Model.Level level;
 
-        public GameController()
+        private const int MAX_LEVEL = 3;
+        private int currentLevel;
+        private bool gameOver = false;
+
+        public GameController(View.Camera camera)
         {
-            graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
+            this.camera = camera;
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
+        public void StartNewGame(ContentManager content)
         {
-            CurrentGameState = GameState.MainMenu;
-
-            this.camera = new View.Camera(GraphicsDevice, 64);
-
-            this.playerController = new PlayerController(this.camera);
-            this.enemySimulation = new Model.EnemySimulation(this.camera);
-
-            this.gameView = new View.GameView(this.camera);
-            this.menuView = new View.Menu.MenuView(graphics, this.camera);
-            this.GFX = new View.GFXRenderer(this.camera);
-            
-            base.Initialize();
+            this.currentLevel = 1;
+            this.player = new Model.Player(content, this.camera);
+            this.playerController = new PlayerController(this.camera, this.player);
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
-        protected override void LoadContent()
+        /*
+         *  This method is once called when initializing the game
+         *  and then during each GameState.PostLevel
+         */
+        public void LoadLevel(ContentManager content)
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            this.playerController.LoadContent(Content);
-            this.menuView.LoadContent(Content);
-            
-            //  TODO: Make a solution to change levels
-            this.gameView.LoadContent(Content, 1);
-            this.GFX.LoadContent(Content, 1);
-        }
-
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
-        protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
-        }
-
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
-            float elapsedTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            
-            MouseState mouse = Mouse.GetState();
-
-            if (CurrentGameState == GameState.MainMenu)
+            switch (this.currentLevel)
             {
-                this.IsMouseVisible = true;
-                if (this.menuView.PlayButton.IsClicked == true)
+                case 1:
+                    this.level = new Model.Levels.Level1(content, this.camera, this.player, MAP_1, this.currentLevel);
+                    break;
+                case 2:
+                    this.level = new Model.Levels.Level2(content, this.camera, this.player, MAP_2, this.currentLevel);
+                    break;
+                case 3:
+                    this.level = new Model.Levels.Level3(content, this.camera, this.player, MAP_3, this.currentLevel);
+                    break;
+                default:
+                    // TODO: Winning the game
+                    break;
+            }
+        }
+
+        /*
+         *  This method is called during each GameState.PreLevel
+         *  should unload all content only used for a certain level
+         */
+        public void UnloadContent()
+        {
+
+        }
+
+        public void Update(float elapsedTime)
+        {
+            if (this.player.Lives <= 0)
+                this.gameOver = true;
+
+            if (!this.gameOver)
+            {
+                if (this.level != null && this.level.LevelState == Model.LevelState.Playing)
                 {
-                    this.gameView.LoadContent(Content, 1);
-                    this.playerController.Start();
-                    CurrentGameState = GameState.Playing;
-                }
-                if (this.menuView.OptionButton.IsClicked == true)
-                    Debug.WriteLine("Option menu");
-                if (this.menuView.QuitButton.IsClicked == true)
-                    Exit();
-                this.GFX.UpdatePregame(elapsedTime);
-                this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
-                
-            }
-            else if (CurrentGameState == GameState.Paused)
-            {
-                this.IsMouseVisible = true;
-                this.menuView.PlayButton.IsClicked = false;
-                if (this.menuView.ResumeButton.IsClicked == true)
-                    CurrentGameState = GameState.Playing;
-                if (this.menuView.NewButton.IsClicked == true)
-                {
-                    this.playerController.Start();
-                    this.gameView.LoadContent(Content, 1);
-                    CurrentGameState = GameState.Playing;
-                }
-                if (this.menuView.OptionButton.IsClicked == true)
-                    Debug.WriteLine("Option menu");
-                if (this.menuView.QuitButton.IsClicked == true)
-                    Exit();
-                this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
-            }
-            else if (CurrentGameState == GameState.Playing)
-            {
-                this.IsMouseVisible = false;
-                this.menuView.PlayButton.IsClicked = false;
-                this.menuView.ResumeButton.IsClicked = false;
-                this.menuView.NewButton.IsClicked = false;
-                
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    CurrentGameState = GameState.Paused;
-                if (this.playerController.Player.PlayerState == PlayerState.Dead)
-                    CurrentGameState = GameState.GameOver;
+                    if (this.player.CurrentPlayerState != Model.PlayerState.Dead)
+                        this.playerController.Update(elapsedTime);
 
-                this.playerController.Update(elapsedTime, this.gameView.Tiles);
-                this.gameView.Update(elapsedTime);
-                this.GFX.UpdateIngame(elapsedTime, this.playerController.Player.Velocity, this.playerController.Player.Position);
-                for (int i = 0; i < this.gameView.Enemies.Count; i++)
-                {
-                    this.enemySimulation.Update(elapsedTime, this.gameView.Enemies[i], this.gameView.Tiles);
-                    this.playerController.Player.Combat(this.gameView.Enemies[i]);
+                    this.camera.FocusOnPlayer(elapsedTime, this.player.Position, this.player.FaceForward, this.camera.MapWidth, this.camera.MapHeight);
 
-                    if (this.gameView.Enemies[i].Position.Y > camera.MapHeight + this.gameView.Enemies[i].Rect.Height)
-                        this.gameView.Enemies.RemoveAt(i);
+                    if (this.level.IsFinished())
+                        this.level.LevelState = Model.LevelState.Finished;
                 }
-            }
-            else if (CurrentGameState == GameState.Options)
-            {
-                this.IsMouseVisible = true;
-            }
-            else if (CurrentGameState == GameState.GameOver)
-            {
-                //  TODO: Create a gameover screen
-                this.playerController.Start();
-                this.gameView.LoadContent(Content, 1);
-                CurrentGameState = GameState.Playing;
-            }
 
-            base.Update(gameTime);
+                else if (this.level.LevelState == Model.LevelState.Created && this.level.LoatTImer > 2.0f)
+                    this.level.LevelState = Model.LevelState.Playing;
+
+                else if (this.level.LevelState == Model.LevelState.Finished && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                    this.currentLevel += 1;
+                    
+                    
+                if (this.level != null)
+                    this.level.Update(elapsedTime);
+            }
         }
-
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+        
+        public void Draw(SpriteBatch sb, GameState state)
         {
-            GraphicsDevice.Clear(Color.Lerp(Color.White, Color.DeepSkyBlue, 0.5f));
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, null, null, null, null, camera.Transform);
-            
-            if (CurrentGameState == GameState.Playing)
-            {
-                this.GFX.DrawBackground(spriteBatch, CurrentGameState);
-                this.gameView.Draw(spriteBatch);
-                this.playerController.Draw(spriteBatch);
-                this.GFX.DrawForeground(spriteBatch, CurrentGameState);
-            }
-            else if (CurrentGameState == GameState.Paused)
-            {
-                this.GFX.DrawBackground(spriteBatch, CurrentGameState);
-                this.gameView.Draw(spriteBatch);
-                this.playerController.Draw(spriteBatch);
-                this.GFX.DrawForeground(spriteBatch, CurrentGameState);
-                this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
-
-            }
-            else if (CurrentGameState == GameState.Options)
-            {
-
-            }
-            else if (CurrentGameState == GameState.MainMenu)
-            {
-                this.GFX.DrawForeground(spriteBatch, CurrentGameState);
-                this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
-            }
-
-            spriteBatch.End();
-
-            base.Draw(gameTime);
+            if (this.level != null)
+                this.level.Draw(sb);
         }
+
+        public bool GameOver
+        {
+            get { return gameOver; }
+            set { gameOver = value; }
+        }
+
+        public Model.Player Player { get { return this.player; } }
+        public Model.Level Level { get { return this.level; } }
+        public int CurrentLevel { get { return this.currentLevel; } }
     }
 }

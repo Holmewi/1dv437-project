@@ -10,13 +10,13 @@ namespace Hypothermia.View.GFX
     public class Particle : Model.GameObject
     {
         private Model.RigidBody rigidBody;
-        private Model.ParticleType type;
+        private Collection.ParticleType type;
 
         private float life = 0;
         private float size;
         private float fade = 1.0f;
 
-        public Particle(Model.ParticleType type, Texture2D texture)
+        public Particle(Collection.ParticleType type, Texture2D texture)
         {
             this.type = type;
 
@@ -57,7 +57,7 @@ namespace Hypothermia.View.GFX
                     new Color(this.fade, this.fade, this.fade, this.fade), 0f, Vector2.Zero, this.size, SpriteEffects.None, 0f);
         }
 
-        public Model.ParticleType Type { get { return this.type; } }
+        public Collection.ParticleType Type { get { return this.type; } }
 
         public float Life { 
             get { return this.life; }

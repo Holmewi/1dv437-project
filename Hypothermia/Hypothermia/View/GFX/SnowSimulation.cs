@@ -9,38 +9,41 @@ using System.Text;
 
 namespace Hypothermia.View.GFX
 {
-    public class SnowSimulation : Model.GameTypes
+    public class SnowSimulation : Collection.GameTypes
     {
-        private List<Particle> particles = new List<Particle>();
+        private List<Particle> snowForeground = new List<Particle>();
+        private List<Particle> snowBackground = new List<Particle>();
 
         private Random random;
         private Camera camera;
         private Texture2D snowflakeTexture;
 
-        private const int MAX_AMOUNT_PARTICLES = 500;
+        private const int MAX_AMOUNT_PARTICLES = 1500;
         private const int PARTICLE_LIFE_TIME = 5;
 
-        private float spawnTime = 0;
-        private int count = 0;
+        private float fgSpawnTime = 0;
+        private float bgSpawnTime = 0;
 
         private float windStrenght;
 
-        public SnowSimulation(Camera camera)
+        public SnowSimulation(ContentManager content, Camera camera)
         {
             this.random = new Random();
             this.camera = camera;
-        }
-
-        public void LoadContent(ContentManager content)
-        {
             this.snowflakeTexture = content.Load<Texture2D>("Particles/snowflake1");
         }
 
-        private void Add()
+        private void Add(bool isForeground)
         {
-            this.particles.Add(new Particle(PARTICLE_SNOWFLAKE, this.snowflakeTexture));
-            this.count++;
-            this.spawnTime = 0;
+            if(isForeground) {
+                this.snowForeground.Add(new Particle(PARTICLE_SNOWFLAKE_FG, this.snowflakeTexture));
+                this.fgSpawnTime = 0;
+            }
+            else
+            {
+                this.snowBackground.Add(new Particle(PARTICLE_SNOWFLAKE_BG, this.snowflakeTexture));
+                this.bgSpawnTime = 0;
+            }
         }
 
         private void SpawnParticle(Particle particle)
@@ -69,32 +72,58 @@ namespace Hypothermia.View.GFX
 
         public void Update(float elapsedTime)
         {
-            this.spawnTime += elapsedTime;
+            this.fgSpawnTime += elapsedTime;
+            this.bgSpawnTime += elapsedTime;
 
-            if (spawnTime >= 0.05f && this.particles.Count <= MAX_AMOUNT_PARTICLES)
-                this.Add();
+            if (fgSpawnTime >= 0.05f && this.snowForeground.Count <= MAX_AMOUNT_PARTICLES)
+                this.Add(true);
+            if (bgSpawnTime >= 0.01f && this.snowBackground.Count <= MAX_AMOUNT_PARTICLES)
+                this.Add(false);
 
-            for (int i = 0; i < this.particles.Count; i++)
+            for (int i = 0; i < this.snowForeground.Count; i++)
             {
-                if (this.particles != null)
+                if (this.snowForeground != null)
                 {
-                    if (this.particles[i].Position.Y > this.camera.MapHeight)
-                        this.particles[i].Life = 0;
-                    if (this.particles[i].IsParticleDead())
-                        this.SpawnParticle(this.particles[i]);
+                    if (this.snowForeground[i].Position.Y > this.camera.MapHeight)
+                        this.snowForeground[i].Life = 0;
+                    if (this.snowForeground[i].IsParticleDead())
+                        this.SpawnParticle(this.snowForeground[i]);
 
-                    this.WindBearing(this.particles[i]);
-                    this.particles[i].Update(elapsedTime);
+                    this.WindBearing(this.snowForeground[i]);
+                    this.snowForeground[i].Update(elapsedTime);
+                }
+            }
+
+            for (int i = 0; i < this.snowBackground.Count; i++)
+            {
+                if (this.snowBackground != null)
+                {
+                    if (this.snowBackground[i].Position.Y > this.camera.MapHeight)
+                        this.snowBackground[i].Life = 0;
+                    if (this.snowBackground[i].IsParticleDead())
+                        this.SpawnParticle(this.snowBackground[i]);
+
+                    this.WindBearing(this.snowBackground[i]);
+                    this.snowBackground[i].Update(elapsedTime);
                 }
             }
         }
 
-        public void Draw(SpriteBatch sb)
+        public void DrawForeground(SpriteBatch sb)
         {
-            for (int i = 0; i < this.particles.Count; i++)
+            for (int i = 0; i < this.snowForeground.Count; i++)
             {
-                if(this.particles != null)
-                    this.particles[i].Draw(sb);
+                if(this.snowForeground != null)
+                   this.snowForeground[i].Draw(sb);
+            }
+        }
+
+        public void DrawBackground(SpriteBatch sb)
+        {
+            for (int i = 0; i < this.snowBackground.Count; i++)
+            {
+                if (this.snowBackground != null)
+                    this.snowBackground[i].Draw(sb);
             }
         }
     }

@@ -167,3 +167,9 @@
 /processorParam:TextureFormat=Color
 /build:TexturePacks/tileSpriteSheet.png
 
+#begin Fonts/SpriteFont1.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:Fonts/SpriteFont1.spritefont
+

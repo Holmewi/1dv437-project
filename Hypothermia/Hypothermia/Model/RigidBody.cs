@@ -51,7 +51,7 @@ namespace Hypothermia.Model
         *  4th - (CollisionHandler) If true - Calculate the collision position smoothly
         *  5th - (CollisionHandler) When GameObject has collided with bottom, left or right - set it's position to the BoxCollider this.gameObject.
         */
-        public bool IsOnGround(List<View.Map.Tile> tiles)
+        public bool IsOnGround(List<View.Tile> tiles)
         {
             for (var i = 0; i < tiles.Count(); i++)
             {
@@ -65,7 +65,7 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectRightCollision(List<View.Map.Tile> tiles)
+        public bool DetectRightCollision(List<View.Tile> tiles)
         {
             for (var i = 0; i < tiles.Count(); i++)
             {
@@ -83,7 +83,7 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectLeftCollision(List<View.Map.Tile> tiles)
+        public bool DetectLeftCollision(List<View.Tile> tiles)
         {
             for (var i = 0; i < tiles.Count(); i++)
             {
@@ -101,7 +101,7 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectBottomCollision(List<View.Map.Tile> tiles)
+        public bool DetectBottomCollision(List<View.Tile> tiles)
         {
             for (var i = 0; i < tiles.Count(); i++)
             {
@@ -117,7 +117,7 @@ namespace Hypothermia.Model
             return false;
         }
 
-        public bool DetectTopCollision(List<View.Map.Tile> tiles)
+        public bool DetectTopCollision(List<View.Tile> tiles)
         {
             this.onGround = false;
 

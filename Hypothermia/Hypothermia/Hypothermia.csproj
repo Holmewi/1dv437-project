@@ -14,6 +14,7 @@
     <MonoGamePlatform>Windows</MonoGamePlatform>
     <MonoGameContentBuilderExe>
     </MonoGameContentBuilderExe>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Published\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,9 +26,8 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -67,18 +67,22 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Controller\MasterController.cs" />
     <Compile Include="Model\Arrow.cs" />
-    <Compile Include="View\EnemySimulation.cs" />
-    <Compile Include="View\EnemySpawner.cs" />
-    <Compile Include="Model\GameTypes.cs" />
+    <Compile Include="Controller\GameController.cs" />
+    <Compile Include="Model\Level.cs" />
+    <Compile Include="Model\Levels\Level1.cs" />
+    <Compile Include="Model\Levels\Level2.cs" />
+    <Compile Include="Model\Levels\Level3.cs" />
+    <Compile Include="Collection\MapCollection.cs" />
+    <Compile Include="Collection\GameTypes.cs" />
     <Compile Include="View\Animation.cs" />
     <Compile Include="View\GFX\Plane.cs" />
     <Compile Include="View\GFX\Particle.cs" />
-    <Compile Include="View\GFX\DepthSimulation.cs" />
+    <Compile Include="View\GFX\PlaneHandler.cs" />
     <Compile Include="View\GFX\SnowSimulation.cs" />
-    <Compile Include="View\Map\MapContent.cs" />
-    <Compile Include="View\Map\Tile.cs" />
+    <Compile Include="View\GameOver.cs" />
+    <Compile Include="View\Tile.cs" />
     <Compile Include="Model\BoxCollider.cs" />
     <Compile Include="Model\CollisionHandler.cs" />
     <Compile Include="Model\Enemy.cs" />
@@ -90,12 +94,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\Menu\Button.cs" />
     <Compile Include="View\Camera.cs" />
-    <Compile Include="View\GameView.cs" />
-    <Compile Include="View\Map\MapGenerator.cs" />
     <Compile Include="View\Menu\MenuView.cs" />
     <Compile Include="View\Menu\Options.cs" />
-    <Compile Include="View\GFXRenderer.cs" />
-    <Compile Include="View\PlayerView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -11,6 +11,8 @@ namespace Hypothermia.View
         private Vector2 resolution;
         private bool fullScreen;
 
+        private bool settingsChanged = true;
+
         public Vector2 Resolution { 
             get { return this.resolution; }
             set { this.resolution = value; }
@@ -20,6 +22,12 @@ namespace Hypothermia.View
         {
             get { return this.fullScreen; }
             set { this.fullScreen = value; }
+        }
+
+        public bool SettingsChanged
+        {
+            get { return this.settingsChanged; }
+            set { this.settingsChanged = value; }
         }
     }
 }

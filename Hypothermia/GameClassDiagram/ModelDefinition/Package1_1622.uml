@@ -66,11 +66,11 @@
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="0cfd76e4-c6d9-4430-a93c-4557135e6c41">
+            Id="6560968e-035d-4069-b7d3-f5a3ce792166">
             <enumerationMoniker
-              Id="70ef8288-61b0-4efa-bd25-dad5a32742fc"
+              Id="e8919aff-3a7e-40f9-bd79-97aa3edd9b36"
               LastKnownName="PlayerState"
-              LastKnownLocation="Package1_1622.uml" />
+              LastKnownLocation="GameClassDiagram.uml" />
           </dependency>
         </suppliersInternal>
         <generalsInternal>
@@ -348,34 +348,6 @@
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <enumeration
-        Id="70ef8288-61b0-4efa-bd25-dad5a32742fc"
-        name="PlayerState"
-        isAbstract="false"
-        isLeaf="false">
-        <ownedLiterals>
-          <enumerationLiteral
-            Id="8eade77a-9934-4ef5-87fd-6780ce6f9f84"
-            name="Idle" />
-          <enumerationLiteral
-            Id="4647d7b3-a1c5-4f05-98ab-d8c3ea1f0210"
-            name="MoveLeft" />
-          <enumerationLiteral
-            Id="6ed70ab9-2b21-4138-b0fb-dd600cf6bf95"
-            name="MoveRight" />
-          <enumerationLiteral
-            Id="38034bbc-ce31-405c-b6e2-bf248f885346"
-            name="Jump" />
-          <enumerationLiteral
-            Id="7370125f-4350-4544-9355-0bd1d7c24ea0"
-            name="Fall" />
-          <enumerationLiteral
-            Id="3f57e138-ec34-4472-b828-e3e116d3518f"
-            name="Dead" />
-        </ownedLiterals>
-      </enumeration>
     </packageHasNamedElement>
     <packageHasNamedElement>
       <class

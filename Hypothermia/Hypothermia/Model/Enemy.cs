@@ -22,13 +22,13 @@ namespace Hypothermia.Model
     {
         public EnemyState CurrentEnemyState = EnemyState.MoveRight;
 
-        private EnemyType type;
+        private Collection.EnemyType type;
         private RigidBody rigidBody;
+        private Rectangle pathFindingRect;
 
         private int health;
-        private bool detectCollision = true;
 
-        public Enemy(EnemyType type, Texture2D texture, Vector2 position)
+        public Enemy(Collection.EnemyType type, Texture2D texture, Vector2 position)
         {
             this.type = type;
             this.health = type.MaxLife;
@@ -44,18 +44,27 @@ namespace Hypothermia.Model
                 this.rigidBody = new RigidBody(this, type.Mass, type.FrontArea);
         }
 
-        public void Update(float elapsedTime, List<View.Map.Tile> tiles)
+        public void Update(float elapsedTime, List<View.Tile> tiles, int width, int height, int tileSize)
         {
+            this.MapCollision(width, height);
+
+            if (CurrentEnemyState == EnemyState.MoveLeft)
+                this.MoveLeft();
+            else if (CurrentEnemyState == EnemyState.MoveRight)
+                this.MoveRight();
+
             base.Position = base.Position + base.Velocity * (elapsedTime * 10);
 
             if (this.health <= 0)
-                this.detectCollision = false;
+                CurrentEnemyState = EnemyState.Dead;
 
-            if (!this.rigidBody.OnGround || !this.detectCollision)
+            if (!this.rigidBody.OnGround || CurrentEnemyState == EnemyState.Dead)
                 this.rigidBody.Fall(elapsedTime);
 
-            if (this.detectCollision)
+            if (CurrentEnemyState != EnemyState.Dead)
             {
+                if (this.type.BoundToPlatform)
+                    this.PathFinding(tiles, width, height, tileSize);
                 if (base.Velocity.Y == 0)
                     this.rigidBody.IsOnGround(tiles);
                 if (base.Velocity.X >= 0)
@@ -71,18 +80,54 @@ namespace Hypothermia.Model
             }
         }
 
-        public void MoveLeft()
+        private void MoveLeft()
         {
             if (base.Velocity.X >= -this.type.MovementSpeed.X)
                 base.VelocityX = base.Velocity.X - base.Acceleration.X;
         }
 
-        public void MoveRight()
+        private void MoveRight()
         {
             if (base.Velocity.X <= this.type.MovementSpeed.X)
                 base.VelocityX = base.Velocity.X + base.Acceleration.X;
         }
-        
+
+        private void MapCollision(int width, int height)
+        {
+            if (base.Position.X < 0)
+                CurrentEnemyState = EnemyState.MoveRight;
+            if (base.Position.X > width)
+                CurrentEnemyState = EnemyState.MoveLeft;
+            if (base.Position.Y > height)
+                this.health = 0;
+        }
+
+        /**
+         *  @author Pikuchan
+         *  Source https://joshcodev.wordpress.com/2013/11/08/xna-basic-enemy-ai/
+         */
+        private void PathFinding(List<View.Tile> tiles, int width, int height, int tileSize)
+        {
+            bool endOfPath = true;
+
+            if (CurrentEnemyState == EnemyState.MoveRight)
+                this.pathFindingRect = new Rectangle((int)base.Position.X - base.Texture.Width / 2 + tileSize,
+                                                        (int)base.Rect.Y + 1 + tileSize, tileSize, tileSize);
+
+            else if (CurrentEnemyState == EnemyState.MoveLeft)
+                this.pathFindingRect = new Rectangle((int)base.Position.X - base.Texture.Width / 2 - tileSize,
+                                                        (int)base.Position.Y - tileSize + 1, tileSize, tileSize);
+
+            for (var i = 0; i < tiles.Count(); i++)
+                if (this.pathFindingRect.Intersects(tiles[i].Rect))
+                    endOfPath = false;
+
+            if (endOfPath)
+                if (CurrentEnemyState == EnemyState.MoveLeft)
+                    CurrentEnemyState = EnemyState.MoveRight;
+                else if (CurrentEnemyState == EnemyState.MoveRight)
+                    CurrentEnemyState = EnemyState.MoveLeft;
+        }
 
         public void Draw(SpriteBatch sb)
         {
@@ -90,15 +135,10 @@ namespace Hypothermia.Model
             sb.Draw(base.Texture, base.Position, null, Color.White, 0f, temp, 1f, SpriteEffects.None, 0f);
         }
 
-        public RigidBody RigidBody { get { return this.rigidBody; } }
-        public EnemyType Type { get { return this.type; } }
-
         public int Health
         {
             get { return this.health; }
             set { this.health = value; }
         }
-
-        public EnemyState EnemyState { get { return this.CurrentEnemyState; } }
     }
 }

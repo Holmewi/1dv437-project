@@ -11,6 +11,7 @@ namespace Hypothermia.View
 {
     public class Animation
     {
+        private Model.GameObject gameObject;
         private Texture2D texture;
         private Rectangle rect;
         private Vector2 origin;
@@ -23,8 +24,9 @@ namespace Hypothermia.View
         private float timer;
         private float interval = 0.01f;
 
-        public Animation(Texture2D texture, int framesX, int framesY)
+        public Animation(Model.GameObject gameObject, Texture2D texture, int framesX, int framesY)
         {
+            this.gameObject = gameObject;
             this.texture = texture;
             this.frameWidth = this.texture.Width / framesX;
             this.frameHeight = this.texture.Height / framesY;
@@ -48,6 +50,11 @@ namespace Hypothermia.View
                 if (this.currentFrame < firstFrame - 1 || this.currentFrame > lastFrame - 1)
                     this.currentFrame = firstFrame - 1;
             }
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            sb.Draw(this.texture, this.gameObject.Position, this.Rect, Color.White, 0f, this.Origin, 1f, SpriteEffects.None, 0f);
         }
 
         public Texture2D Texture

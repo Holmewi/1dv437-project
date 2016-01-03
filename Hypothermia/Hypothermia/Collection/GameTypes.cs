@@ -1,10 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Hypothermia.Model
+namespace Hypothermia.Collection
 {
     public class GameTypes
     {
@@ -15,17 +16,17 @@ namespace Hypothermia.Model
          *  bool <isBountToPlatform>, bool <isFlying>, 
          *  int <aggression>, float <mass>, float <frontArea>
          */
-        public static EnemyType ENEMY_WOLF = new EnemyType("Wolf", 100, 25, 3.0f, 
+        public static EnemyType ENEMY_WOLF = new EnemyType("Wolf", 100, 25, 3.0f,
                                                            new Vector2(3.0f, 0), new Vector2(0.5f, 0),
-                                                           true, false, true, 
+                                                           true, false, true,
                                                            0, 70f, 5.5f);
         public static EnemyType ENEMY_RAVEN = new EnemyType("Raven", 20, 50, 4.0f,
                                                             new Vector2(4.0f, 0), new Vector2(0.5f, 0),
-                                                            false, true, true, 
+                                                            false, true, true,
                                                             0, 20f, 1.0f);
         public static EnemyType ENEMY_WISP = new EnemyType("Wisp", 20, 50, 6.0f,
                                                             new Vector2(6.0f, 0), new Vector2(0.5f, 0),
-                                                            false, true, true, 
+                                                            false, true, true,
                                                             0, 30f, 1.0f);
 
         /*
@@ -34,14 +35,14 @@ namespace Hypothermia.Model
          *  float <maxSize>, float <minSize>, bool <isRigidBody>,
          *  float <mass>, float <frontArea>
          */
-        public static ParticleType PARTICLE_SNOWFLAKE = new ParticleType(5.0f, 10.0f, 5.0f, 
-                                                                         1.0f, 0.2f, true, 
+        public static ParticleType PARTICLE_SNOWFLAKE_FG = new ParticleType(5.0f, 10.0f, 5.0f,
+                                                                         1.0f, 0.5f, true,
                                                                          0.1f, 0.1f);
 
-        /*
-         *  Weapon types
-         *  
-         */
+        public static ParticleType PARTICLE_SNOWFLAKE_BG = new ParticleType(5.0f, 10.0f, 5.0f,
+                                                                         0.4f, 0.1f, true,
+                                                                         0.1f, 0.1f);
+
     }
 
     public struct EnemyType
@@ -125,13 +126,5 @@ namespace Hypothermia.Model
         public bool IsRigidBody { get { return this.isRigidBody; } }
         public float Mass { get { return this.mass; } }
         public float FrontArea { get { return this.frontArea; } }
-    }
-
-    public struct WeaponType
-    {
-        public WeaponType(bool isRange, float damage)
-        {
-
-        }
     }
 }

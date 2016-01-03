@@ -66,12 +66,12 @@
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <class Id="a9387fd9-aac7-41ec-a6d1-8b3f36f9c573" name="GameController" isAbstract="false" isLeaf="false" isActiveClass="false">
+            <class Id="a9387fd9-aac7-41ec-a6d1-8b3f36f9c573" name="MasterController" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="b88f8413-d74a-4ede-89fd-34d369809fbf" />
               <suppliersInternal>
-                <dependency Id="752691a6-0b57-4e9a-9c64-5d6c2951c48c">
-                  <enumerationMoniker Id="96828bb8-e45f-4fdc-81c7-a29203062fe4" LastKnownName="GameState" />
-                  <elementDefinition Id="5d721b6a-c695-4284-8546-4227b7a475c1" />
+                <dependency Id="72a88d3d-5074-4360-a8a6-e98fd243ec89">
+                  <enumerationMoniker Id="0b30c583-04ab-43fc-b913-74aa8c214e31" LastKnownName="GameState" />
+                  <elementDefinition Id="b4568efc-c71d-4f05-9ea9-3646a4d8b6dd" />
                 </dependency>
               </suppliersInternal>
               <targetEnds>
@@ -169,13 +169,35 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="81ede5ac-7d26-46c8-aa95-ad3ca60a1b31" />
                 </association>
+                <association Id="d4e30fe7-a5d0-4a81-b5a4-f110e8f9d66d" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="bef347fa-b5d7-4be8-9a44-bebc713332d1" LastKnownName="GameController" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="b1c73e6b-c9ab-4ef5-a774-b615bb4f5cd1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <elementDefinition Id="a8a572b6-2140-4a32-af13-bd4347b827cb" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="2e90bf80-9b1f-47b2-b678-a82ae61cea0e" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="9336323a-a5b2-4755-aa29-7e97fa851dc4" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="32062d7c-53ac-4d51-891e-e57ec0cd4eb0" />
+                </association>
               </targetEnds>
             </class>
           </packageHasNamedElement>
           <packageHasNamedElement>
-            <enumeration Id="96828bb8-e45f-4fdc-81c7-a29203062fe4" name="GameState" isAbstract="false" isLeaf="false">
-              <elementDefinition Id="28926808-b709-4841-9fc5-ffb65deaf151" />
-            </enumeration>
+            <class Id="bef347fa-b5d7-4be8-9a44-bebc713332d1" name="GameController" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="e1754ce7-2416-4950-80a8-93de7013501c" />
+              <suppliersInternal>
+                <dependency Id="021c9082-851e-4868-9ac8-e06665214df1">
+                  <enumerationMoniker Id="bcfd5cbf-bf70-448e-8c12-61076d9b7109" LastKnownName="LevelState" />
+                  <elementDefinition Id="c929671c-5ed9-4d99-bd0c-0c313a5abe8d" />
+                </dependency>
+              </suppliersInternal>
+            </class>
           </packageHasNamedElement>
         </packagedElements>
       </package>
@@ -219,9 +241,9 @@
             <class Id="514ff539-cf68-4234-aebb-fc9d1b9bc54f" name="Player" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="79a24f82-f4ab-4b0e-a375-64f0e336a90d" />
               <suppliersInternal>
-                <dependency Id="a4157f71-b576-40af-aa6d-42b517ab05ac">
-                  <enumerationMoniker Id="49c41109-8f4b-4188-b59f-600ceb722d7d" LastKnownName="PlayerState" />
-                  <elementDefinition Id="0cfd76e4-c6d9-4430-a93c-4557135e6c41" />
+                <dependency Id="466d8d9b-7f2d-4e4b-a703-7d3aadec6d4a">
+                  <enumerationMoniker Id="6682fa1e-3bbb-4552-b585-32edb5e04e7e" LastKnownName="PlayerState" />
+                  <elementDefinition Id="6560968e-035d-4069-b7d3-f5a3ce792166" />
                 </dependency>
               </suppliersInternal>
               <generalsInternal>
@@ -386,31 +408,6 @@
             <class Id="a36eed2f-29e9-45af-9ee9-fd22a3bbc132" name="CollisionHandler&lt;Component&gt;" isAbstract="false" isLeaf="false" isActiveClass="false">
               <elementDefinition Id="f301a78f-50a8-4389-94fa-c1de82b53d4f" />
             </class>
-          </packageHasNamedElement>
-          <packageHasNamedElement>
-            <enumeration Id="49c41109-8f4b-4188-b59f-600ceb722d7d" name="PlayerState" isAbstract="false" isLeaf="false">
-              <elementDefinition Id="70ef8288-61b0-4efa-bd25-dad5a32742fc" />
-              <ownedLiterals>
-                <enumerationLiteral Id="3c37023e-e208-4657-9855-8f02fdf8165a" name="Idle">
-                  <elementDefinition Id="8eade77a-9934-4ef5-87fd-6780ce6f9f84" />
-                </enumerationLiteral>
-                <enumerationLiteral Id="5c9faa55-7280-4386-ac0a-42758f0b1960" name="MoveLeft">
-                  <elementDefinition Id="4647d7b3-a1c5-4f05-98ab-d8c3ea1f0210" />
-                </enumerationLiteral>
-                <enumerationLiteral Id="6af67b89-3620-43b5-a514-20940936c8c7" name="MoveRight">
-                  <elementDefinition Id="6ed70ab9-2b21-4138-b0fb-dd600cf6bf95" />
-                </enumerationLiteral>
-                <enumerationLiteral Id="e691705b-5e1c-462f-80ff-8a80f69b2e83" name="Jump">
-                  <elementDefinition Id="38034bbc-ce31-405c-b6e2-bf248f885346" />
-                </enumerationLiteral>
-                <enumerationLiteral Id="f1184613-ef9e-41cc-ada8-fdf8c5a838b0" name="Fall">
-                  <elementDefinition Id="7370125f-4350-4544-9355-0bd1d7c24ea0" />
-                </enumerationLiteral>
-                <enumerationLiteral Id="21acc01f-aef9-47f0-8fe3-7dd563ec5140" name="Dead">
-                  <elementDefinition Id="3f57e138-ec34-4472-b828-e3e116d3518f" />
-                </enumerationLiteral>
-              </ownedLiterals>
-            </enumeration>
           </packageHasNamedElement>
           <packageHasNamedElement>
             <class Id="2e343d23-949c-450b-a742-8013445a6da0" name="EnemySimulation" isAbstract="false" isLeaf="false" isActiveClass="false">
@@ -882,6 +879,41 @@
         </packagedElements>
       </package>
     </logicalClassDesignerModelHasPackages>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="bcfd5cbf-bf70-448e-8c12-61076d9b7109" name="LevelState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7e663cfd-d52d-4115-8254-be70ff124c4d" />
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="6682fa1e-3bbb-4552-b585-32edb5e04e7e" name="PlayerState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e8919aff-3a7e-40f9-bd79-97aa3edd9b36" />
+        <ownedLiterals>
+          <enumerationLiteral Id="8a34574e-954e-4275-ae44-0fa6f629c572" name="Idle">
+            <elementDefinition Id="6665e57c-ebef-4261-bf3b-80d608710fdf" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="e95876f8-53bc-4f12-8421-8abbd79fc3ec" name="MoveLeft">
+            <elementDefinition Id="ab28d4fc-e7f3-471f-964e-00cef12a038b" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="54dbbd7e-cb34-4bb9-98a5-f5699b97ad92" name="MoveRight">
+            <elementDefinition Id="3ca63452-6223-455e-9925-892e25c5c102" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="67b5136f-0fd2-473a-bb08-34c81bfb66a5" name="Jump">
+            <elementDefinition Id="feb0cc7f-d958-4698-a2e2-96133c3369fd" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="7d6f9879-b4a8-4213-8bec-60bdb2e899db" name="Fall">
+            <elementDefinition Id="dd5689df-0ece-41f4-b786-e8357a931256" />
+          </enumerationLiteral>
+          <enumerationLiteral Id="593e137e-6047-4abf-a37a-f58a57aa822b" name="Dead">
+            <elementDefinition Id="6b73434e-bd67-467e-89da-3cf70dc1227a" />
+          </enumerationLiteral>
+        </ownedLiterals>
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <enumeration Id="0b30c583-04ab-43fc-b913-74aa8c214e31" name="GameState" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e8ba6300-9b74-4ef7-838a-56ecc7331180" />
+      </enumeration>
+    </logicalClassDesignerModelHasTypes>
   </packagedElements>
   <package Id="2e99e265-4966-49ce-acfe-7c4e2dc4edd3" name="GameClassDiagram">
     <elementDefinition Id="3dfc7fe9-4923-4302-a75d-00dc51560ea5" />

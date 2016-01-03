@@ -123,17 +123,17 @@
     <packageHasNamedElement>
       <class
         Id="b88f8413-d74a-4ede-89fd-34d369809fbf"
-        name="GameController"
+        name="MasterController"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <suppliersInternal>
           <dependency
-            Id="5d721b6a-c695-4284-8546-4227b7a475c1">
+            Id="b4568efc-c71d-4f05-9ea9-3646a4d8b6dd">
             <enumerationMoniker
-              Id="28926808-b709-4841-9fc5-ffb65deaf151"
+              Id="e8ba6300-9b74-4ef7-838a-56ecc7331180"
               LastKnownName="GameState"
-              LastKnownLocation="Package_1622.uml" />
+              LastKnownLocation="GameClassDiagram.uml" />
           </dependency>
         </suppliersInternal>
         <targetEnds>
@@ -319,15 +319,63 @@
               </associationHasOwnedEnds>
             </relationshipOwnedElementsInternal>
           </association>
+          <association
+            Id="32062d7c-53ac-4d51-891e-e57ec0cd4eb0"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="e1754ce7-2416-4950-80a8-93de7013501c"
+              LastKnownName="GameController"
+              LastKnownLocation="Package_1622.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="a8a572b6-2140-4a32-af13-bd4347b827cb"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="9336323a-a5b2-4755-aa29-7e97fa851dc4"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
         </targetEnds>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
-      <enumeration
-        Id="28926808-b709-4841-9fc5-ffb65deaf151"
-        name="GameState"
+      <class
+        Id="e1754ce7-2416-4950-80a8-93de7013501c"
+        name="GameController"
         isAbstract="false"
-        isLeaf="false" />
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="c929671c-5ed9-4d99-bd0c-0c313a5abe8d">
+            <enumerationMoniker
+              Id="7e663cfd-d52d-4115-8254-be70ff124c4d"
+              LastKnownName="LevelState"
+              LastKnownLocation="GameClassDiagram.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
 </package>

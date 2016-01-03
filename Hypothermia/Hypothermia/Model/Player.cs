@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -22,45 +23,50 @@ namespace Hypothermia.Model
     public class Player : GameObject
     {
         public PlayerState CurrentPlayerState = PlayerState.Idle;
+        private ContentManager content;
 
         private List<Arrow> arrows = new List<Arrow>();
 
+        private View.Camera camera;
+        private View.Animation animation;
         private RigidBody rigidBody;
+        
 
         private float movementSpeed = 3.0f;
         private float jumpingSpeed = 8.0f;
         private bool faceForward = true;
         private bool isSprinting = false;
 
+        private int lives = 3;
         private int health = 100;
         private float shootTimer = 0;
 
-        public Player(int width, int height)
+        public Player(ContentManager content, View.Camera camera)
         {
-            base.Position = new Vector2(64, 570);
+            this.content = content;
+
+            this.camera = camera;
+            this.animation = new View.Animation(this, content.Load<Texture2D>("TexturePacks/playerAnimation"), 15, 5);
+            
             base.Acceleration = new Vector2(0.3f, 0.0f);
-            base.Rect = new Rectangle((int)Math.Round(base.Position.X) - width / 2, (int)Math.Round(base.Position.Y) - height, width, height);
+            base.Rect = new Rectangle((int)Math.Round(base.Position.X) - this.animation.FrameWidth / 2, 
+                                      (int)Math.Round(base.Position.Y) - this.animation.FrameHeight, 
+                                      this.animation.FrameWidth, this.animation.FrameHeight);
 
             this.rigidBody = new RigidBody(this, 70f, 5.5f);
         }
 
-        public void MapCollision(int mapWidth, int mapHeight)
+        public void Update(float elapsedTime, List<View.Tile> tiles)
         {
-            if (base.Position.X < 0) 
-                base.PositionX = 0;
-            if (base.Position.X > mapWidth)
-                base.PositionX = mapWidth;
-            if (base.Position.Y > mapHeight)
-                this.health = 0;
-        }
+            this.UpdateAnimation(elapsedTime);
+            this.MapCollision(this.camera.MapWidth, this.camera.MapHeight);
 
-        public void Update(float elapsedTime, List<View.Map.Tile> tiles)
-        {
             base.Position = base.Position + base.Velocity;
-            
+
             if (this.health <= 0)
                 this.CurrentPlayerState = PlayerState.Dead;
-            else
+
+            if (CurrentPlayerState != PlayerState.Dead)
             {
                 if (!this.rigidBody.OnGround)
                 {
@@ -82,6 +88,8 @@ namespace Hypothermia.Model
                 if (base.Velocity.Y < 0)
                     this.rigidBody.DetectTopCollision(tiles);
             }
+            else
+                this.rigidBody.Fall(elapsedTime);
 
             for (int i = 0; i < this.arrows.Count; i++)
             {
@@ -99,6 +107,23 @@ namespace Hypothermia.Model
 
             if (this.shootTimer > 0)
                 this.shootTimer -= elapsedTime;
+        }
+
+        public void Draw(SpriteBatch sb)
+        {
+            this.animation.Draw(sb);
+            for (int i = 0; i < this.arrows.Count; i++)
+                this.arrows[i].Draw(sb);
+        }
+
+        public void MapCollision(int mapWidth, int mapHeight)
+        {
+            if (base.Position.X < 0)
+                base.PositionX = 0;
+            if (base.Position.X > mapWidth)
+                base.PositionX = mapWidth;
+            if (base.Position.Y > mapHeight)
+                this.health = 0;
         }
 
         public void MoveLeft()
@@ -139,7 +164,7 @@ namespace Hypothermia.Model
         public void Sprint(bool isSprinting)
         {
             this.isSprinting = isSprinting;
-
+            
             if (isSprinting)
                 this.movementSpeed = 5.0f;
             else
@@ -151,19 +176,19 @@ namespace Hypothermia.Model
 
         }
 
-        public void RangeAttack(Texture2D texture)
+        public void RangeAttack()
         {
-            Arrow arrow = new Arrow(texture);
+            Arrow arrow = new Arrow(this.content.Load<Texture2D>("arrow"));
             this.shootTimer = arrow.ShootTimer;
 
-            if(faceForward) {
+            if(this.faceForward) {
                 arrow.VelocityX = 4.0f + base.Velocity.X;      //new Vector2(5.0f, -0.5f);
                 arrow.VelocityY = -1.0f;      //new Vector2(5.0f, -0.5f);
                 arrow.PositionX = base.Position.X + arrow.Velocity.X * 5;
                 arrow.PositionY = (base.Position.Y - base.Rect.Height / 2) + arrow.Velocity.Y * 5;
                 
             }
-            else if (!faceForward)
+            else if (!this.faceForward)
             {
                 arrow.VelocityX = -4.0f + base.Velocity.X;      //new Vector2(5.0f, -0.5f);
                 arrow.VelocityY = -1.0f;      //new Vector2(5.0f, -0.5f);
@@ -196,6 +221,41 @@ namespace Hypothermia.Model
             }
         }
 
+        public void UpdateAnimation(float elapsedTime)
+        {
+            this.animation.Update();
+
+            if (CurrentPlayerState == PlayerState.Jump)
+            {
+                if (this.faceForward)
+                    this.animation.Animate(elapsedTime, 3, 1, 9, 0.05f);
+                else
+                    this.animation.Animate(elapsedTime, 4, 1, 9, 0.05f);
+            }
+
+            else if (CurrentPlayerState == PlayerState.Fall || CurrentPlayerState == PlayerState.Dead)
+            {
+                if (this.faceForward)
+                    this.animation.Animate(elapsedTime, 3, 9, 13, 0.05f);
+                else
+                    this.animation.Animate(elapsedTime, 4, 9, 13, 0.05f);
+            }
+
+            else if (CurrentPlayerState == PlayerState.MoveLeft)
+                this.animation.Animate(elapsedTime, 2, 3, 12, 0.03f);
+
+            else if (CurrentPlayerState == PlayerState.MoveRight)
+                this.animation.Animate(elapsedTime, 1, 3, 12, 0.03f);
+
+            else if (CurrentPlayerState == PlayerState.Idle)
+            {
+                if (this.faceForward)
+                    this.animation.Animate(elapsedTime, 5, 1, 6, 0.03f);
+                else
+                    this.animation.Animate(elapsedTime, 5, 7, 12, 0.03f);
+            }
+        }
+
         public RigidBody RigidBody { get { return this.rigidBody; } }
         public bool FaceForward { get { return this.faceForward; } }
         public bool IsSprinting { get { return this.isSprinting; } }
@@ -205,8 +265,11 @@ namespace Hypothermia.Model
             set { this.health = value; }
         }
 
-        public PlayerState PlayerState { get { return this.CurrentPlayerState; } }
-        public List<Arrow> Arrows { get { return this.arrows; } }
         public float ShootTimer { get { return this.shootTimer; } }
+
+        public int Lives {
+            get { return this.lives; }
+            set { this.lives = value; }
+        }
     }
 }

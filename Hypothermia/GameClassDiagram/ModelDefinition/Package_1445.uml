@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="ccf523dd-9670-4376-8e37-7fe993e36733"
+  name="View" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="06835a75-90a4-47b8-841f-3d2c44666ab2"
+        name="PlayerView"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="a474261d-2eec-49a1-aac1-e2a2fd86b947">
+            <classMoniker
+              Id="72e44f90-7a29-42e2-9c7f-904f09e51f82"
+              LastKnownName="Player"
+              LastKnownLocation="Package1_1445.uml" />
+          </dependency>
+        </suppliersInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e5af66b0-f47f-4107-b9f9-e07b592ace03"
+        name="Camera"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="d64395c8-0530-4d80-a06d-33bb95ca3b1f"
+        name="GameView"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="ebad8e64-c908-4342-a583-215e3730e9e0">
+            <enumerationMoniker
+              Id="c6dc03a4-43ee-4512-8e03-20091acde387"
+              LastKnownName="LevelState"
+              LastKnownLocation="GameClassDiagram.uml" />
+          </dependency>
+          <dependency
+            Id="24442a12-1ce8-4809-b2b9-acb61af03d48">
+            <classMoniker
+              Id="39560041-9114-4361-9be7-d7cb3f016a7e"
+              LastKnownName="MapCollection"
+              LastKnownLocation="Package_1445.uml" />
+          </dependency>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="7c5fdc9e-812b-4481-be62-06909e478874"
+            isSubstitutable="false">
+            <classMoniker
+              Id="18dc6381-ca26-4aae-a901-0b52ecc77b9a"
+              LastKnownName="TileGenerator"
+              LastKnownLocation="Package_1458.uml" />
+          </generalization>
+        </generalsInternal>
+        <targetEnds>
+          <association
+            Id="04670134-4708-4cba-92b3-48af62db65bf"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="92fddd7c-6ec6-49ee-bb98-11b78c6ea680"
+              LastKnownName="EnemySpawner"
+              LastKnownLocation="Package_1458.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="42af4d6a-e18e-4439-b0de-f8481d4ce382"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="f5abcf53-1f68-4143-a63c-85c113910ddd"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="4d9473f7-5e61-437e-bcc7-eec9aadc9b43"
+        LastKnownName="Map"
+        LastKnownLocation="Package_1458.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="fb26b79e-5045-4ff4-8703-c4839fa67bdb"
+        name="GFXView"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <suppliersInternal>
+          <dependency
+            Id="0d87c020-f554-47ae-931b-d5b0363e505b">
+            <enumerationMoniker
+              Id="c6dc03a4-43ee-4512-8e03-20091acde387"
+              LastKnownName="LevelState"
+              LastKnownLocation="GameClassDiagram.uml" />
+          </dependency>
+        </suppliersInternal>
+        <targetEnds>
+          <association
+            Id="10829166-43a0-41ae-bb52-df36d1049a57"
+            isDerived="false"
+            sourceEndRoleName=""
+            targetEndRoleName=""
+            isLeaf="false"
+            isAbstract="false">
+            <classMoniker
+              Id="b841b08c-1c08-4157-afb2-515de6b5e423"
+              LastKnownName="DepthSimulator"
+              LastKnownLocation="Package_1457.uml" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="43ae21db-7de0-48ee-b2ed-d15b43ff0489"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false"
+                  isNavigableOwned="false" />
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd
+                  Id="85d22f75-9ad9-4833-9706-d9db61931c74"
+                  isLeaf="false"
+                  isStatic="false"
+                  isReadOnly="false"
+                  isDerived="false"
+                  isDerivedUnion="false"
+                  aggregation="None"
+                  isComposite="false" />
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+          </association>
+        </targetEnds>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="39560041-9114-4361-9be7-d7cb3f016a7e"
+        name="MapCollection"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -14,7 +14,7 @@ namespace Hypothermia
         [STAThread]
         static void Main()
         {
-            using (var game = new Controller.GameController())
+            using (var game = new Controller.MasterController())
                 game.Run();
         }
     }

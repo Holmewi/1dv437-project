@@ -25,7 +25,7 @@ namespace Hypothermia.Model
             this.rigidBody = new RigidBody(this, 0.05f, 1.0f);
         }
 
-        public void Update(float elapsedTime, Vector2 playerPosition, List<View.Map.Tile> tiles)
+        public void Update(float elapsedTime, Vector2 playerPosition, List<View.Tile> tiles)
         {
             base.Position = base.Position + base.Velocity;
 

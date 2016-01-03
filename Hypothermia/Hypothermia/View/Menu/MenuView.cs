@@ -32,16 +32,21 @@ namespace Hypothermia.View.Menu
 
         public void LoadContent(ContentManager content)
         {
-            this.graphics.PreferredBackBufferWidth = (int)base.Resolution.X;
-            this.graphics.PreferredBackBufferHeight = (int)base.Resolution.Y;
-            this.graphics.IsFullScreen = base.FullScreen;
-            this.graphics.ApplyChanges();
-
             this.playButton = new Button(this.graphics.GraphicsDevice, content.Load<Texture2D>("playButton"));
             this.optionButton = new Button(this.graphics.GraphicsDevice, content.Load<Texture2D>("optionButton"));
             this.quitButton = new Button(this.graphics.GraphicsDevice, content.Load<Texture2D>("quitButton"));
             this.newButton = new Button(this.graphics.GraphicsDevice, content.Load<Texture2D>("newButton"));
             this.resumeButton = new Button(this.graphics.GraphicsDevice, content.Load<Texture2D>("resumeButton"));
+        }
+
+        public void LoadSettings()
+        {
+            this.graphics.PreferredBackBufferWidth = (int)base.Resolution.X;
+            this.graphics.PreferredBackBufferHeight = (int)base.Resolution.Y;
+            this.graphics.IsFullScreen = base.FullScreen;
+            this.graphics.ApplyChanges();
+
+            base.SettingsChanged = false;
         }
 
         public void Update(GraphicsDevice device, MouseState mouse, GameState state)
