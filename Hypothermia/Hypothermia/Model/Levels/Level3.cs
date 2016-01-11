@@ -50,10 +50,16 @@ namespace Hypothermia.Model.Levels
 
         private void CreateEnemies(ContentManager content)
         {
-            base.Enemies = new Enemy[3];
-            base.Enemies[0] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(17, 10));
-            base.Enemies[1] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(10, 15));
-            base.Enemies[2] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(16, 7));
+            base.Enemies = new Enemy[9];
+            base.Enemies[0] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(17, 11));
+            base.Enemies[1] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(10, 15));
+            base.Enemies[2] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(16, 7));
+            base.Enemies[3] = new Enemy(ENEMY_FROG, content.Load<Texture2D>("enemyTmp2"), this.camera.GetMapCoordinates(10, 2));
+            base.Enemies[4] = new Enemy(ENEMY_FROG, content.Load<Texture2D>("enemyTmp2"), this.camera.GetMapCoordinates(10, 19));
+            base.Enemies[5] = new Enemy(ENEMY_WISP, content.Load<Texture2D>("enemyTmp3"), this.camera.GetMapCoordinates(5, 7));
+            base.Enemies[6] = new Enemy(ENEMY_WISP, content.Load<Texture2D>("enemyTmp3"), this.camera.GetMapCoordinates(10, 15));
+            base.Enemies[7] = new Enemy(ENEMY_WISP, content.Load<Texture2D>("enemyTmp3"), this.camera.GetMapCoordinates(15, 12));
+            base.Enemies[8] = new Enemy(ENEMY_WISP, content.Load<Texture2D>("enemyTmp3"), this.camera.GetMapCoordinates(16, 7));
         }
 
         private void CreatePlanes(ContentManager content)
@@ -94,15 +100,15 @@ namespace Hypothermia.Model.Levels
 
             else if (base.LevelState == LevelState.Created)
             {
-                base.loadTimer += elapsedTime;
+                base.loadTimer -= elapsedTime;
 
                 if (this.snowSimulation != null)
                     this.snowSimulation.Update(elapsedTime);
             }
 
-
             else if (base.LevelState == LevelState.Finished)
             {
+                this.player.SFXHandler.HandleIdleSFX();
                 if (this.snowSimulation != null)
                     this.snowSimulation.Update(elapsedTime);
             }

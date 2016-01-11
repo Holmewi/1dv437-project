@@ -151,7 +151,7 @@ namespace Hypothermia.Model
         {       
             if (boxCollider.IsSolid)
             {
-                if (y > boxCollider.Rect.Top + boxCollider.StartX)
+                if (y > boxCollider.Rect.Top)
                 {
                     return true;
                 }

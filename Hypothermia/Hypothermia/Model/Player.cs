@@ -30,9 +30,10 @@ namespace Hypothermia.Model
         private View.Camera camera;
         private View.Animation animation;
         private RigidBody rigidBody;
+        private View.SFXHandler SFX;
         
 
-        private float movementSpeed = 3.0f;
+        private float movementSpeed = 1.0f;
         private float jumpingSpeed = 8.0f;
         private bool faceForward = true;
         private bool isSprinting = false;
@@ -46,7 +47,7 @@ namespace Hypothermia.Model
             this.content = content;
 
             this.camera = camera;
-            this.animation = new View.Animation(this, content.Load<Texture2D>("TexturePacks/playerAnimation"), 15, 5);
+            this.animation = new View.Animation(this, content.Load<Texture2D>("TexturePacks/player_texture_animation"), 15, 5);
             
             base.Acceleration = new Vector2(0.3f, 0.0f);
             base.Rect = new Rectangle((int)Math.Round(base.Position.X) - this.animation.FrameWidth / 2, 
@@ -54,6 +55,7 @@ namespace Hypothermia.Model
                                       this.animation.FrameWidth, this.animation.FrameHeight);
 
             this.rigidBody = new RigidBody(this, 70f, 5.5f);
+            this.SFX = new View.SFXHandler(content);
         }
 
         public void Update(float elapsedTime, List<View.Tile> tiles)
@@ -64,8 +66,11 @@ namespace Hypothermia.Model
             base.Position = base.Position + base.Velocity;
 
             if (this.health <= 0)
+            {
+                this.SFX.HandleDieSFX();
                 this.CurrentPlayerState = PlayerState.Dead;
-
+            }
+                
             if (CurrentPlayerState != PlayerState.Dead)
             {
                 if (!this.rigidBody.OnGround)
@@ -84,7 +89,8 @@ namespace Hypothermia.Model
                 if (base.Velocity.X <= 0)
                     this.rigidBody.DetectLeftCollision(tiles);
                 if (base.Velocity.Y > 0)
-                    this.rigidBody.DetectBottomCollision(tiles);
+                    if (this.rigidBody.DetectBottomCollision(tiles))
+                        this.Land();
                 if (base.Velocity.Y < 0)
                     this.rigidBody.DetectTopCollision(tiles);
             }
@@ -126,10 +132,19 @@ namespace Hypothermia.Model
                 this.health = 0;
         }
 
+        public void Land()
+        {
+            this.SFX.HandleLandSFX();
+        }
+
         public void MoveLeft()
         {
-            if (base.Velocity.X >= -movementSpeed)
+            this.SFX.HandleMovementSFX(this.rigidBody.OnGround, this.isSprinting);
+
+            if (base.Velocity.X >= -this.movementSpeed)
                 base.VelocityX = base.Velocity.X - base.Acceleration.X;
+            else
+                base.VelocityX = base.Velocity.X + base.Acceleration.X;
             if (this.rigidBody.OnGround)
                 this.CurrentPlayerState = PlayerState.MoveLeft;
             this.faceForward = false;
@@ -137,8 +152,12 @@ namespace Hypothermia.Model
 
         public void MoveRight()
         {
-            if (base.Velocity.X <= movementSpeed)
+            this.SFX.HandleMovementSFX(this.rigidBody.OnGround, this.isSprinting);
+
+            if (base.Velocity.X <= this.movementSpeed)
                 base.VelocityX = base.Velocity.X + base.Acceleration.X;
+            else
+                base.VelocityX = base.Velocity.X - base.Acceleration.X;
             if(this.rigidBody.OnGround)
                 this.CurrentPlayerState = PlayerState.MoveRight;
             this.faceForward = true;
@@ -146,6 +165,7 @@ namespace Hypothermia.Model
 
         public void Jump(float elapsedTime)
         {
+            this.SFX.HandleJumpSFX();
             base.VelocityY = base.Velocity.Y - jumpingSpeed;
         }
 
@@ -154,6 +174,7 @@ namespace Hypothermia.Model
             if (base.Velocity.X > -base.Acceleration.X && base.Velocity.X < base.Acceleration.X) {
                 base.VelocityX = 0;
                 this.CurrentPlayerState = PlayerState.Idle;
+                this.SFX.HandleIdleSFX();
             }
             else if (base.Velocity.X < 0)
                 base.VelocityX = base.Velocity.X + base.Acceleration.X;
@@ -164,8 +185,8 @@ namespace Hypothermia.Model
         public void Sprint(bool isSprinting)
         {
             this.isSprinting = isSprinting;
-            
-            if (isSprinting)
+
+            if (this.isSprinting)
                 this.movementSpeed = 5.0f;
             else
                 this.movementSpeed = 3.0f;
@@ -242,10 +263,15 @@ namespace Hypothermia.Model
             }
 
             else if (CurrentPlayerState == PlayerState.MoveLeft)
-                this.animation.Animate(elapsedTime, 2, 3, 12, 0.03f);
-
+                if(this.isSprinting)
+                    this.animation.Animate(elapsedTime, 2, 3, 12, 0.02f);
+                else
+                    this.animation.Animate(elapsedTime, 2, 3, 12, 0.03f);
             else if (CurrentPlayerState == PlayerState.MoveRight)
-                this.animation.Animate(elapsedTime, 1, 3, 12, 0.03f);
+                if (this.isSprinting)
+                    this.animation.Animate(elapsedTime, 1, 3, 12, 0.02f);
+                else
+                    this.animation.Animate(elapsedTime, 1, 3, 12, 0.03f);
 
             else if (CurrentPlayerState == PlayerState.Idle)
             {
@@ -257,8 +283,13 @@ namespace Hypothermia.Model
         }
 
         public RigidBody RigidBody { get { return this.rigidBody; } }
+        public View.SFXHandler SFXHandler { get { return this.SFX; } }
         public bool FaceForward { get { return this.faceForward; } }
-        public bool IsSprinting { get { return this.isSprinting; } }
+
+        public bool IsSprinting { 
+            get { return this.isSprinting; }
+            set { this.isSprinting = value; }
+        }
 
         public int Health { 
             get { return this.health; }

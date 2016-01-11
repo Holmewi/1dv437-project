@@ -50,10 +50,11 @@ namespace Hypothermia.Model.Levels
 
         private void CreateEnemies(ContentManager content)
         {
-            base.Enemies = new Enemy[3];
-            base.Enemies[0] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(17, 2));
-            base.Enemies[1] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(10, 2));
-            base.Enemies[2] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(16, 2));
+            base.Enemies = new Enemy[4];
+            base.Enemies[0] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(19, 8));
+            base.Enemies[1] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(22, 8));
+            base.Enemies[2] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(25, 8));
+            base.Enemies[3] = new Enemy(ENEMY_FROG, content.Load<Texture2D>("enemyTmp2"), this.camera.GetMapCoordinates(10, 8));
         }
 
         private void CreatePlanes(ContentManager content)
@@ -68,7 +69,7 @@ namespace Hypothermia.Model.Levels
 
         private void SetPlayer()
         {
-            this.player.Position = new Vector2(this.camera.TileSize, this.camera.MapHeight - this.camera.TileSize);
+            this.player.Position = new Vector2(this.camera.TileSize, this.camera.MapHeight - this.camera.TileSize * 5);
             this.player.Velocity = new Vector2(0, 0);
             this.player.Health = 100;
             this.player.CurrentPlayerState = Model.PlayerState.Idle;
@@ -94,7 +95,7 @@ namespace Hypothermia.Model.Levels
 
             else if (base.LevelState == LevelState.Created)
             {
-                base.loadTimer += elapsedTime;
+                base.loadTimer -= elapsedTime;
 
                 if (this.snowSimulation != null)
                     this.snowSimulation.Update(elapsedTime);
@@ -103,6 +104,7 @@ namespace Hypothermia.Model.Levels
 
             else if (base.LevelState == LevelState.Finished)
             {
+                this.player.SFXHandler.HandleIdleSFX();
                 if (this.snowSimulation != null)
                     this.snowSimulation.Update(elapsedTime);
             }

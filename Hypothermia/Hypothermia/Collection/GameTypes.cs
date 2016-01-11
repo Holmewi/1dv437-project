@@ -13,18 +13,18 @@ namespace Hypothermia.Collection
          *  Enemy types
          *  string <name>, int <maxLife>, int <damage>, float <maxSpeed>,
          *  vector2 <movementSpeed>, vector2 <acceleration>,
-         *  bool <isBountToPlatform>, bool <isFlying>, 
+         *  bool <isBountToPlatform>, bool <isFlying>, bool <isRigidBody>
          *  int <aggression>, float <mass>, float <frontArea>
          */
-        public static EnemyType ENEMY_WOLF = new EnemyType("Wolf", 100, 25, 3.0f,
+        public static EnemyType ENEMY_DUCK = new EnemyType("Duck", 25, 25, 3.0f,
                                                            new Vector2(3.0f, 0), new Vector2(0.5f, 0),
                                                            true, false, true,
                                                            0, 70f, 5.5f);
-        public static EnemyType ENEMY_RAVEN = new EnemyType("Raven", 20, 50, 4.0f,
+        public static EnemyType ENEMY_FROG = new EnemyType("Frog", 100, 50, 4.0f,
                                                             new Vector2(4.0f, 0), new Vector2(0.5f, 0),
-                                                            false, true, true,
+                                                            true, false, true,
                                                             0, 20f, 1.0f);
-        public static EnemyType ENEMY_WISP = new EnemyType("Wisp", 20, 50, 6.0f,
+        public static EnemyType ENEMY_WISP = new EnemyType("Wisp", 50, 50, 6.0f,
                                                             new Vector2(6.0f, 0), new Vector2(0.5f, 0),
                                                             false, true, true,
                                                             0, 30f, 1.0f);
@@ -90,6 +90,7 @@ namespace Hypothermia.Collection
         public Vector2 MovementSpeed { get { return this.movementSpeed; } }
         public Vector2 Acceleration { get { return this.acceleration; } }
         public bool BoundToPlatform { get { return this.isBoundToPlatform; } }
+        public bool IsFlying { get { return this.isFlying; } }
         public bool IsRigidBody { get { return this.isRigidBody; } }
         public float Mass { get { return this.mass; } }
         public float FrontArea { get { return this.frontArea; } }

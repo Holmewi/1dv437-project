@@ -15,6 +15,8 @@ namespace Hypothermia.View
 
         private Matrix transform;
         private Vector2 cameraTargetPosition;
+        private const int MAX_OFFSET = 125;
+        private const int PANNING_SPEED = 25;
         private float offset = 0;
 
         private int tileSize;
@@ -68,16 +70,16 @@ namespace Hypothermia.View
 
         private int Panning(float elapsedTime, bool faceForward)
         {
-            if (faceForward && offset <= 125)
-                offset = offset + 25 * elapsedTime;
-            else if (!faceForward && offset >= -125)
-                offset = offset - 25 * elapsedTime;
+            if (faceForward && offset <= MAX_OFFSET)
+                offset = offset + PANNING_SPEED * elapsedTime;
+            else if (!faceForward && offset >= -MAX_OFFSET)
+                offset = offset - PANNING_SPEED * elapsedTime;
             else
             {
-                if (offset < 125)
-                    offset = offset + 25 * elapsedTime;
-                if (offset > 125)
-                    offset = offset - 25 * elapsedTime;
+                if (offset < MAX_OFFSET)
+                    offset = offset + PANNING_SPEED * elapsedTime;
+                if (offset > MAX_OFFSET)
+                    offset = offset - PANNING_SPEED * elapsedTime;
             }
             return (int)Math.Round(offset);
         }
@@ -85,9 +87,15 @@ namespace Hypothermia.View
         public void FocusOnPlayer(float elapsedTime, Vector2 playerPosition, bool faceForward, int mapWidth, int mapHeight)
         {
             if (playerPosition.X < this.device.Viewport.Width / 2 - this.Panning(elapsedTime, faceForward))
-                this.cameraTargetPosition.X = this.device.Viewport.Width / 2;
+                if (mapWidth > this.device.Viewport.Width)
+                    this.cameraTargetPosition.X = this.device.Viewport.Width / 2;
+                else
+                    this.cameraTargetPosition.X = mapWidth / 2;
             else if (playerPosition.X > mapWidth - (this.device.Viewport.Width / 2) - this.Panning(elapsedTime, faceForward))
-                this.cameraTargetPosition.X = mapWidth - (this.device.Viewport.Width / 2);
+                if(mapWidth > this.device.Viewport.Width)
+                    this.cameraTargetPosition.X = mapWidth - (this.device.Viewport.Width / 2);
+                else
+                    this.cameraTargetPosition.X = mapWidth / 2;
             else
                 this.cameraTargetPosition.X = playerPosition.X + this.Panning(elapsedTime, faceForward);
 
@@ -123,7 +131,16 @@ namespace Hypothermia.View
             set { this.mapHeight = value; }
         }
 
-        public int DeviceWidth { get { return this.deviceWidth; } }
-        public int DeviceHeight { get { return this.deviceHeight; } }
+        public int DeviceWidth { 
+            get { return this.deviceWidth; }
+            set { this.deviceWidth = value; }
+        }
+
+        public int DeviceHeight { 
+            get { return this.deviceHeight; }
+            set { this.deviceHeight = value; }
+        }
+
+        public int MaxOffset { get { return MAX_OFFSET; } }
     }
 }

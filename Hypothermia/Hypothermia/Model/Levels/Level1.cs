@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,27 +14,29 @@ namespace Hypothermia.Model.Levels
     {
         private View.Camera camera;
         private Model.Player player;
-        private Collection.MapType map;
 
         private SpriteFont font;
 
         private View.GFX.SnowSimulation snowSimulation;
         private View.GFX.PlaneHandler planeHandler;
+        //private View.SoundHandler soundHandler;
 
         public Level1(ContentManager content, View.Camera camera, Model.Player player, Collection.MapType map, int count)
         {
             this.camera = camera;
             this.player = player;
-            this.map = map;
             base.count = count;
 
             this.font = content.Load<SpriteFont>("Fonts/SpriteFont1");
 
-            this.CreateMap(content);
+            this.CreateMap(content, map);
             this.CreateEnemies(content);
 
             this.snowSimulation = new View.GFX.SnowSimulation(content, this.camera);
             this.planeHandler = new View.GFX.PlaneHandler(this.camera);
+            //this.soundHandler = new View.SoundHandler();
+
+            //this.soundHandler.AddAmbient(content.Load<Song>("Sounds/Ambient/L01_ambient_A"));
 
             this.CreatePlanes(content);
 
@@ -41,7 +45,7 @@ namespace Hypothermia.Model.Levels
             base.LevelState = LevelState.Created;
         }
 
-        private void CreateMap(ContentManager content)
+        private void CreateMap(ContentManager content, Collection.MapType map)
         {
             base.Tiles = map.GetTileList(content.Load<Texture2D>("TexturePacks/tileSpriteSheet"), this.camera.TileSize);
             this.camera.MapWidth = map.MapWidth;
@@ -51,9 +55,9 @@ namespace Hypothermia.Model.Levels
         private void CreateEnemies(ContentManager content)
         {
             base.Enemies = new Enemy[3];
-            base.Enemies[0] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(17, 10));
-            base.Enemies[1] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(10, 15));
-            base.Enemies[2] = new Enemy(ENEMY_WOLF, content.Load<Texture2D>("player"), this.camera.GetMapCoordinates(16, 7));
+            base.Enemies[0] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(17, 10));
+            base.Enemies[1] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(10, 15));
+            base.Enemies[2] = new Enemy(ENEMY_DUCK, content.Load<Texture2D>("enemyTmp1"), this.camera.GetMapCoordinates(16, 7));
         }
 
         private void CreatePlanes(ContentManager content)
@@ -68,7 +72,7 @@ namespace Hypothermia.Model.Levels
 
         private void SetPlayer()
         {
-            this.player.Position = new Vector2(128, 150);
+            this.player.Position = new Vector2(this.camera.TileSize, this.camera.MapHeight - this.camera.TileSize);
             this.player.Velocity = new Vector2(0, 0);
             this.player.Health = 100;
             this.player.CurrentPlayerState = Model.PlayerState.Idle;
@@ -94,7 +98,7 @@ namespace Hypothermia.Model.Levels
 
             else if (base.LevelState == LevelState.Created)
             {
-                base.loadTimer += elapsedTime;
+                base.loadTimer -= elapsedTime;
 
                 if (this.snowSimulation != null)
                     this.snowSimulation.Update(elapsedTime);
@@ -103,10 +107,10 @@ namespace Hypothermia.Model.Levels
 
             else if (base.LevelState == LevelState.Finished)
             {
+                this.player.SFXHandler.HandleIdleSFX();
                 if (this.snowSimulation != null)
                     this.snowSimulation.Update(elapsedTime);
             }
-                    
 
             base.Update(elapsedTime);
         }

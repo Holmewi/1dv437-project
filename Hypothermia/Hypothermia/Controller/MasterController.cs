@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Diagnostics;
 
@@ -25,6 +26,7 @@ namespace Hypothermia.Controller
 
         private View.Camera camera;
         private View.Menu.MenuView menuView;
+        private View.SoundHandler soundHandler;
         private GameController gameController;
 
         private int tileSize = 64;
@@ -45,6 +47,7 @@ namespace Hypothermia.Controller
         {
             this.camera = new View.Camera(GraphicsDevice, this.tileSize);
             this.menuView = new View.Menu.MenuView(graphics, this.camera);
+            this.soundHandler = new View.SoundHandler();
             this.gameController = new GameController(this.camera);
 
             base.Initialize();
@@ -57,6 +60,7 @@ namespace Hypothermia.Controller
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.soundHandler.AddAmbient(Content.Load<Song>("Sounds/Ambient/L01_ambient_A"));
 
             this.menuView.LoadContent(Content);
         }
@@ -83,7 +87,7 @@ namespace Hypothermia.Controller
                 Debug.WriteLine("Option menu");
             if (this.menuView.QuitButton.IsClicked == true)
                 Exit();
-            this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
+            this.menuView.Update(elapsedTime, GraphicsDevice, mouse, CurrentGameState);
         }
 
         private void DoPauseMenu(float elapsedTime, MouseState mouse)
@@ -102,10 +106,10 @@ namespace Hypothermia.Controller
                 Debug.WriteLine("Option menu");
             if (this.menuView.QuitButton.IsClicked == true)
                 Exit();
-            this.menuView.Update(GraphicsDevice, mouse, CurrentGameState);
+            this.menuView.Update(elapsedTime, GraphicsDevice, mouse, CurrentGameState);
         }
 
-        private void DoPlayCheck(float elapsedTime)
+        private void DoPlayCheck()
         {
             this.IsMouseVisible = false;
             this.menuView.PlayButton.IsClicked = false;
@@ -123,7 +127,21 @@ namespace Hypothermia.Controller
                 this.gameController.Player.Lives -= 1;
                 this.gameController.LoadLevel(Content);
             }
-                
+        }
+
+        private void DoGameOverCheck(float elapsedTime, MouseState mouse)
+        {
+            if (this.gameController.GameWon)
+                this.menuView.PlayerWon = true;
+            else
+                this.menuView.PlayerWon = false;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && this.menuView.LoadTimer < 0)
+            {
+                this.menuView.PlayerWon = false;
+                CurrentGameState = GameState.MainMenu;
+            }
+            this.menuView.Update(elapsedTime, GraphicsDevice, mouse, CurrentGameState); 
         }
 
         /// <summary>
@@ -138,7 +156,7 @@ namespace Hypothermia.Controller
             MouseState mouse = Mouse.GetState();
 
             if(this.menuView.SettingsChanged)
-                this.menuView.LoadSettings();
+                this.menuView.LoadSettings(GraphicsDevice);
 
             switch (CurrentGameState)
             {
@@ -152,14 +170,15 @@ namespace Hypothermia.Controller
                     Debug.WriteLine("Options not implemented");
                     break;
                 case GameState.Playing:
-                    this.DoPlayCheck(elapsedTime);
+                    this.DoPlayCheck();
                     this.gameController.Update(elapsedTime);
                     break;
                 case GameState.GameOver:
-                    if(Keyboard.GetState().IsKeyDown(Keys.Enter))
-                        CurrentGameState = GameState.MainMenu;
+                    this.DoGameOverCheck(elapsedTime, mouse);
                     break;
             }
+
+            this.soundHandler.Update(CurrentGameState);
 
             base.Update(gameTime);
         }
@@ -184,7 +203,7 @@ namespace Hypothermia.Controller
                     this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
                     break;
                 case GameState.GameOver:
-
+                    this.menuView.Draw(GraphicsDevice, spriteBatch, CurrentGameState);
                     break;
                 case GameState.Options:
                     break;

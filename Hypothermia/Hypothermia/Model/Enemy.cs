@@ -13,6 +13,8 @@ namespace Hypothermia.Model
         Idle,
         MoveLeft,
         MoveRight,
+        FlyUp,
+        FlyDown,
         Jump,
         Fall,
         Dead
@@ -58,8 +60,9 @@ namespace Hypothermia.Model
             if (this.health <= 0)
                 CurrentEnemyState = EnemyState.Dead;
 
-            if (!this.rigidBody.OnGround || CurrentEnemyState == EnemyState.Dead)
+            if (!this.type.IsFlying && !this.rigidBody.OnGround || CurrentEnemyState == EnemyState.Dead)
                 this.rigidBody.Fall(elapsedTime);
+
 
             if (CurrentEnemyState != EnemyState.Dead)
             {

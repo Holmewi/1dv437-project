@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace Hypothermia.View
     {
         private Vector2 resolution;
         private bool fullScreen;
+        private int ambientVolume;
 
         private bool settingsChanged = true;
 
@@ -22,6 +24,12 @@ namespace Hypothermia.View
         {
             get { return this.fullScreen; }
             set { this.fullScreen = value; }
+        }
+
+        public int AmbientVolume
+        {
+            get { return this.ambientVolume; }
+            set { this.ambientVolume = value; }
         }
 
         public bool SettingsChanged

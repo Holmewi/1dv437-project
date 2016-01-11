@@ -21,7 +21,6 @@ namespace Hypothermia.View.GFX
         private Camera camera;
 
         private List<Texture2D> textures = new List<Texture2D>();
-        private int count;
         private int tempWidth;
 
         public PlaneHandler(Camera camera)
@@ -37,7 +36,6 @@ namespace Hypothermia.View.GFX
         public void GenerateDepth(int depth, float scrollingSpeed)
         {
             this.tempWidth = 0;
-            this.count = 0;
             int width = 0;
 
             foreach (Texture2D texture in this.textures)
@@ -45,17 +43,13 @@ namespace Hypothermia.View.GFX
                 width += texture.Width;   
             }
 
-            double loop = (double)((this.camera.MapWidth + 300 + (this.camera.MapWidth * scrollingSpeed)) / width);
+            double loop = (double)((this.camera.MapWidth + (this.camera.MaxOffset * 2) + (this.camera.MapWidth * scrollingSpeed)) / width);
 
-            //TODO: Fix loop problem
 
-            for (int i = 0; i <= Math.Ceiling(loop) + 1; i++)
+            for (int i = 0; i <= Math.Ceiling(loop); i++)
             {
-                if (this.count >= this.textures.Count)
-                    this.count = 0;
-
-                this.AddToList(this.textures[this.count], depth, scrollingSpeed);
-                this.count += 1;
+                foreach (Texture2D texture in this.textures)
+                    this.AddToList(texture, depth, scrollingSpeed);
             }
 
             this.textures.Clear();

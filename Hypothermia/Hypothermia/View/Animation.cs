@@ -22,7 +22,7 @@ namespace Hypothermia.View
         private int spriteLine;
 
         private float timer;
-        private float interval = 0.01f;
+        private float interval;
 
         public Animation(Model.GameObject gameObject, Texture2D texture, int framesX, int framesY)
         {

@@ -20,6 +20,7 @@ namespace Hypothermia.Controller
         private const int MAX_LEVEL = 3;
         private int currentLevel;
         private bool gameOver = false;
+        private bool gameWon = false;
 
         public GameController(View.Camera camera)
         {
@@ -28,6 +29,8 @@ namespace Hypothermia.Controller
 
         public void StartNewGame(ContentManager content)
         {
+            this.gameOver = false;
+            this.gameWon = false;
             this.currentLevel = 1;
             this.player = new Model.Player(content, this.camera);
             this.playerController = new PlayerController(this.camera, this.player);
@@ -83,12 +86,18 @@ namespace Hypothermia.Controller
                         this.level.LevelState = Model.LevelState.Finished;
                 }
 
-                else if (this.level.LevelState == Model.LevelState.Created && this.level.LoatTImer > 2.0f)
+                else if (this.level.LevelState == Model.LevelState.Created && this.level.LoadTimer < 0)
                     this.level.LevelState = Model.LevelState.Playing;
 
                 else if (this.level.LevelState == Model.LevelState.Finished && Keyboard.GetState().IsKeyDown(Keys.Enter))
+                {
                     this.currentLevel += 1;
-                    
+                    if (this.currentLevel > MAX_LEVEL)
+                    {
+                        this.gameWon = true;
+                        this.gameOver = true;
+                    }
+                }
                     
                 if (this.level != null)
                     this.level.Update(elapsedTime);
@@ -97,7 +106,7 @@ namespace Hypothermia.Controller
         
         public void Draw(SpriteBatch sb, GameState state)
         {
-            if (this.level != null)
+            if (this.level != null && !this.gameOver)
                 this.level.Draw(sb);
         }
 
@@ -106,6 +115,8 @@ namespace Hypothermia.Controller
             get { return gameOver; }
             set { gameOver = value; }
         }
+
+        public bool GameWon { get { return this.gameWon; } }
 
         public Model.Player Player { get { return this.player; } }
         public Model.Level Level { get { return this.level; } }

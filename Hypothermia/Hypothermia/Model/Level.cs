@@ -22,7 +22,7 @@ namespace Hypothermia.Model
         protected View.GFX.PlaneHandler depth;
 
         protected int count;
-        protected float loadTimer = 0;
+        protected float loadTimer = 2.0f;
 
         public virtual void Update(float elapsedTime)
         {
@@ -63,9 +63,6 @@ namespace Hypothermia.Model
             set { this.count = value; }
         }
 
-        public float LoatTImer
-        {
-            get { return this.loadTimer; }
-        }
+        public float LoadTimer { get { return this.loadTimer; } }
     }
 }

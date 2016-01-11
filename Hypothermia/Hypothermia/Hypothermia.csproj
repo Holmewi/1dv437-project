@@ -26,7 +26,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -81,7 +81,8 @@
     <Compile Include="View\GFX\Particle.cs" />
     <Compile Include="View\GFX\PlaneHandler.cs" />
     <Compile Include="View\GFX\SnowSimulation.cs" />
-    <Compile Include="View\GameOver.cs" />
+    <Compile Include="View\SFXHandler.cs" />
+    <Compile Include="View\SoundHandler.cs" />
     <Compile Include="View\Tile.cs" />
     <Compile Include="Model\BoxCollider.cs" />
     <Compile Include="Model\CollisionHandler.cs" />

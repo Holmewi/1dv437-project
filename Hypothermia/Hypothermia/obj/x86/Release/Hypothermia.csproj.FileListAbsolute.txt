@@ -25,7 +25,6 @@ C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Release\Hypothermia.pdb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Hypothermia.exe.manifest
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Hypothermia.application
-C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Release\Hypothermia.csprojResolveAssemblyReference.cache
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Release\Hypothermia.exe.manifest
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Release\Hypothermia.application
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\arrow.xnb
@@ -42,3 +41,14 @@ C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Win
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\resumeButton.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\tempTiles.xnb
 C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\TexturePacks\tileSpriteSheet.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\Sounds\Ambient\L01_ambient_A.wma
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\Sounds\Ambient\L01_ambient_A.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\obj\x86\Release\Hypothermia.csprojResolveAssemblyReference.cache
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\Sounds\Effects\player_jump_snow_01.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\Sounds\Effects\player_land_snow_01.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\Sounds\Effects\player_sprint_snow_01.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\Sounds\Effects\player_walk_snow_01.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\enemyTmp1.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\enemyTmp2.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\enemyTmp3.xnb
+C:\Users\Holmewi\Documents\GitHub\1dv437-project\Hypothermia\Hypothermia\bin\Windows\Release\Content\TexturePacks\player_texture_animation.xnb
